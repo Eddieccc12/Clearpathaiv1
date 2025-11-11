@@ -442,7 +442,7 @@
       opacity: 0.9;
     }
 
-    /* WHY CLEAR PATH AI (unchanged look) */
+    /* WHY CLEAR PATH AI */
     .features-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -555,7 +555,6 @@
       align-items: center;
       gap: 0.35rem;
     }
-
     .automation-more-toggle span {
       font-size: 0.85rem;
     }
@@ -568,7 +567,6 @@
       transform: translateY(-4px);
       transition: max-height 0.25s ease, opacity 0.25s ease, transform 0.25s ease;
     }
-
     .automation-extra.open {
       max-height: 260px;
       opacity: 1;
@@ -597,7 +595,7 @@
       }
     }
 
-    /* HOW IT WORKS */
+    /* HOW IT WORKS – more creative */
     .steps {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -637,7 +635,18 @@
       text-transform: uppercase;
       letter-spacing: 0.2em;
       color: #9ca3af;
-      margin-bottom: 0.35rem;
+      margin-bottom: 0.25rem;
+      position: relative;
+      z-index: 1;
+    }
+    .step-tag {
+      display: inline-block;
+      margin-bottom: 0.45rem;
+      padding: 0.18rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      font-size: 0.7rem;
+      color: #e5e7eb;
       position: relative;
       z-index: 1;
     }
@@ -647,9 +656,20 @@
       position: relative;
       z-index: 1;
     }
-    .step p {
+    .step p,
+    .step ul {
       position: relative;
       z-index: 1;
+    }
+    .step ul {
+      margin-top: 0.2rem;
+      padding-left: 1rem;
+      font-size: 0.85rem;
+      color: #d1d5db;
+    }
+    .step ul li {
+      margin-bottom: 0.15rem;
+      list-style: disc;
     }
 
     @media (max-width: 900px) {
@@ -711,16 +731,47 @@
       }
     }
 
-    /* Contact */
+    /* Contact – neater with moving green glow */
     .contact-card {
+      position: relative;
       border-radius: 1.25rem;
       padding: 1.8rem 1.7rem 1.7rem;
-      background: radial-gradient(circle at top left, rgba(34, 197, 94, 0.26), rgba(15, 23, 42, 0.95));
+      background: rgba(15, 23, 42, 0.96);
       border: 1px solid rgba(148, 163, 184, 0.55);
       display: grid;
       grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
       gap: 2.2rem;
+      overflow: hidden;
     }
+    .contact-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 15% 0, rgba(34, 197, 94, 0.36), transparent 60%),
+        radial-gradient(circle at 80% 100%, rgba(34, 197, 94, 0.18), transparent 65%);
+      opacity: 0.9;
+      animation: contactGlow 22s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+    @keyframes contactGlow {
+      0% {
+        transform: translate(-10%, -10%) scale(1);
+      }
+      50% {
+        transform: translate(8%, 12%) scale(1.08);
+      }
+      100% {
+        transform: translate(-4%, 20%) scale(1.03);
+      }
+    }
+
+    .contact-text,
+    .contact-form {
+      position: relative;
+      z-index: 1;
+    }
+
     .contact-text {
       font-size: 0.95rem;
     }
@@ -733,6 +784,7 @@
       color: #d1d5db;
       opacity: 0.9;
     }
+
     .contact-form {
       display: grid;
       gap: 0.8rem;
@@ -762,6 +814,15 @@
     textarea.field {
       min-height: 120px;
       resize: vertical;
+    }
+    .contact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 0.2rem;
+    }
+    .contact-btn {
+      font-size: 0.85rem;
     }
     .contact-note {
       font-size: 0.8rem;
@@ -1042,7 +1103,7 @@
           <a href="#features">Features</a>
           <a href="#how-it-works">How it Works</a>
           <a href="#faq">FAQ</a>
-          <a href="#contact" class="nav-cta">
+          <a href="https://calendly.com/edward-clearpathai/30min" target="_blank" class="nav-cta">
             <span>●</span> Book a demo
           </a>
         </div>
@@ -1257,62 +1318,86 @@
       </div>
     </section>
 
-    <!-- =========== HOW IT WORKS (with "water" hover) =========== -->
+    <!-- =========== HOW IT WORKS – more creative =========== -->
     <section id="how-it-works">
       <div class="container">
         <div class="section-header">
           <p class="section-kicker">How it works</p>
           <h2 class="section-title">From idea to live assistant in five steps.</h2>
           <p class="section-subtitle">
-            A simple, guided process that takes you from “we’re curious about AI” to “our clients are actually using
-            this every day.”
+            A simple, guided rollout that moves from “What could AI do for us?” to “Our clients use this every day” —
+            without overwhelming your team.
           </p>
         </div>
 
         <div class="steps">
           <article class="step">
             <p class="step-index">Step 01</p>
-            <h3 class="step-title">Discovery &amp; planning</h3>
+            <span class="step-tag">Day 1 · 20–30 minutes</span>
+            <h3 class="step-title">Discovery &amp; use-case mapping</h3>
             <p>
-              We start with a short call to understand your clinic, pain points, and goals. Together we choose which
-              automation will bring the fastest results.
+              We jump on a short call to understand your clinic, your services, and where the pressure is
+              (phones, WhatsApp, DMs, emails).
             </p>
+            <ul>
+              <li>Pick 1–2 high-impact automations to start with</li>
+              <li>Agree on tone of voice (friendly, luxury, clinical)</li>
+            </ul>
           </article>
 
           <article class="step">
             <p class="step-index">Step 02</p>
-            <h3 class="step-title">Setup &amp; integration</h3>
+            <span class="step-tag">Days 2–3</span>
+            <h3 class="step-title">Script, safety &amp; tone</h3>
             <p>
-              We use your existing FAQs, scripts, or booking links to build your assistant and connect it to your
-              current tools — no complex tech work on your side.
+              We turn your FAQs, policies, and booking rules into clear conversation flows your assistant can actually
+              follow.
             </p>
+            <ul>
+              <li>Design welcome messages &amp; key replies</li>
+              <li>Set safe limits for what the AI can / can’t say</li>
+            </ul>
           </article>
 
           <article class="step">
             <p class="step-index">Step 03</p>
-            <h3 class="step-title">Testing &amp; approval</h3>
+            <span class="step-tag">Days 3–5</span>
+            <h3 class="step-title">Plug into your tools</h3>
             <p>
-              You see every conversation flow before anything goes live. We tune the tone, answers, and safety rules
-              until it feels exactly right.
+              We connect your assistant to calendars, forms, or booking links so it can actually take action — not just
+              chat.
             </p>
+            <ul>
+              <li>Hook into booking pages or calendars</li>
+              <li>Decide what gets logged, emailed or flagged</li>
+            </ul>
           </article>
 
           <article class="step">
             <p class="step-index">Step 04</p>
-            <h3 class="step-title">Launch &amp; monitor</h3>
+            <span class="step-tag">Week 1 launch</span>
+            <h3 class="step-title">Soft launch with safety net</h3>
             <p>
-              We switch your assistant on, monitor early conversations, and help your team get comfortable using and
-              reviewing the new workflows.
+              We launch quietly on your website or selected channels and keep a close eye on early conversations.
             </p>
+            <ul>
+              <li>Review real chats together</li>
+              <li>Adjust any answers that don’t feel right</li>
+            </ul>
           </article>
 
           <article class="step">
             <p class="step-index">Step 05</p>
-            <h3 class="step-title">Ongoing optimisation</h3>
+            <span class="step-tag">Ongoing optimisation</span>
+            <h3 class="step-title">Scale what works, add what’s missing</h3>
             <p>
-              As your clinic grows, we expand your automations — new procedures, new locations, and new channels like
-              WhatsApp or phone reception.
+              Once the assistant is stable, we layer in extra automations — post-procedure check-ins, reminders, and
+              more.
             </p>
+            <ul>
+              <li>Add new services, locations or channels</li>
+              <li>Review performance and refine monthly</li>
+            </ul>
           </article>
         </div>
       </div>
@@ -1387,15 +1472,18 @@
       </div>
     </section>
 
-    <!-- =========== CONTACT =========== -->
+    <!-- =========== CONTACT – neater, moving green, Calendly + form =========== -->
     <section id="contact">
       <div class="container">
         <div class="contact-card">
           <div class="contact-text">
             <h2 class="section-title">Ready to automate your clinic?</h2>
             <p>
-              Tell us a bit about your business and which tasks take up most of your team’s time. We’ll reply within
-              one business day with a personalised demo or a call time that suits you.
+              Share a bit about your clinic and we’ll show you exactly how an assistant could fit into your existing
+              workflow — without replacing your team.
+            </p>
+            <p>
+              You can either book a live demo in our calendar or send a message and we’ll reply with suggestions.
             </p>
             <p class="contact-meta">
               We’ll never share your details. All demos are private and tailored to your business.
@@ -1426,7 +1514,20 @@
               ></textarea>
             </div>
 
-            <button class="btn-primary" type="submit">Book a free demo →</button>
+            <div class="contact-actions">
+              <a
+                href="https://calendly.com/edward-clearpathai/30min"
+                target="_blank"
+                class="btn-primary contact-btn"
+                style="text-decoration:none;display:inline-flex;align-items:center;justify-content:center;"
+              >
+                Book a live demo →
+              </a>
+              <button class="btn-secondary contact-btn" type="submit">
+                Send a message
+              </button>
+            </div>
+
             <p class="contact-note" id="contactStatus"></p>
           </form>
         </div>
@@ -1434,7 +1535,7 @@
     </section>
   </main>
 
-  <!-- =========== FOOTER (no prototype text) =========== -->
+  <!-- =========== FOOTER =========== -->
   <footer>
     <div class="container footer-inner">
       <span>© <span id="year"></span> Clear Path AI. All rights reserved.</span>
@@ -1766,8 +1867,9 @@
       chatFlowStep = "automation_info";
     }
 
+    // Now opens Calendly instead of just scrolling
     function goToContactFromChat() {
-      document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+      window.open("https://calendly.com/edward-clearpathai/30min", "_blank");
       toggleChat(false);
     }
 
