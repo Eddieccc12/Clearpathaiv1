@@ -28,11 +28,12 @@
     /* Base / layout */
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
-    :root{--darken:0.20;} /* starting overlay darkness (will increase on scroll) */
+    :root{--darken:0.25;} /* starting overlay darkness (will increase on scroll) */
 
     body{
       font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;
-      background:linear-gradient(to bottom,#8ec9ff 0%,#0f2547 45%,#060c16 80%);
+      /* Very dark blue to black */
+      background:linear-gradient(to bottom,#0b1a2f 0%, #070e18 45%, #000000 85%);
       color:#f5f5f5;line-height:1.6;min-height:100vh;
       background-attachment:fixed;
       position:relative;
@@ -69,65 +70,101 @@
     /* Sections */
     .hero{padding:4rem 0 3rem;position:relative;z-index:1}
     .hero-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:3rem;align-items:center}
-    .eyebrow{text-transform:uppercase;letter-spacing:.25em;font-size:.65rem;color:#d1e4ff;margin-bottom:1rem}
+    .eyebrow{text-transform:uppercase;letter-spacing:.25em;font-size:.65rem;color:#c8dcff;margin-bottom:1rem}
     .hero-title{font-size:clamp(2.6rem,5vw,3.7rem);line-height:1.1;margin-bottom:1rem}
     .hero-subtitle{max-width:32rem;font-size:.98rem;color:#e5e7eb;opacity:.9;margin-bottom:1.25rem}
     .hero-bullets{display:flex;flex-wrap:wrap;gap:.5rem 1rem;color:#cbd5e1;font-size:.9rem;margin-bottom:1.4rem}
     .btn-primary{border-radius:999px;padding:.8rem 1.4rem;font-size:.95rem;font-weight:500;border:none;cursor:pointer;background:linear-gradient(135deg,#22c55e,#16a34a);color:#020617;box-shadow:0 18px 45px rgba(22,163,74,.45);display:inline-flex;align-items:center;gap:.4rem}
 
     .hero-media{position:relative;display:flex;justify-content:center}
-    .hero-card{position:relative;border-radius:1.4rem;overflow:hidden;border:1px solid rgba(148,163,184,.4);background:radial-gradient(circle at top left,rgba(56,189,248,.25),#0f172a);box-shadow:0 40px 120px rgba(15,23,42,.9);max-width:420px;width:100%;min-height:340px}
-    .hero-card-inner{position:relative;padding:2.1rem 1.9rem;display:flex;flex-direction:column;justify-content:space-between;height:100%}
+    .hero-card{position:relative;border-radius:1.4rem;overflow:hidden;border:1px solid rgba(148,163,184,.35);
+      background:radial-gradient(120% 90% at 10% 10%,rgba(37,99,235,.20),rgba(2,6,12,.9) 55%);
+      box-shadow:0 40px 120px rgba(6,10,16,.9);max-width:440px;width:100%;min-height:360px}
+    .hero-card-inner{position:relative;padding:2.1rem 1.9rem;display:flex;flex-direction:column;gap:.9rem;height:100%}
+    .hero-kpi{display:flex;gap:1rem;flex-wrap:wrap;font-size:.8rem;color:#cfe0ff}
+    .hero-kpi .k{background:rgba(12,18,30,.7);border:1px solid rgba(148,163,184,.35);padding:.45rem .6rem;border-radius:.7rem}
 
     section{padding:3rem 0;position:relative;z-index:1}
     .section-header{max-width:640px;margin-bottom:2rem}
-    .section-kicker{text-transform:uppercase;letter-spacing:.25em;font-size:.65rem;color:#d1e4ff;margin-bottom:.6rem}
+    .section-kicker{text-transform:uppercase;letter-spacing:.25em;font-size:.65rem;color:#c8dcff;margin-bottom:.6rem}
     .section-title{font-size:1.6rem;margin-bottom:.4rem}
     .section-subtitle{font-size:.96rem;color:#d1d5db;opacity:.9}
     .cap-list{display:grid;gap:.9rem;font-size:.95rem}
-    .cap-item{border-radius:1.1rem;padding:1rem 1.1rem;background:rgba(15,23,42,.9);border:1px solid rgba(148,163,184,.45)}
+    .cap-item{border-radius:1.1rem;padding:1rem 1.1rem;background:rgba(12,18,30,.88);border:1px solid rgba(148,163,184,.35)}
     .steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.1rem}
-    .step{padding:1rem 1.1rem;border-radius:1.1rem;border:1px solid rgba(148,163,184,.4);background:rgba(15,23,42,.9);font-size:.9rem}
+    .step{padding:1rem 1.1rem;border-radius:1.1rem;border:1px solid rgba(148,163,184,.35);background:rgba(12,18,30,.88);font-size:.9rem}
     @media (max-width:900px){.hero-grid{grid-template-columns:1fr}.steps{grid-template-columns:1fr}}
 
     /* FAQ */
     .faq-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:2rem}
-    .faq-item{padding:.9rem 1rem;border-bottom:1px solid rgba(75,85,99,.8);font-size:.9rem}
+    .faq-item{padding:.9rem 1rem;border-bottom:1px solid rgba(75,85,99,.6);font-size:.9rem}
     .faq-q{font-weight:500;margin-bottom:.35rem}
     .faq-a{color:#d1d5db;opacity:.9}
     @media (max-width:900px){.faq-grid{grid-template-columns:1fr}}
 
     /* Contact */
-    .contact-card{position:relative;border-radius:1.25rem;padding:1.4rem;background:rgba(15,23,42,.96);border:1px solid rgba(148,163,184,.55);display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:1.8rem;overflow:hidden}
+    .contact-card{position:relative;border-radius:1.25rem;padding:1.4rem;background:rgba(12,18,30,.92);border:1px solid rgba(148,163,184,.45);display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:1.8rem;overflow:hidden}
     .field-label{font-size:.82rem;margin-bottom:.3rem;display:block;color:#e5e7eb}
-    .field{border-radius:.7rem;border:1px solid rgba(148,163,184,.7);background:rgba(15,23,42,.95);padding:.6rem .75rem;color:#f9fafb;outline:none;width:100%}
+    .field{border-radius:.7rem;border:1px solid rgba(148,163,184,.55);background:rgba(6,10,16,.95);padding:.6rem .75rem;color:#f9fafb;outline:none;width:100%}
     .field::placeholder{color:#6b7280}
     .field-group{margin-bottom:1rem}
     .contact-actions{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.2rem}
 
     /* Footer */
     footer{padding:2rem 0 1.8rem;font-size:.8rem;color:#9ca3af}
-    .footer-inner{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;border-top:1px solid rgba(55,65,81,.9);padding-top:1rem}
-    .btn-secondary{border-radius:999px;padding:.8rem 1.35rem;font-size:.9rem;background:rgba(15,23,42,.9);border:1px solid rgba(148,163,184,.7);color:#e5e7eb;display:inline-flex;align-items:center;justify-content:center}
+    .footer-inner{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;border-top:1px solid rgba(55,65,81,.6);padding-top:1rem}
+    .btn-secondary{border-radius:999px;padding:.8rem 1.35rem;font-size:.9rem;background:rgba(6,10,16,.95);border:1px solid rgba(148,163,184,.55);color:#e5e7eb;display:inline-flex;align-items:center;justify-content:center}
 
-    /* Chat */
+    /* Chat (premium demo) */
     .chatbot{position:fixed;bottom:1.5rem;right:1.5rem;z-index:120;font-size:.85rem}
-    .chatbot-window{width:320px;max-height:430px;border-radius:1.1rem;background:rgba(15,23,42,.98);border:1px solid rgba(148,163,184,.7);box-shadow:0 18px 65px rgba(15,23,42,.95);display:flex;flex-direction:column;overflow:hidden;margin-bottom:.6rem;transition:transform .18s,opacity .18s,visibility .18s}
+    .chatbot-window{
+      width:340px;max-height:520px;border-radius:1rem;overflow:hidden;margin-bottom:.6rem;
+      background:linear-gradient(180deg, rgba(12,18,30,.85) 0%, rgba(6,10,16,.96) 100%);
+      border:1px solid rgba(148,163,184,.35);box-shadow:0 24px 80px rgba(0,0,0,.75);
+      display:flex;flex-direction:column;backdrop-filter:blur(10px);
+      transition:transform .18s,opacity .18s,visibility .18s;
+    }
     .chatbot-window.minimized{transform:translateY(16px);opacity:0;visibility:hidden}
-    .chatbot-toggle{position:relative;border-radius:999px;padding:.6rem .9rem;border:1px solid rgba(148,163,184,.95);background:radial-gradient(circle at top left,rgba(34,197,94,.26),rgba(15,23,42,.98));color:#f9f9ff;display:inline-flex;align-items:center;gap:.5rem;cursor:pointer;font-size:.85rem}
+    .chatbot-header{
+      display:flex;align-items:center;justify-content:space-between;padding:.7rem .8rem;border-bottom:1px solid rgba(148,163,184,.25);
+      background:linear-gradient(90deg, rgba(34,197,94,.25) 0%, rgba(37,99,235,.18) 100%);
+    }
+    .chat-title{display:flex;align-items:center;gap:.55rem}
+    .chat-avatar{width:28px;height:28px;border-radius:8px;background:radial-gradient(circle at 30% 30%,#22c55e,#0f172a);display:flex;align-items:center;justify-content:center}
+    .chat-sub{font-size:.7rem;color:#cbd5f5}
+    .chat-btn{border:none;background:transparent;color:#e5e7eb;font-size:18px;cursor:pointer}
+    .chat-body{padding:.9rem;display:flex;flex-direction:column;gap:.6rem;max-height:360px;overflow:auto}
+    .bubble{max-width:86%;padding:.55rem .7rem;border-radius:.85rem;font-size:.86rem;line-height:1.45}
+    .bot{background:rgba(12,18,30,.85);border:1px solid rgba(148,163,184,.3);border-bottom-left-radius:.35rem}
+    .user{align-self:flex-end;background:#22c55e;color:#052e16;border-bottom-right-radius:.35rem}
+    .quick{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.2rem}
+    .chip{border-radius:999px;border:1px solid rgba(148,163,184,.45);background:rgba(6,10,16,.92);padding:.28rem .6rem;font-size:.78rem;cursor:pointer}
+    .typing{display:flex;gap:.25rem;align-items:center}
+    .dot{width:6px;height:6px;border-radius:50%;background:#9fb3d9;opacity:.7;animation: blink 1s infinite}
+    .dot:nth-child(2){animation-delay:.2s}.dot:nth-child(3){animation-delay:.4s}
+    @keyframes blink{50%{opacity:.2}}
+    .chat-input{border-top:1px solid rgba(148,163,184,.25);display:flex;gap:.45rem;padding:.6rem;background:rgba(6,10,16,.94)}
+    .chat-input input{flex:1;border-radius:.6rem;border:1px solid rgba(75,85,99,.6);background:#0b1220;color:#e5e7eb;padding:.5rem .6rem}
+    .chat-input button{border-radius:999px;padding:.55rem .9rem;border:none;background:linear-gradient(135deg,#22c55e,#16a34a);color:#052e16;font-weight:600;cursor:pointer}
+
+    .chatbot-toggle{
+      position:relative;border-radius:999px;padding:.65rem .95rem;border:1px solid rgba(148,163,184,.85);
+      background:radial-gradient(circle at 30% 0, rgba(34,197,94,.22), rgba(15,23,42,.98));
+      color:#f1f5f9;display:inline-flex;align-items:center;gap:.5rem;cursor:pointer;font-size:.85rem;
+      box-shadow:0 16px 45px rgba(0,0,0,.6);
+    }
     .chatbot-toggle-dot{width:7px;height:7px;border-radius:999px;background:#22c55e;box-shadow:0 0 0 6px rgba(34,197,94,.35)}
-    /* Coachmark */
-    .chat-coachmark{position:absolute;right:100%;margin-right:.5rem;bottom:50%;transform:translateY(50%);background:#f0f9ff;color:#06223b;border:1px solid #93c5fd;border-radius:10px;padding:.45rem .6rem;font-size:.8rem;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:opacity .25s,transform .25s}
-    .chat-coachmark:after{content:"";position:absolute;right:-8px;top:50%;transform:translateY(-50%);border:8px solid transparent;border-left-color:#93c5fd;}
+    .chat-coachmark{position:absolute;right:100%;margin-right:.5rem;bottom:50%;transform:translateY(50%);background:#0b1220;color:#e2efff;border:1px solid rgba(147,197,253,.45);border-radius:10px;padding:.45rem .6rem;font-size:.8rem;white-space:nowrap;box-shadow:0 12px 30px rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:opacity .25s,transform .25s}
+    .chat-coachmark::after{content:"";position:absolute;right:-8px;top:50%;transform:translateY(-50%);border:8px solid transparent;border-left-color:rgba(147,197,253,.45)}
     .chat-coachmark.show{opacity:1;pointer-events:auto}
 
     /* Link flourish (optional) */
     .transition-circle{position:fixed;top:0;left:0;width:0;height:0;border-radius:50%;background:#22c55e;transform:translate(-50%,-50%);pointer-events:none;z-index:9999;transition:width .8s,height .8s;opacity:.95}
 
     /* Owner card */
-    .owner-card{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:1.6rem;padding:1.6rem;border-radius:1.25rem;background:rgba(15,23,42,.96);border:1px solid rgba(148,163,184,.55)}
+    .owner-card{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:1.6rem;padding:1.6rem;border-radius:1.25rem;background:rgba(12,18,30,.9);border:1px solid rgba(148,163,184,.4)}
     .owner-left{display:flex;gap:1rem;align-items:center}
-    .owner-avatar{width:72px;height:72px;border-radius:999px;object-fit:cover;border:1px solid rgba(148,163,184,.45)}
+    .owner-avatar{width:72px;height:72px;border-radius:999px;object-fit:cover;border:1px solid rgba(148,163,184,.35)}
   </style>
 </head>
 <body>
@@ -156,25 +193,20 @@
           <p class="hero-subtitle">Clear Path AI answers common questions and schedules appointments 24/7 — in your tone, with human handoff when needed.</p>
           <div class="hero-bullets"><span>24/7 responses in seconds</span> • <span>Fewer no-shows</span> • <span>Privacy-first · UK & US compliant</span></div>
           <a class="btn-primary" href="https://calendly.com/edward-clearpathai/30min" target="_blank">Book a live demo →</a>
-        </div>
-        <div class="hero-media" aria-hidden="true">
+         <div class="hero-media" aria-hidden="true">
           <div class="hero-card">
             <div class="hero-card-inner">
-              <div>
-                <div style="display:flex;align-items:center;gap:.85rem;">
-                  <div style="width:46px;height:46px;border-radius:999px;background:radial-gradient(circle at 10% 0,#38bdf8,#0f172a);display:flex;align-items:center;justify-content:center;font-size:1.4rem">🤖</div>
-                  <div style="font-size:.78rem">
-                    <span style="display:block;font-weight:500;">ClinicCare Assistant</span>
-                    <small style="opacity:.8;color:#cbd5f5;">AI triage · 24/7</small>
-                  </div>
-                </div>
-                <div style="margin-top:1.6rem;border-radius:1rem;padding:1rem;background:rgba(15,23,42,.9);border:1px solid rgba(148,163,184,.5);font-size:.8rem">
-                  <div style="text-transform:uppercase;letter-spacing:.18em;font-size:.6rem;color:#9ca3af;margin-bottom:.6rem">Live preview</div>
-                  <div style="font-size:.95rem;margin-bottom:.4rem"><strong style="color:#4ade80">72%</strong> of inbound questions resolved instantly.</div>
-                  <p>“Hi Maya, based on your symptoms I recommend booking a same-day call. Want me to find the next available slot?”</p>
-                </div>
+              <div class="hero-kpi">
+                <div class="k">Avg. reply <strong>0.6s</strong></div>
+                <div class="k"><strong>72%</strong> instant resolution</div>
+                <div class="k"><strong>18h</strong> saved / week</div>
               </div>
-              <div style="margin-top:1.1rem;font-size:.78rem;color:#9ca3af;">Avg. response time: <strong>0.6s</strong> · Time saved per week: <strong>18 hrs</strong></div>
+              <div style="border-radius:1rem;padding:1rem;background:rgba(10,16,26,.9);border:1px solid rgba(148,163,184,.35);font-size:.86rem">
+                <div style="text-transform:uppercase;letter-spacing:.18em;font-size:.6rem;color:#9fb3d9;margin-bottom:.6rem">Sample exchange</div>
+                <div class="bubble bot">Hi Maya — would you like me to find the next available consultation slot?</div>
+                <div class="bubble user" style="margin-top:.4rem">Tomorrow afternoon works.</div>
+                <div class="bubble bot" style="margin-top:.4rem">Done. I’ll hold 3:30pm and 4:15pm for you and send a confirmation.</div>
+              </div>
             </div>
           </div>
         </div>
@@ -291,8 +323,8 @@
       <div class="container">
         <div class="owner-card">
           <div class="owner-left">
-            <!-- Your uploaded photo -->
-            <img src="assets/eddie.jpg" alt="Photo of Edward Chalmers" class="owner-avatar" width="72" height="72" loading="lazy">
+            <!-- Use your current filename, safely encoded for the space -->
+            <img src="assets/EDDIE2%202.JPG" alt="Photo of Edward Chalmers" class="owner-avatar" width="72" height="72" loading="lazy">
             <div>
               <h2 class="owner-title">Contact the owner</h2>
               <p style="color:#9ca3af">Edward Chalmers · Founder, Clear Path AI</p>
@@ -356,7 +388,7 @@
       });
     }
 
-    // Chat demo + coachmark
+    // Premium chat demo
     const chatToggleBtn=document.getElementById("chatToggle");
     const chatWindow=document.getElementById("chatbotWindow");
     const chatCoach=document.getElementById("chatCoach");
@@ -370,38 +402,121 @@
       openDemo();
     });
 
+    function el(html){const t=document.createElement('template'); t.innerHTML=html.trim(); return t.content.firstChild;}
+
     function openDemo(){
       chatWindow.classList.remove("minimized");
-      chatWindow.innerHTML=`
-        <div style="padding:.8rem;border-bottom:1px solid rgba(148,163,184,.35);display:flex;justify-content:space-between;align-items:center">
-          <strong>ClinicCare Assist</strong>
-          <button id="closeChat" style="border:none;background:transparent;color:#e5e7eb;font-size:18px;cursor:pointer">×</button>
+      chatWindow.innerHTML="";
+      // header
+      chatWindow.appendChild(el(`
+        <div class="chatbot-header">
+          <div class="chat-title">
+            <div class="chat-avatar">💬</div>
+            <div>
+              <strong>ClinicCare Assist</strong>
+              <div class="chat-sub">Booking + FAQs · Demo</div>
+            </div>
+          </div>
+          <button class="chat-btn" id="closeChat" title="Close">×</button>
         </div>
-        <div style="padding:.9rem;display:flex;flex-direction:column;gap:.5rem;max-height:330px;overflow:auto" id="msgs">
-          <div style="background:#121826;border:1px solid rgba(148,163,184,.5);padding:.5rem .6rem;border-radius:.8rem">Hi! I can show how we handle bookings and FAQs for clinics. This is a demo only.</div>
-          <div style="background:#121826;border:1px solid rgba(148,163,184,.5);padding:.5rem .6rem;border-radius:.8rem">Try: “Book a consultation” or “What are your prices?”</div>
-        </div>
-        <form id="demoForm" style="border-top:1px solid rgba(148,163,184,.35);display:flex;gap:.45rem;padding:.6rem">
-          <input id="demoInput" placeholder="Type a message… (demo only)" style="flex:1;border-radius:.6rem;border:1px solid rgba(75,85,99,.9);background:#0f172a;color:#e5e7eb;padding:.45rem .6rem" />
-          <button class="btn-primary" type="submit">Send</button>
-        </form>`;
+      `));
+      // body
+      const body=el(`<div class="chat-body" id="msgs"></div>`);
+      chatWindow.appendChild(body);
+
+      // quick chips
+      const quick=el(`<div class="quick" id="quick"></div>`);
+      quick.appendChild(el(`<button class="chip" data-q="Book a consultation">Book a consultation</button>`));
+      quick.appendChild(el(`<button class="chip" data-q="What are your prices?">What are your prices?</button>`));
+      quick.appendChild(el(`<button class="chip" data-q="Where are you based?">Where are you based?</button>`));
+      body.appendChild(quick);
+
+      // input
+      chatWindow.appendChild(el(`
+        <form class="chat-input" id="demoForm">
+          <input id="demoInput" placeholder="Type a message… (demo only)" />
+          <button type="submit">Send</button>
+        </form>
+      `));
+
       document.getElementById("closeChat").onclick=()=>chatWindow.classList.add("minimized");
+
+      // messaging
+      const msgs=document.getElementById("msgs");
+      function bot(text){
+        const b = el(`<div class="bubble bot"></div>`); b.textContent=text; msgs.appendChild(b); msgs.scrollTop=msgs.scrollHeight;
+      }
+      function user(text){
+        const u = el(`<div class="bubble user"></div>`); u.textContent=text; msgs.appendChild(u); msgs.scrollTop=msgs.scrollHeight;
+      }
+      function typing(){
+        const t = el(`<div class="typing"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>`);
+        msgs.appendChild(t); msgs.scrollTop=msgs.scrollHeight; return t;
+      }
+
+      // welcome
+      bot("Hi! I can show how we handle bookings and FAQs for clinics. This is a demo only.");
+      bot("Try one of the buttons below or type your own question.");
+
+      // chip clicks
+      quick.querySelectorAll(".chip").forEach(ch=>{
+        ch.addEventListener("click",()=>{
+          user(ch.dataset.q);
+          reply(ch.dataset.q);
+        });
+      });
+
+      // form submit
       const form=document.getElementById("demoForm");
       const input=document.getElementById("demoInput");
-      const msgs=document.getElementById("msgs");
-      form.onsubmit=(e)=>{e.preventDefault(); const t=input.value.trim(); if(!t)return;
-        msgs.insertAdjacentHTML("beforeend",`<div style="align-self:flex-end;background:#22c55e;color:#052e16;padding:.45rem .6rem;border-radius:.8rem">${t}</div>`); input.value="";
-        setTimeout(()=>{msgs.insertAdjacentHTML("beforeend",`<div style="background:#121826;border:1px solid rgba(148,163,184,.5);padding:.5rem .6rem;border-radius:.8rem">In a live setup I’d answer from your approved info or book directly in your calendar.</div>`); msgs.scrollTop=msgs.scrollHeight;},500);
-        msgs.scrollTop=msgs.scrollHeight;
-      };
+      form.addEventListener("submit",(e)=>{
+        e.preventDefault();
+        const t=input.value.trim(); if(!t) return;
+        user(t); input.value="";
+        reply(t);
+      });
+
+      function reply(text){
+        const lower=text.toLowerCase();
+        const loader=typing();
+        setTimeout(()=>{
+          loader.remove();
+          if(lower.includes("book")){
+            bot("Great — in a live setup I’d check your calendar now. For the demo, want a real walkthrough?");
+            msgs.appendChild(el(`<div class="quick" style="margin-top:.2rem;">
+              <a class="chip" href="https://calendly.com/edward-clearpathai/30min" target="_blank" rel="noopener">Book a live demo</a>
+              <button class="chip" id="see-times" type="button">Show mock times</button>
+            </div>`));
+            const btn = msgs.querySelector("#see-times");
+            if(btn){
+              btn.onclick=()=>{
+                const l=typing();
+                setTimeout(()=>{
+                  l.remove();
+                  bot("Next available: Tomorrow 15:30 · 16:15 · 17:45. I can hold a slot and collect details.");
+                },500);
+              };
+            }
+          } else if(lower.includes("price") || lower.includes("cost")){
+            bot("We can share guideline prices or link to your pricing page, depending on your policy.");
+          } else if(lower.includes("where") || lower.includes("location") || lower.includes("address")){
+            bot("I can send your address, parking notes and a map link in one message.");
+          } else {
+            bot("I’d answer using your approved FAQs and policies. Want to see this on your site? Book a quick call.");
+            msgs.appendChild(el(`<div class="quick" style="margin-top:.2rem;">
+              <a class="chip" href="https://calendly.com/edward-clearpathai/30min" target="_blank" rel="noopener">Book a live demo</a>
+            </div>`));
+          }
+        }, 550);
+      }
     }
 
-    // Progressive darkening on scroll
+    // Progressive darkening on scroll (near-black look)
     (function(){
       function updateDark(){
         const max = document.documentElement.scrollHeight - window.innerHeight;
         const p = max > 0 ? window.scrollY / max : 0;      // 0 (top) → 1 (bottom)
-        const darkness = 0.20 + 0.65 * p;                  // min 0.20 → max ~0.85
+        const darkness = 0.25 + 0.55 * p;                  // min 0.25 → max ~0.80
         document.documentElement.style.setProperty('--darken', darkness.toFixed(3));
       }
       updateDark();
