@@ -25,12 +25,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
+    /* ========== BASE / LAYOUT ========== */
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
-    :root{--darken:0.25;}
+    :root{--darken:0.25;} /* starting overlay darkness (will increase on scroll) */
 
     body{
       font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;
+      /* Very dark blue to black */
       background:linear-gradient(to bottom,#0b1a2f 0%, #070e18 45%, #000000 85%);
       color:#f5f5f5;
       line-height:1.6;
@@ -38,502 +40,657 @@
       background-attachment:fixed;
       position:relative;
     }
+    /* Progressive darkening overlay */
     body::after{
       content:"";
-      position:fixed;
-      inset:0;
-      pointer-events:none;
+      position:fixed;inset:0;pointer-events:none;
       background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,var(--darken)) 100%);
-      z-index:0;
+      z-index:0; /* below all content sections */
     }
 
     a{text-decoration:none;color:inherit}
     img{max-width:100%;display:block}
     .container{max-width:1120px;margin:0 auto;padding:0 1.5rem}
 
-    /* NAVBAR */
-    .navbar{position:sticky;top:0;z-index:100;backdrop-filter:blur(18px);background:linear-gradient(to bottom,rgba(0,0,0,.75),rgba(0,0,0,.55),transparent);border-bottom:1px solid rgba(255,255,255,.08)}
+    /* ========== NAVBAR ========== */
+    .navbar{
+      position:sticky;top:0;z-index:100;
+      backdrop-filter:blur(18px);
+      background:linear-gradient(to bottom,rgba(0,0,0,.75),rgba(0,0,0,.55),transparent);
+      border-bottom:1px solid rgba(255,255,255,.08)
+    }
     .nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
     .nav-logo{font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:.9rem}
     .nav-logo span{color:#4ade80}
     .nav-links{display:flex;align-items:center;gap:1.75rem;font-size:.95rem}
-    .nav-cta{border-radius:999px;padding:.5rem 1rem;border:1px solid rgba(148,163,184,.6);font-size:.9rem;display:inline-flex;align-items:center;gap:.35rem;background:rgba(15,23,42,.7);backdrop-filter:blur(12px)}
-    .nav-cta:hover{border-color:#4ade80;transform:translateY(-1px) scale(1.02);box-shadow:0 12px 35px rgba(22,163,74,.25)}
+    .nav-links a{opacity:.9}
+    .nav-cta{
+      border-radius:999px;padding:.5rem 1rem;
+      border:1px solid rgba(148,163,184,.6);
+      font-size:.9rem;display:inline-flex;align-items:center;gap:.35rem;
+      background:rgba(15,23,42,.7);backdrop-filter:blur(12px)
+    }
+    .nav-cta:hover{
+      border-color:#4ade80;
+      transform:translateY(-1px) scale(1.02);
+      box-shadow:0 12px 35px rgba(22,163,74,.25)
+    }
     .nav-toggle{display:none}
     @media (max-width:768px){
-      .nav-links{position:fixed;inset:72px 1.25rem auto 1.25rem;flex-direction:column;align-items:flex-start;padding:1rem 1.25rem;border-radius:1rem;background:rgba(15,23,42,.96);border:1px solid rgba(148,163,184,.4);transform-origin:top right;transform:scale(.95);opacity:0;pointer-events:none;transition:opacity .18s,transform .18s}
+      .nav-links{
+        position:fixed;inset:72px 1.25rem auto 1.25rem;
+        flex-direction:column;align-items:flex-start;
+        padding:1rem 1.25rem;border-radius:1rem;
+        background:rgba(15,23,42,.96);
+        border:1px solid rgba(148,163,184,.4);
+        transform-origin:top right;transform:scale(.95);
+        opacity:0;pointer-events:none;transition:opacity .18s,transform .18s
+      }
       .nav-links.open{opacity:1;transform:scale(1);pointer-events:auto}
       .nav-cta{width:100%;justify-content:center}
-      .nav-toggle{display:inline-flex;width:32px;height:32px;border-radius:999px;border:1px solid rgba(148,163,184,.6);align-items:center;justify-content:center}
+      .nav-toggle{
+        display:inline-flex;width:32px;height:32px;border-radius:999px;
+        border:1px solid rgba(148,163,184,.6);align-items:center;justify-content:center
+      }
     }
 
-    /* HERO */
+    /* ========== HERO ========== */
     .hero{padding:4rem 0 3rem;position:relative;z-index:1}
     .hero-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:3rem;align-items:center}
     .eyebrow{text-transform:uppercase;letter-spacing:.25em;font-size:.65rem;color:#c8dcff;margin-bottom:1rem}
     .hero-title{font-size:clamp(2.6rem,5vw,3.7rem);line-height:1.1;margin-bottom:1rem}
     .hero-subtitle{max-width:32rem;font-size:.98rem;color:#e5e7eb;opacity:.9;margin-bottom:1.25rem}
-    .hero-bullets{display:flex;flex-wrap:wrap;gap:.5rem 1rem;color:#cbd5e1;font-size:.9rem;margin-bottom:1.4rem}
-    .btn-primary{border-radius:999px;padding:.8rem 1.4rem;font-size:.95rem;font-weight:500;border:none;cursor:pointer;background:linear-gradient(135deg,#22c55e,#16a34a);color:#020617;box-shadow:0 18px 45px rgba(22,163,74,.45);display:inline-flex;align-items:center;gap:.4rem}
+    .hero-bullets{
+      display:flex;flex-wrap:wrap;gap:.5rem 1rem;
+      color:#cbd5e1;font-size:.9rem;margin-bottom:1.4rem
+    }
+    .btn-primary{
+      border-radius:999px;padding:.8rem 1.4rem;
+      font-size:.95rem;font-weight:500;border:none;cursor:pointer;
+      background:linear-gradient(135deg,#22c55e,#16a34a);
+      color:#020617;
+      box-shadow:0 18px 45px rgba(22,163,74,.45);
+      display:inline-flex;align-items:center;gap:.4rem
+    }
 
     .hero-media{position:relative;display:flex;justify-content:center}
-    .hero-card{position:relative;border-radius:1.4rem;overflow:hidden;border:1px solid rgba(148,163,184,.35);
+    .hero-card{
+      position:relative;border-radius:1.4rem;overflow:hidden;
+      border:1px solid rgba(148,163,184,.35);
       background:radial-gradient(120% 90% at 10% 10%,rgba(37,99,235,.20),rgba(2,6,12,.9) 55%);
-      box-shadow:0 40px 120px rgba(6,10,16,.9);max-width:440px;width:100%;min-height:360px}
-    .hero-card-inner{position:relative;padding:2.1rem 1.9rem;display:flex;flex-direction:column;gap:.9rem;height:100%}
-    .hero-kpi{display:flex;gap:1rem;flex-wrap:wrap;font-size:.8rem;color:#cfe0ff}
-    .hero-kpi .k{background:rgba(12,18,30,.7);border:1px solid rgba(148,163,184,.35);padding:.45rem .6rem;border-radius:.7rem}
+      box-shadow:0 40px 120px rgba(6,10,16,.9);
+      max-width:440px;width:100%;min-height:360px
+    }
+    .hero-card-inner{
+      position:relative;padding:2.1rem 1.9rem;
+      display:flex;flex-direction:column;gap:.9rem;height:100%
+    }
+    .hero-kpi{
+      display:flex;gap:1rem;flex-wrap:wrap;
+      font-size:.8rem;color:#cfe0ff
+    }
+    .hero-kpi .k{
+      background:rgba(12,18,30,.7);
+      border:1px solid rgba(148,163,184,.35);
+      padding:.45rem .6rem;border-radius:.7rem
+    }
 
-    /* SECTION BASE */
+    @media (max-width:900px){
+      .hero-grid{grid-template-columns:1fr}
+    }
+
+    /* ========== SECTIONS ========== */
     section{padding:3rem 0;position:relative;z-index:1}
     .section-header{max-width:640px;margin-bottom:2rem}
     .section-kicker{text-transform:uppercase;letter-spacing:.25em;font-size:.65rem;color:#c8dcff;margin-bottom:.6rem}
     .section-title{font-size:1.6rem;margin-bottom:.4rem}
     .section-subtitle{font-size:.96rem;color:#d1d5db;opacity:.9}
+
     .cap-list{display:grid;gap:.9rem;font-size:.95rem}
-    .cap-item{border-radius:1.1rem;padding:1rem 1.1rem;background:rgba(12,18,30,.88);border:1px solid rgba(148,163,184,.35)}
+    .cap-item{
+      border-radius:1.1rem;padding:1rem 1.1rem;
+      background:rgba(12,18,30,.88);
+      border:1px solid rgba(148,163,184,.35)
+    }
+
     .steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.1rem}
-    .step{padding:1rem 1.1rem;border-radius:1.1rem;border:1px solid rgba(148,163,184,.35);background:rgba(12,18,30,.88);font-size:.9rem}
-    @media (max-width:900px){.hero-grid{grid-template-columns:1fr}.steps{grid-template-columns:1fr}}
+    .step{
+      padding:1rem 1.1rem;
+      border-radius:1.1rem;
+      border:1px solid rgba(148,163,184,.35);
+      background:rgba(12,18,30,.88);
+      font-size:.9rem
+    }
+    @media (max-width:900px){
+      .steps{grid-template-columns:1fr}
+    }
+
+    /* ========== FAQ ========== */
+    .faq-grid{
+      display:grid;
+      grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);
+      gap:2rem
+    }
+    .faq-item{
+      padding:.9rem 1rem;
+      border-bottom:1px solid rgba(75,85,99,.6);
+      font-size:.9rem
+    }
+    .faq-q{font-weight:500;margin-bottom:.35rem}
+    .faq-a{color:#d1d5db;opacity:.9}
+    @media (max-width:900px){
+      .faq-grid{grid-template-columns:1fr}
+    }
+
+    /* ========== CONTACT ========== */
+    .contact-card{
+      position:relative;
+      border-radius:1.25rem;
+      padding:1.4rem;
+      background:rgba(12,18,30,.92);
+      border:1px solid rgba(148,163,184,.45);
+      display:grid;
+      grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);
+      gap:1.8rem;
+      overflow:hidden
+    }
+    .field-label{font-size:.82rem;margin-bottom:.3rem;display:block;color:#e5e7eb}
+    .field{
+      border-radius:.7rem;
+      border:1px solid rgba(148,163,184,.55);
+      background:rgba(6,10,16,.95);
+      padding:.6rem .75rem;
+      color:#f9fafb;
+      outline:none;width:100%
+    }
+    .field::placeholder{color:#6b7280}
+    .field-group{margin-bottom:1rem}
+    .contact-actions{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.2rem}
+    .contact-note{font-size:.8rem;color:#9ca3af;margin-top:.4rem}
+
+    @media (max-width:900px){
+      .contact-card{grid-template-columns:1fr}
+    }
+
+    /* ========== FOOTER ========== */
+    footer{padding:2rem 0 1.8rem;font-size:.8rem;color:#9ca3af}
+    .footer-inner{
+      display:flex;flex-wrap:wrap;justify-content:space-between;
+      gap:1rem;border-top:1px solid rgba(55,65,81,.6);padding-top:1rem
+    }
+
+    .btn-secondary{
+      border-radius:999px;padding:.8rem 1.35rem;
+      font-size:.9rem;
+      background:rgba(6,10,16,.95);
+      border:1px solid rgba(148,163,184,.55);
+      color:#e5e7eb;
+      display:inline-flex;align-items:center;justify-content:center
+    }
+
+    /* ========== CHATBOT ========== */
+    .chatbot{
+      position:fixed;
+      bottom:1.5rem;
+      right:1.5rem;
+      z-index:120;
+      font-size:.85rem
+    }
+    .chatbot-window{
+      width:340px;max-height:520px;border-radius:1rem;
+      overflow:hidden;margin-bottom:.6rem;
+      background:linear-gradient(180deg, rgba(12,18,30,.85) 0%, rgba(6,10,16,.96) 100%);
+      border:1px solid rgba(148,163,184,.35);
+      box-shadow:0 24px 80px rgba(0,0,0,.75);
+      display:flex;flex-direction:column;
+      backdrop-filter:blur(10px);
+      transition:transform .18s,opacity .18s,visibility .18s
+    }
+    .chatbot-window.minimized{transform:translateY(16px);opacity:0;visibility:hidden}
+    .chatbot-header{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:.7rem .8rem;
+      border-bottom:1px solid rgba(148,163,184,.25);
+      background:linear-gradient(90deg, rgba(34,197,94,.25) 0%, rgba(37,99,235,.18) 100%)
+    }
+    .chat-title{display:flex;align-items:center;gap:.55rem}
+    .chat-avatar{
+      width:28px;height:28px;border-radius:8px;
+      background:radial-gradient(circle at 30% 30%,#22c55e,#0f172a);
+      display:flex;align-items:center;justify-content:center
+    }
+    .chat-sub{font-size:.7rem;color:#cbd5f5}
+    .chat-btn{border:none;background:transparent;color:#e5e7eb;font-size:18px;cursor:pointer}
+    .chat-body{
+      padding:.9rem;
+      display:flex;flex-direction:column;gap:.6rem;
+      max-height:360px;overflow:auto
+    }
+    .bubble{
+      max-width:86%;padding:.55rem .7rem;
+      border-radius:.85rem;font-size:.86rem;line-height:1.45
+    }
+    .bot{
+      background:rgba(12,18,30,.85);
+      border:1px solid rgba(148,163,184,.3);
+      border-bottom-left-radius:.35rem
+    }
+    .user{
+      align-self:flex-end;
+      background:#22c55e;
+      color:#052e16;
+      border-bottom-right-radius:.35rem
+    }
+    .quick{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.2rem}
+    .chip{
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,.45);
+      background:rgba(6,10,16,.92);
+      padding:.28rem .6rem;
+      font-size:.78rem;
+      cursor:pointer
+    }
+    .typing{display:flex;gap:.25rem;align-items:center}
+    .dot{width:6px;height:6px;border-radius:50%;background:#9fb3d9;opacity:.7;animation: blink 1s infinite}
+    .dot:nth-child(2){animation-delay:.2s}
+    .dot:nth-child(3){animation-delay:.4s}
+    @keyframes blink{50%{opacity:.2}}
+
+    .chat-input{
+      border-top:1px solid rgba(148,163,184,.25);
+      display:flex;gap:.45rem;
+      padding:.6rem;
+      background:rgba(6,10,16,.94)
+    }
+    .chat-input input{
+      flex:1;border-radius:.6rem;
+      border:1px solid rgba(75,85,99,.6);
+      background:#0b1220;
+      color:#e5e7eb;
+      padding:.5rem .6rem
+    }
+    .chat-input button{
+      border-radius:999px;padding:.55rem .9rem;
+      border:none;
+      background:linear-gradient(135deg,#22c55e,#16a34a);
+      color:#052e16;font-weight:600;cursor:pointer
+    }
+
+    .chatbot-toggle{
+      position:relative;
+      border-radius:999px;
+      padding:.65rem .95rem;
+      border:1px solid rgba(148,163,184,.85);
+      background:radial-gradient(circle at 30% 0, rgba(34,197,94,.22), rgba(15,23,42,.98));
+      color:#f1f5f9;
+      display:inline-flex;align-items:center;gap:.5rem;
+      cursor:pointer;font-size:.85rem;
+      box-shadow:0 16px 45px rgba(0,0,0,.6)
+    }
+    .chatbot-toggle-dot{
+      width:7px;height:7px;border-radius:999px;
+      background:#22c55e;
+      box-shadow:0 0 0 6px rgba(34,197,94,.35)
+    }
+    .chat-coachmark{
+      position:absolute;right:100%;margin-right:.5rem;
+      bottom:50%;transform:translateY(50%);
+      background:#0b1220;color:#e2efff;
+      border:1px solid rgba(147,197,253,.45);
+      border-radius:10px;padding:.45rem .6rem;
+      font-size:.8rem;white-space:nowrap;
+      box-shadow:0 12px 30px rgba(0,0,0,.5);
+      opacity:0;pointer-events:none;
+      transition:opacity .25s,transform .25s
+    }
+    .chat-coachmark::after{
+      content:"";position:absolute;right:-8px;top:50%;
+      transform:translateY(-50%);
+      border:8px solid transparent;
+      border-left-color:rgba(147,197,253,.45)
+    }
+    .chat-coachmark.show{opacity:1;pointer-events:auto}
+
+    @media (max-width:600px){
+      .chatbot{
+        right:.75rem;left:.75rem;
+      }
+      .chatbot-window{width:100%}
+    }
+
+    /* ========== TRANSITION CIRCLE ========== */
+    .transition-circle{
+      position:fixed;top:0;left:0;width:0;height:0;
+      border-radius:50%;background:#22c55e;
+      transform:translate(-50%,-50%);
+      pointer-events:none;z-index:9999;
+      transition:width .8s,height .8s;
+      opacity:.95
+    }
+
+    /* ========== OWNER CARD ========== */
+    .owner-card{
+      display:grid;
+      grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);
+      gap:1.6rem;
+      padding:1.6rem;
+      border-radius:1.25rem;
+      background:rgba(12,18,30,.9);
+      border:1px solid rgba(148,163,184,.4)
+    }
+    .owner-left{display:flex;gap:1rem;align-items:center}
+    .owner-avatar{
+      width:72px;height:72px;
+      border-radius:999px;
+      object-fit:cover;
+      border:1px solid rgba(148,163,184,.35)
+    }
+    @media (max-width:900px){
+      .owner-card{grid-template-columns:1fr}
+    }
   </style>
 </head>
 
 <body>
-
-<!-- NAV -->
-<header class="navbar">
-  <div class="container nav-inner">
-    <div class="nav-logo">Clear Path <span>AI</span></div>
-    <nav>
-      <div class="nav-toggle" id="navToggle"><div style="width:16px;height:1.5px;background:#e5e7eb;"></div></div>
-      <div class="nav-links" id="navLinks">
-        <a href="#hero">Home</a>
-        <a href="#contact">Contact</a>
-        <a href="https://calendly.com/edward-clearpathai/30min" target="_blank" class="nav-cta"><span>●</span> Book a demo</a>
-      </div>
-    </nav>
-  </div>
-</header>
-
-<main>
-
-<!-- HERO -->
-<section class="hero" id="hero">
-  <div class="container hero-grid">
-
-    <!-- LEFT -->
-    <div>
-      <p class="eyebrow">Healthcare-ready AI assistants</p>
-      <h1 class="hero-title">Automate bookings & patient FAQs.</h1>
-      <p class="hero-subtitle">
-        Clear Path AI answers common questions and schedules appointments 24/7 — in your tone, with human handoff when needed.
-      </p>
-
-      <div class="hero-bullets">
-        <span>24/7 responses in seconds</span> • 
-        <span>Fewer no-shows</span> • 
-        <span>Privacy-first · UK & US compliant</span>
-      </div>
-
-      <a class="btn-primary" href="https://calendly.com/edward-clearpathai/30min" target="_blank">Book a live demo →</a>
+  <!-- ========== NAV ========== -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <div class="nav-logo">Clear Path <span>AI</span></div>
+      <nav>
+        <div class="nav-toggle" id="navToggle">
+          <div style="width:16px;height:1.5px;background:#e5e7eb;"></div>
+        </div>
+        <div class="nav-links" id="navLinks">
+          <a href="#hero">Home</a>
+          <a href="#contact">Contact</a>
+          <a href="https://calendly.com/edward-clearpathai/30min" target="_blank" class="nav-cta">
+            <span>●</span> Book a demo
+          </a>
+        </div>
+      </nav>
     </div>
+  </header>
 
-    <!-- RIGHT -->
-    <div class="hero-media" aria-hidden="true">
-      <div class="hero-card">
-        <div class="hero-card-inner">
+  <main>
+    <!-- ========== HERO ========== -->
+    <section class="hero" id="hero">
+      <div class="container hero-grid">
 
-          <div class="hero-kpi">
-            <div class="k">Avg. reply <strong>0.6s</strong></div>
-            <div class="k"><strong>72%</strong> instant resolution</div>
-            <div class="k"><strong>18h</strong> saved / week</div>
+        <!-- LEFT COLUMN -->
+        <div>
+          <p class="eyebrow">Healthcare-ready AI assistants</p>
+          <h1 class="hero-title">Automate bookings & patient FAQs.</h1>
+          <p class="hero-subtitle">
+            Clear Path AI answers common questions and schedules appointments 24/7 — in your tone, with human handoff when needed.
+          </p>
+
+          <div class="hero-bullets">
+            <span>24/7 responses in seconds</span> •
+            <span>Fewer no-shows</span> •
+            <span>Privacy-first · UK & US compliant</span>
           </div>
 
-          <div style="border-radius:1rem;padding:1rem;background:rgba(10,16,26,.9);border:1px solid rgba(148,163,184,.35);font-size:.86rem">
-            <div style="text-transform:uppercase;letter-spacing:.18em;font-size:.6rem;color:#9fb3d9;margin-bottom:.6rem">
-              Sample exchange
+          <a class="btn-primary" href="https://calendly.com/edward-clearpathai/30min" target="_blank">
+            Book a live demo →
+          </a>
+        </div>
+
+        <!-- RIGHT COLUMN (CARD) -->
+        <div class="hero-media" aria-hidden="true">
+          <div class="hero-card">
+            <div class="hero-card-inner">
+              <div class="hero-kpi">
+                <div class="k">Avg. reply <strong>0.6s</strong></div>
+                <div class="k"><strong>72%</strong> instant resolution</div>
+                <div class="k"><strong>18h</strong> saved / week</div>
+              </div>
+
+              <div style="border-radius:1rem;padding:1rem;background:rgba(10,16,26,.9);border:1px solid rgba(148,163,184,.35);font-size:.86rem">
+                <div style="text-transform:uppercase;letter-spacing:.18em;font-size:.6rem;color:#9fb3d9;margin-bottom:.6rem">
+                  Sample exchange
+                </div>
+
+                <div class="bubble bot">
+                  Hi Maya — would you like me to find the next available consultation slot?
+                </div>
+                <div class="bubble user" style="margin-top:.4rem">
+                  Tomorrow afternoon works.
+                </div>
+                <div class="bubble bot" style="margin-top:.4rem">
+                  Done. I’ll hold 3:30pm and 4:15pm for you and send a confirmation.
+                </div>
+              </div>
             </div>
-
-            <div class="bubble bot">Hi Maya — would you like me to find the next available consultation slot?</div>
-            <div class="bubble user" style="margin-top:.4rem">Tomorrow afternoon works.</div>
-            <div class="bubble bot" style="margin-top:.4rem">Done. I’ll hold 3:30pm and 4:15pm for you and send a confirmation.</div>
           </div>
-
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- CAPABILITIES -->
-<section id="capabilities">
-  <div class="container">
-    <div class="section-header">
-      <p class="section-kicker">Capabilities</p>
-      <h2 class="section-title">What we automate first.</h2>
-      <p class="section-subtitle">Start lean, ship fast, add more after launch.</p>
-    </div>
-
-    <div class="cap-list">
-      <div class="cap-item"><strong>AI front desk</strong> — prices, treatments, locations; lead capture to your inbox/CRM.</div>
-      <div class="cap-item"><strong>Smart scheduling</strong> — book/reschedule directly; reminders reduce no-shows.</div>
-      <div class="cap-item"><strong>Post-visit follow-ups</strong> — care instructions, satisfaction checks, review nudges.</div>
-    </div>
-  </div>
-</section>
-
-<!-- HOW IT WORKS -->
-<section id="how-it-works">
-  <div class="container">
-    <div class="section-header">
-      <p class="section-kicker">How it works</p>
-      <h2 class="section-title">From call to live in a week.</h2>
-      <p class="section-subtitle">
-        A simple rollout from “What should we automate?” to “Our clients use this daily.”
-      </p>
-    </div>
-
-    <div class="steps">
-      <article class="step">
-        <small>Step 01 · 20 minutes</small>
-        <h3>Discovery & use-cases</h3>
-        <p>We identify 1–2 high-impact automations (bookings, FAQs, reminders) and agree your tone of voice.</p>
-      </article>
-
-      <article class="step">
-        <small>Step 02 · Days 2–3</small>
-        <h3>Configure & connect</h3>
-        <p>We map answers and guardrails, then connect calendars/booking so the assistant can take action.</p>
-      </article>
-
-      <article class="step">
-        <small>Step 03 · Week 1</small>
-        <h3>Soft launch & iterate</h3>
-        <p>Launch quietly, review real chats, refine. Add more automations once stable.</p>
-      </article>
-    </div>
-  </div>
-</section>
-<!-- FAQ -->
-<section id="faq">
-  <div class="container faq-grid">
-    <div>
-      <div class="section-header">
-        <p class="section-kicker">FAQ</p>
-        <h2 class="section-title">Answers to common questions.</h2>
-        <p class="section-subtitle">
-          Don’t see what you need? Use the chat or send us a message — we’ll reply within one business day.
-        </p>
-      </div>
-    </div>
-
-    <div>
-      <div class="faq-item">
-        <p class="faq-q">How long does setup take?</p>
-        <p class="faq-a">Most clinics are live within 5–10 business days.</p>
-      </div>
-      <div class="faq-item">
-        <p class="faq-q">How do you handle privacy and data?</p>
-        <p class="faq-a">Privacy-first. We only process what’s needed and don’t share data externally.</p>
-      </div>
-      <div class="faq-item">
-        <p class="faq-q">What systems can you connect to?</p>
-        <p class="faq-a">Calendly, Google Calendar, Cliniko, Pabau, and most scheduling/CRM tools.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="container">
-    <div class="contact-card">
-
-      <div>
-        <h2 class="section-title">Ready to automate your clinic?</h2>
-        <p>
-          Book a quick live demo or send a message — we’ll show exactly how this fits your workflow without replacing your team.
-        </p>
-
-        <div style="margin:1rem 0 0">
-          <iframe 
-            src="https://calendly.com/edward-clearpathai/30min?hide_event_type_details=1&hide_gdpr_banner=1"
-            width="100%" height="660"
-            frameborder="0" title="Book a demo">
-          </iframe>
-        </div>
-      </div>
-
-      <form id="contactForm" action="https://formspree.io/f/mldaeagn" method="POST">
-        <div class="field-group">
-          <label class="field-label" for="name">Name</label>
-          <input class="field" id="name" name="name" type="text" required placeholder="Your full name">
         </div>
 
-        <div class="field-group">
-          <label class="field-label" for="email">Work email</label>
-          <input class="field" id="email" name="email" type="email" required placeholder="you@clinic.com">
+      </div>
+    </section>
+
+    <!-- ========== CAPABILITIES ========== -->
+    <section id="capabilities">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-kicker">Capabilities</p>
+          <h2 class="section-title">What we automate first.</h2>
+          <p class="section-subtitle">Start lean, ship fast, add more after launch.</p>
         </div>
 
-        <div class="field-group">
-          <label class="field-label" for="message">What would you like to automate first?</label>
-          <textarea class="field" id="message" name="message" required placeholder="e.g. scheduling, post-visit check-ins, FAQs…"></textarea>
+        <div class="cap-list">
+          <div class="cap-item">
+            <strong>AI front desk</strong> — prices, treatments, locations; lead capture to your inbox/CRM.
+          </div>
+          <div class="cap-item">
+            <strong>Smart scheduling</strong> — book/reschedule directly; reminders reduce no-shows.
+          </div>
+          <div class="cap-item">
+            <strong>Post-visit follow-ups</strong> — care instructions, satisfaction checks, review nudges.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== HOW IT WORKS ========== -->
+    <section id="how-it-works">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-kicker">How it works</p>
+          <h2 class="section-title">From call to live in a week.</h2>
+          <p class="section-subtitle">
+            A simple rollout from “What should we automate?” to “Our clients use this daily.”
+          </p>
         </div>
 
-        <div class="contact-actions">
-          <button class="btn-secondary" type="submit">Send a message</button>
+        <div class="steps">
+          <article class="step">
+            <small>Step 01 · 20 minutes</small>
+            <h3 class="step-title">Discovery & use-cases</h3>
+            <p>
+              We identify 1–2 high-impact automations (bookings, FAQs, reminders) and agree your tone of voice.
+            </p>
+          </article>
+
+          <article class="step">
+            <small>Step 02 · Days 2–3</small>
+            <h3 class="step-title">Configure & connect</h3>
+            <p>
+              We map answers and guardrails, then connect calendars/booking so the assistant can take action.
+            </p>
+          </article>
+
+          <article class="step">
+            <small>Step 03 · Week 1</small>
+            <h3 class="step-title">Soft launch & iterate</h3>
+            <p>
+              Launch quietly, review real chats, refine. Add more automations once stable.
+            </p>
+          </article>
         </div>
+      </div>
+    </section>
 
-        <p id="contactStatus" class="contact-note"></p>
-      </form>
-
-    </div>
-  </div>
-</section>
-
-<!-- OWNER / LINKEDIN -->
-<section id="owner">
-  <div class="container">
-    <div class="owner-card">
-
-      <div class="owner-left">
-        <img src="assets/EDDIE3%202.JPG"
-             alt="Photo of Edward Chalmers"
-             class="owner-avatar"
-             width="72" height="72"
-             loading="lazy">
+    <!-- ========== FAQ ========== -->
+    <section id="faq">
+      <div class="container faq-grid">
+        <div>
+          <div class="section-header">
+            <p class="section-kicker">FAQ</p>
+            <h2 class="section-title">Answers to common questions.</h2>
+            <p class="section-subtitle">
+              Don’t see what you need? Use the chat or send us a message — we’ll reply within one business day.
+            </p>
+          </div>
+        </div>
 
         <div>
-          <h2 class="owner-title">Contact the owner</h2>
-          <p style="color:#9ca3af">Edward Chalmers · Founder, Clear Path AI</p>
-
-          <ul style="margin:.3rem 0 0 1rem">
-            <li>Healthcare-ready AI automations</li>
-            <li>UK & US privacy-first approach</li>
-            <li>Fast demos, honest scope</li>
-          </ul>
-        </div>
-      </div>
-
-      <div style="display:flex;flex-direction:column;gap:.6rem;align-items:flex-start">
-        <a class="btn-primary" 
-           href="https://calendly.com/edward-clearpathai/30min"
-           target="_blank" rel="noopener">Book a live demo →</a>
-
-        <a class="btn-secondary"
-           href="mailto:hello@clearpathai.uk?subject=Enquiry%20from%20ClearPathAI.uk"
-           rel="noopener">Email Edward</a>
-
-        <a class="btn-secondary"
-           href="https://www.linkedin.com/in/edward-clear-54733b396/"
-           target="_blank" rel="noopener me">View LinkedIn</a>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="container footer-inner">
-    <span>© <span id="year"></span> Clear Path AI. All rights reserved.</span>
-  </div>
-</footer>
-
-<!-- CHATBOT -->
-<div class="chatbot">
-  <div class="chatbot-window minimized" id="chatbotWindow"></div>
-
-  <button class="chatbot-toggle" id="chatToggle" aria-label="Open example assistant">
-    <div class="chatbot-toggle-dot"></div>
-    <span><strong>See example assistant</strong></span>
-    <div class="chat-coachmark" id="chatCoach">Click to see a demo</div>
-  </button>
-</div>
-
-<!-- TRANSITION CIRCLE (optional effect) -->
-<div class="transition-circle" id="transitionCircle"></div>
-
-<!-- SCRIPT -->
-<script>
-  // Footer year
-  document.getElementById("year").textContent = new Date().getFullYear();
-
-  // Mobile nav
-  const navToggle=document.getElementById("navToggle");
-  const navLinks=document.getElementById("navLinks");
-  if(navToggle){navToggle.addEventListener("click",()=>navLinks.classList.toggle("open"));}
-
-  // Contact form (Formspree)
-  const contactForm=document.getElementById("contactForm");
-  const contactStatus=document.getElementById("contactStatus");
-  if(contactForm){
-    contactForm.addEventListener("submit",async(e)=>{
-      e.preventDefault(); contactStatus.textContent="Sending…";
-      try{
-        const res=await fetch(contactForm.action,{method:"POST",body:new FormData(contactForm),headers:{Accept:"application/json"}});
-        if(res.ok){contactStatus.textContent="Thanks — we’ll be in touch within one business day."; contactForm.reset();}
-        else{contactStatus.textContent="Something went wrong. Please try again, or email us directly.";}
-      }catch{contactStatus.textContent="Network error. Please try again.";}
-    });
-  }
-
-  /* CHATBOT DEMO */
-  const chatToggleBtn=document.getElementById("chatToggle");
-  const chatWindow=document.getElementById("chatbotWindow");
-  const chatCoach=document.getElementById("chatCoach");
-
-  // Coachmark bubble
-  setTimeout(()=> chatCoach.classList.add("show"), 1200);
-  setTimeout(()=> chatCoach.classList.remove("show"), 7000);
-
-  chatToggleBtn.addEventListener("click",()=>{
-    chatCoach.classList.remove("show");
-    openDemo();
-  });
-
-  function el(html){const t=document.createElement('template'); t.innerHTML=html.trim(); return t.content.firstChild;}
-
-  function openDemo(){
-    chatWindow.classList.remove("minimized");
-    chatWindow.innerHTML="";
-    chatWindow.appendChild(el(`
-      <div class="chatbot-header">
-        <div class="chat-title">
-          <div class="chat-avatar">💬</div>
-          <div>
-            <strong>ClinicCare Assist</strong>
-            <div class="chat-sub">Booking + FAQs · Demo</div>
+          <div class="faq-item">
+            <p class="faq-q">How long does setup take?</p>
+            <p class="faq-a">Most clinics are live within 5–10 business days.</p>
+          </div>
+          <div class="faq-item">
+            <p class="faq-q">How do you handle privacy and data?</p>
+            <p class="faq-a">
+              Privacy-first. We only process what’s needed and don’t share data externally.
+            </p>
+          </div>
+          <div class="faq-item">
+            <p class="faq-q">What systems can you connect to?</p>
+            <p class="faq-a">
+              Calendly, Google Calendar, Cliniko, Pabau, and most scheduling/CRM tools.
+            </p>
           </div>
         </div>
-        <button class="chat-btn" id="closeChat" title="Close">×</button>
       </div>
-    `));
+    </section>
 
-    const body=el(`<div class="chat-body" id="msgs"></div>`);
-    chatWindow.appendChild(body);
+    <!-- ========== CONTACT ========== -->
+    <section id="contact">
+      <div class="container">
+        <div class="contact-card">
+          <div>
+            <h2 class="section-title">Ready to automate your clinic?</h2>
+            <p>
+              Book a quick live demo or send a message — we’ll show exactly how this fits your workflow without replacing your team.
+            </p>
 
-    const quick=el(`<div class="quick" id="quick"></div>`);
-    quick.appendChild(el(`<button class="chip" data-q="Book a consultation">Book a consultation</button>`));
-    quick.appendChild(el(`<button class="chip" data-q="What are your prices?">What are your prices?</button>`));
-    quick.appendChild(el(`<button class="chip" data-q="Where are you based?">Where are you based?</button>`));
-    body.appendChild(quick);
+            <div style="margin:1rem 0 0">
+              <iframe
+                src="https://calendly.com/edward-clearpathai/30min?hide_event_type_details=1&hide_gdpr_banner=1"
+                width="100%" height="660" frameborder="0" title="Book a demo">
+              </iframe>
+            </div>
+          </div>
 
-    chatWindow.appendChild(el(`
-      <form class="chat-input" id="demoForm">
-        <input id="demoInput" placeholder="Type a message… (demo only)" />
-        <button type="submit">Send</button>
-      </form>
-    `));
+          <form id="contactForm" action="https://formspree.io/f/mldaeagn" method="POST">
+            <div class="field-group">
+              <label class="field-label" for="name">Name</label>
+              <input class="field" id="name" name="name" type="text" required placeholder="Your full name">
+            </div>
 
-    document.getElementById("closeChat").onclick=()=>chatWindow.classList.add("minimized");
+            <div class="field-group">
+              <label class="field-label" for="email">Work email</label>
+              <input class="field" id="email" name="email" type="email" required placeholder="you@clinic.com">
+            </div>
 
-    const msgs=document.getElementById("msgs");
-    function bot(text){
-      const b = el(`<div class="bubble bot"></div>`); 
-      b.textContent=text; msgs.appendChild(b); msgs.scrollTop=msgs.scrollHeight;
-    }
-    function user(text){
-      const u = el(`<div class="bubble user"></div>`); 
-      u.textContent=text; msgs.appendChild(u); msgs.scrollTop=msgs.scrollHeight;
-    }
-    function typing(){
-      const t = el(`<div class="typing"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>`);
-      msgs.appendChild(t); msgs.scrollTop=msgs.scrollHeight; 
-      return t;
-    }
+            <div class="field-group">
+              <label class="field-label" for="message">What would you like to automate first?</label>
+              <textarea
+                class="field"
+                id="message"
+                name="message"
+                required
+                placeholder="e.g. scheduling, post-visit check-ins, FAQs…"></textarea>
+            </div>
 
-    bot("Hi! I can show how we handle bookings and FAQs for clinics. This is a demo only.");
-    bot("Try one of the buttons below or type your own question.");
+            <div class="contact-actions">
+              <button class="btn-secondary" type="submit">Send a message</button>
+            </div>
 
-    quick.querySelectorAll(".chip").forEach(ch=>{
-      ch.addEventListener("click",()=>{
-        user(ch.dataset.q);
-        reply(ch.dataset.q);
-      });
-    });
+            <p id="contactStatus" class="contact-note"></p>
+          </form>
+        </div>
+      </div>
+    </section>
 
-    const form=document.getElementById("demoForm");
-    const input=document.getElementById("demoInput");
-    form.addEventListener("submit",(e)=>{
-      e.preventDefault();
-      const t=input.value.trim(); if(!t) return;
-      user(t); input.value="";
-      reply(t);
-    });
+    <!-- ========== OWNER / LINKEDIN ========== -->
+    <section id="owner">
+      <div class="container">
+        <div class="owner-card">
+          <div class="owner-left">
+            <!-- Your working image path -->
+            <img
+              src="assets/EDDIE3%202.JPG"
+              alt="Photo of Edward Chalmers"
+              class="owner-avatar"
+              width="72" height="72"
+              loading="lazy">
 
-    function reply(text){
-      const lower=text.toLowerCase();
-      const loader=typing();
-      setTimeout(()=>{
-        loader.remove();
-        if(lower.includes("book")){
-          bot("Great — in a live setup I’d check your calendar now. For the demo, want a real walkthrough?");
-          msgs.appendChild(el(`<div class="quick" style="margin-top:.2rem;">
-            <a class="chip" href="https://calendly.com/edward-clearpathai/30min" target="_blank">Book a live demo</a>
-            <button class="chip" id="see-times" type="button">Show mock times</button>
-          </div>`));
-          const btn = msgs.querySelector("#see-times");
-          if(btn){
-            btn.onclick=()=>{
-              const l=typing();
-              setTimeout(()=>{
-                l.remove();
-                bot("Next available: Tomorrow 15:30 · 16:15 · 17:45. I can hold a slot and collect details.");
-              },500);
-            };
-          }
-        }
-        else if(lower.includes("price") || lower.includes("cost")){
-          bot("We can share guideline prices or link to your pricing page, depending on your policy.");
-        }
-        else if(lower.includes("where") || lower.includes("location") || lower.includes("address")){
-          bot("I can send your address, parking notes and a map link in one message.");
-        }
-        else {
-          bot("I’d answer using your approved FAQs and policies. Want to see this on your site? Book a quick call.");
-          msgs.appendChild(el(`<div class="quick" style="margin-top:.2rem;">
-            <a class="chip" href="https://calendly.com/edward-clearpathai/30min" target="_blank">Book a live demo</a>
-          </div>`));
-        }
+            <div>
+              <h2 class="owner-title">Contact the owner</h2>
+              <p style="color:#9ca3af">Edward Chalmers · Founder, Clear Path AI</p>
+              <ul style="margin:.3rem 0 0 1rem">
+                <li>Healthcare-ready AI automations</li>
+                <li>UK & US privacy-first approach</li>
+                <li>Fast demos, honest scope</li>
+              </ul>
+            </div>
+          </div>
 
-      }, 550);
-    }
-  }
+          <div style="display:flex;flex-direction:column;gap:.6rem;align-items:flex-start">
+            <a
+              class="btn-primary"
+              href="https://calendly.com/edward-clearpathai/30min"
+              target="_blank" rel="noopener">
+              Book a live demo →
+            </a>
 
-  // DARKEN SCROLL GRADIENT
-  (function(){
-    function updateDark(){
-      const max = document.documentElement.scrollHeight - window.innerHeight;
-      const p = max > 0 ? window.scrollY / max : 0;
-      const darkness = 0.25 + 0.55 * p;
-      document.documentElement.style.setProperty('--darken', darkness.toFixed(3));
-    }
-    updateDark();
-    window.addEventListener('scroll', updateDark, { passive: true });
-    window.addEventListener('resize', updateDark);
-  })();
+            <a
+              class="btn-secondary"
+              href="mailto:hello@clearpathai.uk?subject=Enquiry%20from%20ClearPathAI.uk"
+              rel="noopener">
+              Email Edward
+            </a>
 
-  // PAGE TRANSITION EFFECT
-  const circle=document.getElementById('transitionCircle');
-  function shouldIntercept(link){
-    const href=link.getAttribute('href')||''; if(!href)return false;
-    if(href.startsWith('#')||href.startsWith('mailto:')||href.startsWith('tel:')) return false;
-    if(link.target==='_blank') return false;
-    try{const dest=new URL(href,location.href); return dest.origin===location.origin;}catch{return false;}
-  }
-  document.querySelectorAll('a[href]').forEach(a=>a.addEventListener('click',e=>{
-    if(!shouldIntercept(a)) return;
-    e.preventDefault();
-    const x=(e.clientX||innerWidth/2),y=(e.clientY||innerHeight/2);
-    circle.style.left=x+'px'; 
-    circle.style.top=y+'px'; 
-    circle.style.width='200vmax'; 
-    circle.style.height='200vmax';
-    setTimeout(()=>{ location.href=a.getAttribute('href'); }, 500);
-  }));
-</script>
+            <a
+              class="btn-secondary"
+              href="https://www.linkedin.com/in/edward-clear-54733b396/"
+              target="_blank" rel="noopener me">
+              View LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-</body>
-</html>
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Clear Path AI. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <!-- ========== CHATBOT + COACHMARK ========== -->
+  <div class="chatbot">
+    <div class="chatbot-window minimized" id="chatbotWindow"></div>
+
+    <button class="chatbot-toggle" id="chatToggle" aria-label="Open example assistant">
+      <div class="chatbot-toggle-dot"></div>
+      <span><strong>See example assistant</strong></span>
+      <div class="chat-coachmark" id="chatCoach">Click to see a demo</div>
+    </button>
+  </div>
+
+  <!-- Transition circle -->
+  <div class="transition-circle" id="transitionCircle"></div>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script>
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Mobile nav
+    const navToggle=document.getElementById("navToggle");
+    const navLinks=document.getElementById("navLinks");
+    if(navToggle){
+      navToggle.addEventListener("click",()=>navLinks.classList.toggle("open"));
