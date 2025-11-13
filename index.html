@@ -2,1917 +2,428 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Clear Path AI – AI automation for clinics &amp; beauty businesses</title>
+  <title>Clear Path AI – Automate bookings & patient FAQs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Clear Path AI answers common questions and schedules appointments 24/7 — in your tone, with human handoff when needed. Privacy-first and UK & US compliant.">
+  <link rel="canonical" href="https://clearpathai.uk/">
 
-  <!-- SEO -->
-  <meta name="description" content="Clear Path AI helps clinics, medspas, and beauty businesses automate bookings, follow-ups, and client communication with smart, human-like AI assistants.">
-
-  <!-- Open Graph / Social -->
-  <meta property="og:title" content="Clear Path AI">
-  <meta property="og:description" content="Clear Path AI helps clinics, medspas, and beauty businesses automate bookings, follow-ups, and client communication with smart, human-like AI assistants.">
+  <!-- Social -->
+  <meta property="og:title" content="Clear Path AI – Automate bookings & patient FAQs">
+  <meta property="og:description" content="Automate bookings and patient FAQs, reduce no-shows, and free your team for patients.">
   <meta property="og:type" content="website">
-  <!-- Replace URL below with your real domain once it's live -->
-  <meta property="og:url" content="https://yourdomain.com">
+  <meta property="og:url" content="https://clearpathai.uk/">
   <meta property="og:image" content="favicon.png">
-
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Clear Path AI">
-  <meta name="twitter:description" content="Clear Path AI helps clinics, medspas, and beauty businesses automate bookings, follow-ups, and client communication with smart, human-like AI assistants.">
-  <meta name="twitter:image" content="favicon.png">
 
-  <!-- Favicon -->
+  <!-- Identity -->
+  <link rel="me" href="https://www.linkedin.com/in/edward-clear-54733b396/">
   <link rel="icon" type="image/png" href="favicon.png">
 
-  <!-- Google Font -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* =========== RESET =========== */
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #19253b 0%, #05060b 55%, #020308 100%);
-      color: #f5f5f5;
-      line-height: 1.6;
-      min-height: 100vh;
-      scroll-behavior: smooth;
+    /* Base / layout */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    :root{--darken:0.20;} /* starting overlay darkness (will increase on scroll) */
 
-      /* animated gradient */
-      background-image: radial-gradient(circle at top, #19253b 0%, #05060b 55%, #020308 100%);
-      background-size: 220% 220%;
-      animation: gradientShift 32s ease-in-out infinite;
+    body{
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;
+      background:linear-gradient(to bottom,#8ec9ff 0%,#0f2547 45%,#060c16 80%);
+      color:#f5f5f5;line-height:1.6;min-height:100vh;
+      background-attachment:fixed;
+      position:relative;
     }
-    img {
-      max-width: 100%;
-      display: block;
-    }
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-    ul {
-      list-style: none;
+    /* Progressive darkening overlay */
+    body::after{
+      content:"";
+      position:fixed;inset:0;pointer-events:none;
+      background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,var(--darken)) 100%);
+      z-index:0; /* below all content sections */
     }
 
-    @keyframes gradientShift {
-      0% { background-position: 0% 0%; }
-      50% { background-position: 100% 100%; }
-      100% { background-position: 0% 0%; }
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+    .container{max-width:1120px;margin:0 auto;padding:0 1.5rem}
+
+    /* Navbar */
+    .navbar{position:sticky;top:0;z-index:100;backdrop-filter:blur(18px);background:linear-gradient(to bottom,rgba(0,0,0,.75),rgba(0,0,0,.55),transparent);border-bottom:1px solid rgba(255,255,255,.08)}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
+    .nav-logo{font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:.9rem}
+    .nav-logo span{color:#4ade80}
+    .nav-links{display:flex;align-items:center;gap:1.75rem;font-size:.95rem}
+    .nav-links a{opacity:.9}
+    .nav-cta{border-radius:999px;padding:.5rem 1rem;border:1px solid rgba(148,163,184,.6);font-size:.9rem;display:inline-flex;align-items:center;gap:.35rem;background:rgba(15,23,42,.7);backdrop-filter:blur(12px)}
+    .nav-cta:hover{border-color:#4ade80;transform:translateY(-1px) scale(1.02);box-shadow:0 12px 35px rgba(22,163,74,.25)}
+    .nav-toggle{display:none}
+    @media (max-width:768px){
+      .nav-links{position:fixed;inset:72px 1.25rem auto 1.25rem;flex-direction:column;align-items:flex-start;padding:1rem 1.25rem;border-radius:1rem;background:rgba(15,23,42,.96);border:1px solid rgba(148,163,184,.4);transform-origin:top right;transform:scale(.95);opacity:0;pointer-events:none;transition:opacity .18s,transform .18s}
+      .nav-links.open{opacity:1;transform:scale(1);pointer-events:auto}
+      .nav-cta{width:100%;justify-content:center}
+      .nav-toggle{display:inline-flex;width:32px;height:32px;border-radius:999px;border:1px solid rgba(148,163,184,.6);align-items:center;justify-content:center}
     }
 
-    /* =========== LAYOUT HELPERS =========== */
-    .container {
-      width: 100%;
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
+    /* Sections */
+    .hero{padding:4rem 0 3rem;position:relative;z-index:1}
+    .hero-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:3rem;align-items:center}
+    .eyebrow{text-transform:uppercase;letter-spacing:.25em;font-size:.65rem;color:#d1e4ff;margin-bottom:1rem}
+    .hero-title{font-size:clamp(2.6rem,5vw,3.7rem);line-height:1.1;margin-bottom:1rem}
+    .hero-subtitle{max-width:32rem;font-size:.98rem;color:#e5e7eb;opacity:.9;margin-bottom:1.25rem}
+    .hero-bullets{display:flex;flex-wrap:wrap;gap:.5rem 1rem;color:#cbd5e1;font-size:.9rem;margin-bottom:1.4rem}
+    .btn-primary{border-radius:999px;padding:.8rem 1.4rem;font-size:.95rem;font-weight:500;border:none;cursor:pointer;background:linear-gradient(135deg,#22c55e,#16a34a);color:#020617;box-shadow:0 18px 45px rgba(22,163,74,.45);display:inline-flex;align-items:center;gap:.4rem}
 
-    /* =========== NAVBAR =========== */
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      backdrop-filter: blur(18px);
-      background: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.85),
-        rgba(0, 0, 0, 0.65),
-        transparent
-      );
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 72px;
-    }
-    .nav-logo {
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      font-size: 0.9rem;
-    }
-    .nav-logo span {
-      color: #4ade80;
-    }
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 1.75rem;
-      font-size: 0.95rem;
-    }
-    .nav-links a {
-      opacity: 0.8;
-      position: relative;
-      padding-bottom: 2px;
-      transition: opacity 0.2s ease, transform 0.2s ease;
-    }
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(90deg, #4ade80, #22c55e);
-      transition: width 0.2s ease;
-    }
-    .nav-links a:hover {
-      opacity: 1;
-      transform: translateY(-1px);
-    }
-    .nav-links a:hover::after {
-      width: 100%;
-    }
+    .hero-media{position:relative;display:flex;justify-content:center}
+    .hero-card{position:relative;border-radius:1.4rem;overflow:hidden;border:1px solid rgba(148,163,184,.4);background:radial-gradient(circle at top left,rgba(56,189,248,.25),#0f172a);box-shadow:0 40px 120px rgba(15,23,42,.9);max-width:420px;width:100%;min-height:340px}
+    .hero-card-inner{position:relative;padding:2.1rem 1.9rem;display:flex;flex-direction:column;justify-content:space-between;height:100%}
 
-    .nav-cta {
-      border-radius: 999px;
-      padding: 0.5rem 1rem;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      font-size: 0.9rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      background: rgba(15, 23, 42, 0.7);
-      backdrop-filter: blur(12px);
-      cursor: pointer;
-      transition: border 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .nav-cta span {
-      font-size: 1.1rem;
-    }
-    .nav-cta:hover {
-      border-color: #4ade80;
-      transform: translateY(-1px) scale(1.02);
-      box-shadow: 0 12px 35px rgba(22, 163, 74, 0.25);
-    }
-
-    /* Mobile nav button */
-    .nav-toggle {
-      display: none;
-      cursor: pointer;
-      width: 32px;
-      height: 32px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      align-items: center;
-      justify-content: center;
-    }
-    .nav-toggle-line {
-      width: 16px;
-      height: 1.5px;
-      background: #e5e7eb;
-      position: relative;
-    }
-    .nav-toggle-line::before,
-    .nav-toggle-line::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      width: 16px;
-      height: 1.5px;
-      background: #e5e7eb;
-    }
-    .nav-toggle-line::before {
-      top: -5px;
-    }
-    .nav-toggle-line::after {
-      top: 5px;
-    }
-
-    @media (max-width: 768px) {
-      .nav-links {
-        position: fixed;
-        inset: 72px 1.25rem auto 1.25rem;
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 1rem 1.25rem;
-        border-radius: 1rem;
-        background: rgba(15, 23, 42, 0.96);
-        border: 1px solid rgba(148, 163, 184, 0.4);
-        transform-origin: top right;
-        transform: scale(0.95);
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.18s ease, transform 0.18s ease;
-      }
-      .nav-links.open {
-        opacity: 1;
-        transform: scale(1);
-        pointer-events: auto;
-      }
-      .nav-cta {
-        width: 100%;
-        justify-content: center;
-      }
-      .nav-toggle {
-        display: inline-flex;
-      }
-    }
-
-    /* =========== HERO SECTION =========== */
-    .hero {
-      padding: 4rem 0 4.5rem;
-    }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-      gap: 3rem;
-      align-items: center;
-    }
-    .eyebrow {
-      text-transform: uppercase;
-      letter-spacing: 0.25em;
-      font-size: 0.65rem;
-      color: #9ca3af;
-      margin-bottom: 1rem;
-    }
-    .hero-title {
-      font-size: clamp(2.6rem, 5vw, 3.7rem);
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      line-height: 1.1;
-      margin-bottom: 1.5rem;
-    }
-    .hero-subtitle {
-      max-width: 32rem;
-      font-size: 0.98rem;
-      color: #e5e7eb;
-      opacity: 0.9;
-      margin-bottom: 1.75rem;
-    }
-    .hero-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      font-size: 0.8rem;
-      margin-bottom: 2rem;
-    }
-    .hero-badge {
-      padding: 0.35rem 0.75rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.7);
-      background: radial-gradient(circle at top left, rgba(34, 197, 94, 0.18), transparent 55%);
-      backdrop-filter: blur(12px);
-      white-space: nowrap;
-    }
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.9rem;
-      align-items: center;
-    }
-    .btn-primary {
-      border-radius: 999px;
-      padding: 0.8rem 1.4rem;
-      font-size: 0.95rem;
-      font-weight: 500;
-      border: none;
-      cursor: pointer;
-      background: linear-gradient(135deg, #22c55e, #16a34a);
-      color: #020617;
-      box-shadow: 0 18px 45px rgba(22, 163, 74, 0.45);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
-    }
-    .btn-primary:hover {
-      transform: translateY(-1px) scale(1.02);
-      box-shadow: 0 24px 60px rgba(22, 163, 74, 0.6);
-    }
-    .btn-secondary {
-      border-radius: 999px;
-      padding: 0.8rem 1.35rem;
-      font-size: 0.9rem;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.7);
-      color: #e5e7eb;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      transition: border 0.18s ease, background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
-    }
-    .btn-secondary:hover {
-      border-color: #4ade80;
-      background: rgba(15, 23, 42, 1);
-      transform: translateY(-1px) scale(1.02);
-      box-shadow: 0 14px 40px rgba(15, 23, 42, 0.6);
-    }
-    .hero-meta {
-      margin-top: 1.25rem;
-      font-size: 0.78rem;
-      color: #9ca3af;
-    }
-
-    .hero-media {
-      position: relative;
-      display: flex;
-      justify-content: center;
-    }
-    .hero-card {
-      position: relative;
-      border-radius: 1.4rem;
-      overflow: hidden;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.25), rgba(15, 23, 42, 1));
-      box-shadow: 0 40px 120px rgba(15, 23, 42, 0.9);
-      max-width: 420px;
-      width: 100%;
-      min-height: 340px;
-    }
-    .hero-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 20% 0, rgba(59, 130, 246, 0.45), transparent 55%);
-      opacity: 0.6;
-      pointer-events: none;
-    }
-    .hero-card-inner {
-      position: relative;
-      padding: 2.1rem 1.9rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      height: 100%;
-    }
-    .hero-avatar-row {
-      display: flex;
-      align-items: center;
-      gap: 0.85rem;
-    }
-    .hero-avatar {
-      width: 46px;
-      height: 46px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 10% 0, #38bdf8, #0f172a);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
-    }
-    .hero-avatar-meta {
-      font-size: 0.78rem;
-    }
-    .hero-avatar-meta span {
-      display: block;
-      font-weight: 500;
-    }
-    .hero-avatar-meta small {
-      opacity: 0.8;
-      color: #cbd5f5;
-    }
-    .hero-screen {
-      margin-top: 1.6rem;
-      border-radius: 1rem;
-      padding: 1rem;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      font-size: 0.8rem;
-    }
-    .hero-screen-tag {
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      font-size: 0.6rem;
-      color: #9ca3af;
-      margin-bottom: 0.6rem;
-    }
-    .hero-screen-metric {
-      font-size: 0.95rem;
-      margin-bottom: 0.4rem;
-    }
-    .hero-screen-metric strong {
-      color: #4ade80;
-    }
-    .hero-gradient-orb {
-      position: absolute;
-      inset: auto -80px -80px auto;
-      width: 180px;
-      height: 180px;
-      background: radial-gradient(circle, rgba(52, 211, 153, 0.65), transparent 70%);
-      filter: blur(6px);
-      opacity: 0.8;
-      pointer-events: none;
-    }
-
-    @media (max-width: 900px) {
-      .hero-grid {
-        grid-template-columns: minmax(0, 1fr);
-        gap: 2.75rem;
-      }
-      .hero {
-        padding-top: 3.25rem;
-      }
-    }
-
-    /* =========== SECTIONS =========== */
-    section {
-      padding: 3.5rem 0;
-    }
-    .section-header {
-      max-width: 620px;
-      margin-bottom: 2.5rem;
-    }
-    .section-kicker {
-      text-transform: uppercase;
-      letter-spacing: 0.25em;
-      font-size: 0.65rem;
-      color: #9ca3af;
-      margin-bottom: 0.8rem;
-    }
-    .section-title {
-      font-size: 1.6rem;
-      margin-bottom: 0.6rem;
-    }
-    .section-subtitle {
-      font-size: 0.96rem;
-      color: #d1d5db;
-      opacity: 0.9;
-    }
-
-    /* WHY CLEAR PATH AI */
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.5rem;
-    }
-    .feature-card {
-      border-radius: 1.1rem;
-      padding: 1.4rem 1.4rem 1.5rem;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.45);
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-      font-size: 0.9rem;
-    }
-    .feature-tag {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: #9ca3af;
-    }
-    .feature-title {
-      font-weight: 500;
-    }
-    .feature-pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-top: 0.35rem;
-      font-size: 0.7rem;
-    }
-    .feature-pill {
-      padding: 0.28rem 0.55rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.8);
-    }
-
-    @media (max-width: 900px) {
-      .features-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-    @media (max-width: 640px) {
-      .features-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    /* CORE AUTOMATIONS */
-    .automations-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1.4rem;
-    }
-    .automation-card {
-      border-radius: 1.1rem;
-      padding: 1.4rem 1.5rem 1.5rem;
-      background: rgba(15, 23, 42, 0.95);
-      border: 1px solid rgba(148, 163, 184, 0.45);
-      font-size: 0.9rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-    .automation-label-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.13em;
-      color: #9ca3af;
-    }
-    .automation-beta {
-      padding: 0.16rem 0.5rem;
-      border-radius: 999px;
-      border: 1px solid rgba(52, 211, 153, 0.7);
-      font-size: 0.65rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: #bbf7d0;
-    }
-    .automation-title {
-      font-weight: 500;
-      font-size: 1rem;
-    }
-    .automation-body {
-      color: #e5e7eb;
-    }
-    .automation-note {
-      font-size: 0.78rem;
-      color: #9ca3af;
-      margin-top: 0.3rem;
-    }
-
-    .automation-more-wrapper {
-      margin-top: 1.6rem;
-      border-top: 1px solid rgba(55, 65, 81, 0.9);
-      padding-top: 1.2rem;
-    }
-
-    .automation-more-toggle {
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.8);
-      background: rgba(15, 23, 42, 0.98);
-      padding: 0.45rem 0.95rem;
-      font-size: 0.82rem;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-    }
-    .automation-more-toggle span {
-      font-size: 0.85rem;
-    }
-
-    .automation-extra {
-      margin-top: 1rem;
-      max-height: 0;
-      opacity: 0;
-      overflow: hidden;
-      transform: translateY(-4px);
-      transition: max-height 0.25s ease, opacity 0.25s ease, transform 0.25s ease;
-    }
-    .automation-extra.open {
-      max-height: 260px;
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Glowing border for AI receptionist */
-    .automation-card.glow-border {
-      position: relative;
-      border-color: rgba(52, 211, 153, 0.9);
-      box-shadow: 0 0 24px rgba(34, 197, 94, 0.45);
-    }
-    .automation-card.glow-border::before {
-      content: "";
-      position: absolute;
-      inset: -1px;
-      border-radius: inherit;
-      border: 1px solid rgba(74, 222, 128, 0.7);
-      pointer-events: none;
-      opacity: 0.8;
-    }
-
-    @media (max-width: 900px) {
-      .automations-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    /* HOW IT WORKS – more creative */
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.4rem;
-    }
-    .step {
-      padding: 1.2rem 1.3rem 1.4rem;
-      border-radius: 1.1rem;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      background: rgba(15, 23, 42, 0.9);
-      font-size: 0.9rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .step::before {
-      content: "";
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 220%;
-      height: 220%;
-      background:
-        radial-gradient(circle at 20% 30%, rgba(148, 163, 184, 0.18), transparent 60%),
-        radial-gradient(circle at 70% 80%, rgba(55, 65, 81, 0.2), transparent 65%);
-      opacity: 0;
-      transform: scale(0.98);
-      transition: opacity 0.35s ease, transform 0.35s ease;
-      pointer-events: none;
-    }
-    .step:hover::before {
-      opacity: 1;
-      transform: scale(1.02);
-    }
-
-    .step-index {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: #9ca3af;
-      margin-bottom: 0.25rem;
-      position: relative;
-      z-index: 1;
-    }
-    .step-tag {
-      display: inline-block;
-      margin-bottom: 0.45rem;
-      padding: 0.18rem 0.6rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.7);
-      font-size: 0.7rem;
-      color: #e5e7eb;
-      position: relative;
-      z-index: 1;
-    }
-    .step-title {
-      margin-bottom: 0.4rem;
-      font-weight: 500;
-      position: relative;
-      z-index: 1;
-    }
-    .step p,
-    .step ul {
-      position: relative;
-      z-index: 1;
-    }
-    .step ul {
-      margin-top: 0.2rem;
-      padding-left: 1rem;
-      font-size: 0.85rem;
-      color: #d1d5db;
-    }
-    .step ul li {
-      margin-bottom: 0.15rem;
-      list-style: disc;
-    }
-
-    @media (max-width: 900px) {
-      .steps {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
+    section{padding:3rem 0;position:relative;z-index:1}
+    .section-header{max-width:640px;margin-bottom:2rem}
+    .section-kicker{text-transform:uppercase;letter-spacing:.25em;font-size:.65rem;color:#d1e4ff;margin-bottom:.6rem}
+    .section-title{font-size:1.6rem;margin-bottom:.4rem}
+    .section-subtitle{font-size:.96rem;color:#d1d5db;opacity:.9}
+    .cap-list{display:grid;gap:.9rem;font-size:.95rem}
+    .cap-item{border-radius:1.1rem;padding:1rem 1.1rem;background:rgba(15,23,42,.9);border:1px solid rgba(148,163,184,.45)}
+    .steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.1rem}
+    .step{padding:1rem 1.1rem;border-radius:1.1rem;border:1px solid rgba(148,163,184,.4);background:rgba(15,23,42,.9);font-size:.9rem}
+    @media (max-width:900px){.hero-grid{grid-template-columns:1fr}.steps{grid-template-columns:1fr}}
 
     /* FAQ */
-    .faq-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-      gap: 2.3rem;
-    }
-    .faq-item {
-      padding: 1rem 1.1rem 1.05rem;
-      border-bottom: 1px solid rgba(75, 85, 99, 0.8);
-      font-size: 0.9rem;
-    }
-    .faq-q {
-      font-weight: 500;
-      margin-bottom: 0.35rem;
-    }
-    .faq-a {
-      color: #d1d5db;
-      opacity: 0.9;
-    }
-    .faq-extra-wrapper {
-      margin-top: 0.4rem;
-    }
-    .faq-extra {
-      max-height: 0;
-      opacity: 0;
-      overflow: hidden;
-      transform: translateY(-4px);
-      transition: max-height 0.25s ease, opacity 0.25s ease, transform 0.25s ease;
-    }
-    .faq-extra.open {
-      max-height: 300px;
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .faq-toggle {
-      margin-top: 0.7rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.8);
-      background: rgba(15, 23, 42, 0.98);
-      padding: 0.35rem 0.9rem;
-      font-size: 0.8rem;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-    }
+    .faq-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:2rem}
+    .faq-item{padding:.9rem 1rem;border-bottom:1px solid rgba(75,85,99,.8);font-size:.9rem}
+    .faq-q{font-weight:500;margin-bottom:.35rem}
+    .faq-a{color:#d1d5db;opacity:.9}
+    @media (max-width:900px){.faq-grid{grid-template-columns:1fr}}
 
-    @media (max-width: 900px) {
-      .faq-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    /* Contact – neater with moving green glow */
-    .contact-card {
-      position: relative;
-      border-radius: 1.25rem;
-      padding: 1.8rem 1.7rem 1.7rem;
-      background: rgba(15, 23, 42, 0.96);
-      border: 1px solid rgba(148, 163, 184, 0.55);
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-      gap: 2.2rem;
-      overflow: hidden;
-    }
-    .contact-card::before {
-      content: "";
-      position: absolute;
-      inset: -40%;
-      background:
-        radial-gradient(circle at 15% 0, rgba(34, 197, 94, 0.36), transparent 60%),
-        radial-gradient(circle at 80% 100%, rgba(34, 197, 94, 0.18), transparent 65%);
-      opacity: 0.9;
-      animation: contactGlow 22s ease-in-out infinite alternate;
-      pointer-events: none;
-    }
-    @keyframes contactGlow {
-      0% {
-        transform: translate(-10%, -10%) scale(1);
-      }
-      50% {
-        transform: translate(8%, 12%) scale(1.08);
-      }
-      100% {
-        transform: translate(-4%, 20%) scale(1.03);
-      }
-    }
-
-    .contact-text,
-    .contact-form {
-      position: relative;
-      z-index: 1;
-    }
-
-    .contact-text {
-      font-size: 0.95rem;
-    }
-    .contact-text p {
-      margin-bottom: 0.75rem;
-      max-width: 24rem;
-    }
-    .contact-meta {
-      font-size: 0.8rem;
-      color: #d1d5db;
-      opacity: 0.9;
-    }
-
-    .contact-form {
-      display: grid;
-      gap: 0.8rem;
-      font-size: 0.85rem;
-    }
-    .field-label {
-      font-size: 0.78rem;
-      margin-bottom: 0.25rem;
-      color: #e5e7eb;
-    }
-    .field {
-      border-radius: 0.7rem;
-      border: 1px solid rgba(148, 163, 184, 0.7);
-      background: rgba(15, 23, 42, 0.95);
-      padding: 0.6rem 0.75rem;
-      color: #f9fafb;
-      outline: none;
-      font: inherit;
-    }
-    .field::placeholder {
-      color: #6b7280;
-    }
-    .field:focus {
-      border-color: #4ade80;
-      box-shadow: 0 0 0 1px rgba(74, 222, 128, 0.4);
-    }
-    textarea.field {
-      min-height: 120px;
-      resize: vertical;
-    }
-    .contact-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      margin-top: 0.2rem;
-    }
-    .contact-btn {
-      font-size: 0.85rem;
-    }
-    .contact-note {
-      font-size: 0.8rem;
-      color: #9ca3af;
-      margin-top: 0.4rem;
-    }
-
-    @media (max-width: 900px) {
-      .contact-card {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
+    /* Contact */
+    .contact-card{position:relative;border-radius:1.25rem;padding:1.4rem;background:rgba(15,23,42,.96);border:1px solid rgba(148,163,184,.55);display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:1.8rem;overflow:hidden}
+    .field-label{font-size:.82rem;margin-bottom:.3rem;display:block;color:#e5e7eb}
+    .field{border-radius:.7rem;border:1px solid rgba(148,163,184,.7);background:rgba(15,23,42,.95);padding:.6rem .75rem;color:#f9fafb;outline:none;width:100%}
+    .field::placeholder{color:#6b7280}
+    .field-group{margin-bottom:1rem}
+    .contact-actions{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.2rem}
 
     /* Footer */
-    footer {
-      padding: 2.5rem 0 2rem;
-      font-size: 0.8rem;
-      color: #9ca3af;
-    }
-    .footer-inner {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 1rem;
-      border-top: 1px solid rgba(55, 65, 81, 0.9);
-      padding-top: 1.1rem;
-    }
+    footer{padding:2rem 0 1.8rem;font-size:.8rem;color:#9ca3af}
+    .footer-inner{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;border-top:1px solid rgba(55,65,81,.9);padding-top:1rem}
+    .btn-secondary{border-radius:999px;padding:.8rem 1.35rem;font-size:.9rem;background:rgba(15,23,42,.9);border:1px solid rgba(148,163,184,.7);color:#e5e7eb;display:inline-flex;align-items:center;justify-content:center}
 
-    /* =========== CHATBOT WIDGET =========== */
-    .chatbot {
-      position: fixed;
-      bottom: 1.5rem;
-      right: 1.5rem;
-      z-index: 120;
-      font-size: 0.85rem;
-    }
+    /* Chat */
+    .chatbot{position:fixed;bottom:1.5rem;right:1.5rem;z-index:120;font-size:.85rem}
+    .chatbot-window{width:320px;max-height:430px;border-radius:1.1rem;background:rgba(15,23,42,.98);border:1px solid rgba(148,163,184,.7);box-shadow:0 18px 65px rgba(15,23,42,.95);display:flex;flex-direction:column;overflow:hidden;margin-bottom:.6rem;transition:transform .18s,opacity .18s,visibility .18s}
+    .chatbot-window.minimized{transform:translateY(16px);opacity:0;visibility:hidden}
+    .chatbot-toggle{position:relative;border-radius:999px;padding:.6rem .9rem;border:1px solid rgba(148,163,184,.95);background:radial-gradient(circle at top left,rgba(34,197,94,.26),rgba(15,23,42,.98));color:#f9f9ff;display:inline-flex;align-items:center;gap:.5rem;cursor:pointer;font-size:.85rem}
+    .chatbot-toggle-dot{width:7px;height:7px;border-radius:999px;background:#22c55e;box-shadow:0 0 0 6px rgba(34,197,94,.35)}
+    /* Coachmark */
+    .chat-coachmark{position:absolute;right:100%;margin-right:.5rem;bottom:50%;transform:translateY(50%);background:#f0f9ff;color:#06223b;border:1px solid #93c5fd;border-radius:10px;padding:.45rem .6rem;font-size:.8rem;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:opacity .25s,transform .25s}
+    .chat-coachmark:after{content:"";position:absolute;right:-8px;top:50%;transform:translateY(-50%);border:8px solid transparent;border-left-color:#93c5fd;}
+    .chat-coachmark.show{opacity:1;pointer-events:auto}
 
-    .chatbot-window {
-      width: 320px;
-      max-height: 430px;
-      border-radius: 1.1rem;
-      background: rgba(15, 23, 42, 0.98);
-      border: 1px solid rgba(148, 163, 184, 0.7);
-      box-shadow: 0 18px 65px rgba(15, 23, 42, 0.95);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      margin-bottom: 0.6rem;
-      transition: transform 0.18s ease, opacity 0.18s ease, visibility 0.18s ease;
-    }
-    .chatbot-window.minimized {
-      transform: translateY(16px);
-      opacity: 0;
-      visibility: hidden;
-    }
-    .chatbot-header {
-      padding: 0.7rem 0.85rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: radial-gradient(circle at 0 0, rgba(34, 197, 94, 0.32), rgba(15, 23, 42, 0.98));
-      border-bottom: 1px solid rgba(148, 163, 184, 0.7);
-    }
-    .chatbot-header-left {
-      display: flex;
-      align-items: center;
-      gap: 0.55rem;
-    }
-    .chatbot-avatar {
-      width: 26px;
-      height: 26px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 10% 0, #22c55e, #0f172a);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-    }
-    .chatbot-name {
-      font-size: 0.8rem;
-      line-height: 1.2;
-    }
-    .chatbot-name strong {
-      display: block;
-      font-weight: 600;
-    }
-    .chatbot-name span {
-      font-size: 0.7rem;
-      color: #d1fae5;
-    }
-    .chatbot-controls {
-      display: flex;
-      align-items: center;
-      gap: 0.2rem;
-    }
-    .chatbot-btn {
-      border-radius: 999px;
-      border: none;
-      width: 22px;
-      height: 22px;
-      background: rgba(15, 23, 42, 0.85);
-      color: #e5e7eb;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-size: 0.75rem;
-      padding: 0;
-    }
+    /* Link flourish (optional) */
+    .transition-circle{position:fixed;top:0;left:0;width:0;height:0;border-radius:50%;background:#22c55e;transform:translate(-50%,-50%);pointer-events:none;z-index:9999;transition:width .8s,height .8s;opacity:.95}
 
-    .chatbot-messages {
-      padding: 0.75rem 0.8rem;
-      flex: 1;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-    }
-    .chat-msg {
-      max-width: 88%;
-      padding: 0.42rem 0.6rem;
-      border-radius: 0.8rem;
-      font-size: 0.81rem;
-    }
-    .chat-msg.bot {
-      background: rgba(17, 24, 39, 0.96);
-      border-bottom-left-radius: 0.2rem;
-      border: 1px solid rgba(148, 163, 184, 0.7);
-    }
-    .chat-msg.user {
-      margin-left: auto;
-      background: #22c55e;
-      color: #052e16;
-      border-bottom-right-radius: 0.2rem;
-    }
-    .chat-meta {
-      font-size: 0.7rem;
-      color: #9ca3af;
-      margin-bottom: 0.2rem;
-    }
-
-    .chatbot-input-area {
-      padding: 0.65rem 0.75rem 0.7rem;
-      border-top: 1px solid rgba(55, 65, 81, 0.9);
-      display: flex;
-      gap: 0.45rem;
-      align-items: flex-end;
-    }
-    .chatbot-input {
-      flex: 1;
-      border-radius: 0.7rem;
-      border: 1px solid rgba(75, 85, 99, 0.9);
-      background: rgba(15, 23, 42, 1);
-      padding: 0.5rem 0.6rem;
-      resize: none;
-      min-height: 34px;
-      max-height: 80px;
-      font: inherit;
-      font-size: 0.82rem;
-      color: #e5e7eb;
-      outline: none;
-    }
-    .chatbot-input::placeholder {
-      color: #6b7280;
-    }
-    .chatbot-send {
-      border-radius: 999px;
-      border: none;
-      padding: 0.45rem 0.8rem;
-      font-size: 0.78rem;
-      font-weight: 500;
-      background: #22c55e;
-      color: #052e16;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.25rem;
-      white-space: nowrap;
-    }
-
-    .chatbot-quick-actions {
-      padding: 0.4rem 0.75rem 0.6rem;
-      border-top: 1px solid rgba(31, 41, 55, 0.9);
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      background: rgba(15, 23, 42, 0.98);
-    }
-    .chatbot-quick-btn {
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.9);
-      background: rgba(15, 23, 42, 1);
-      padding: 0.25rem 0.7rem;
-      font-size: 0.78rem;
-      color: #e5e7eb;
-      cursor: pointer;
-      transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
-    }
-    .chatbot-quick-btn:hover {
-      background: rgba(31, 41, 55, 1);
-      transform: translateY(-1px);
-      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.7);
-    }
-
-    /* Chat toggle button */
-    .chatbot-toggle {
-      border-radius: 999px;
-      padding: 0.65rem 0.95rem;
-      border: 1px solid rgba(148, 163, 184, 0.8);
-      background: radial-gradient(circle at top left, rgba(34, 197, 94, 0.26), rgba(15, 23, 42, 0.98));
-      color: #f9fafb;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      cursor: pointer;
-      font-size: 0.85rem;
-      box-shadow: 0 16px 45px rgba(15, 23, 42, 0.95);
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
-    }
-    .chatbot-toggle-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: #22c55e;
-      box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.35);
-    }
-    .chatbot-toggle:hover {
-      transform: translateY(-1px) scale(1.02);
-      box-shadow: 0 20px 55px rgba(15, 23, 42, 0.95);
-    }
-
-    @keyframes chatPulse {
-      0% {
-        transform: translateY(0) scale(1);
-        box-shadow: 0 16px 45px rgba(15, 23, 42, 0.95);
-      }
-      50% {
-        transform: translateY(-2px) scale(1.05);
-        box-shadow: 0 24px 65px rgba(15, 23, 42, 1);
-      }
-      100% {
-        transform: translateY(0) scale(1);
-        box-shadow: 0 16px 45px rgba(15, 23, 42, 0.95);
-      }
-    }
-
-    .chatbot.collapsed .chatbot-toggle {
-      animation: chatPulse 3.2s ease-in-out infinite;
-    }
-
-    @media (max-width: 600px) {
-      .chatbot {
-        right: 0.75rem;
-        left: 0.75rem;
-      }
-      .chatbot-window {
-        width: 100%;
-      }
-    }
+    /* Owner card */
+    .owner-card{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:1.6rem;padding:1.6rem;border-radius:1.25rem;background:rgba(15,23,42,.96);border:1px solid rgba(148,163,184,.55)}
+    .owner-left{display:flex;gap:1rem;align-items:center}
+    .owner-avatar{width:72px;height:72px;border-radius:999px;object-fit:cover;border:1px solid rgba(148,163,184,.45)}
   </style>
 </head>
-
 <body>
-  <!-- =========== NAVBAR =========== -->
+  <!-- NAV -->
   <header class="navbar">
     <div class="container nav-inner">
-      <div class="nav-logo">
-        Clear Path <span>AI</span>
-      </div>
-
+      <div class="nav-logo">Clear Path <span>AI</span></div>
       <nav>
-        <div class="nav-toggle" id="navToggle">
-          <div class="nav-toggle-line"></div>
-        </div>
-
+        <div class="nav-toggle" id="navToggle"><div style="width:16px;height:1.5px;background:#e5e7eb;"></div></div>
         <div class="nav-links" id="navLinks">
           <a href="#hero">Home</a>
-          <a href="#features">Features</a>
-          <a href="#how-it-works">How it Works</a>
-          <a href="#faq">FAQ</a>
-          <a href="https://calendly.com/edward-clearpathai/30min" target="_blank" class="nav-cta">
-            <span>●</span> Book a demo
-          </a>
+          <a href="#contact">Contact</a>
+          <a href="https://calendly.com/edward-clearpathai/30min" target="_blank" class="nav-cta"><span>●</span> Book a demo</a>
         </div>
       </nav>
     </div>
   </header>
 
-  <!-- =========== HERO =========== -->
   <main>
+    <!-- HERO -->
     <section class="hero" id="hero">
       <div class="container hero-grid">
         <div>
-          <p class="eyebrow">Healthcare-ready AI chatbots</p>
-          <h1 class="hero-title">Innovative AI Solutions</h1>
-          <p class="hero-subtitle">
-            We help teams save time and reduce pressure by automating patient FAQs, support,
-            and onboarding with smart, custom-built AI chatbots — tailored to your workflow.
-          </p>
-
-          <div class="hero-badges">
-            <span class="hero-badge">24/7 Support</span>
-            <span class="hero-badge">Fast Onboarding</span>
-            <span class="hero-badge">UK &amp; US Compliant</span>
-            <span class="hero-badge">Privacy-First</span>
-          </div>
-
-          <div class="hero-actions">
-            <button class="btn-primary" onclick="document.getElementById('how-it-works').scrollIntoView({behavior:'smooth'})">
-              See how it works →
-            </button>
-            <button class="btn-secondary" onclick="document.getElementById('faq').scrollIntoView({behavior:'smooth'})">
-              View common questions
-            </button>
-          </div>
-
-          <p class="hero-meta">
-            Trusted by digital health teams to handle thousands of safe, human-like conversations every month.
-          </p>
+          <p class="eyebrow">Healthcare-ready AI assistants</p>
+          <h1 class="hero-title">Automate bookings & patient FAQs.</h1>
+          <p class="hero-subtitle">Clear Path AI answers common questions and schedules appointments 24/7 — in your tone, with human handoff when needed.</p>
+          <div class="hero-bullets"><span>24/7 responses in seconds</span> • <span>Fewer no-shows</span> • <span>Privacy-first · UK & US compliant</span></div>
+          <a class="btn-primary" href="https://calendly.com/edward-clearpathai/30min" target="_blank">Book a live demo →</a>
         </div>
-
-        <div class="hero-media">
+        <div class="hero-media" aria-hidden="true">
           <div class="hero-card">
             <div class="hero-card-inner">
               <div>
-                <div class="hero-avatar-row">
-                  <div class="hero-avatar">
-                    🤖
-                  </div>
-                  <div class="hero-avatar-meta">
-                    <span>ClinicCare Assistant</span>
-                    <small>AI triage · 24/7</small>
+                <div style="display:flex;align-items:center;gap:.85rem;">
+                  <div style="width:46px;height:46px;border-radius:999px;background:radial-gradient(circle at 10% 0,#38bdf8,#0f172a);display:flex;align-items:center;justify-content:center;font-size:1.4rem">🤖</div>
+                  <div style="font-size:.78rem">
+                    <span style="display:block;font-weight:500;">ClinicCare Assistant</span>
+                    <small style="opacity:.8;color:#cbd5f5;">AI triage · 24/7</small>
                   </div>
                 </div>
-
-                <div class="hero-screen">
-                  <div class="hero-screen-tag">Live preview</div>
-                  <div class="hero-screen-metric">
-                    <strong>72%</strong> of inbound questions resolved instantly.
-                  </div>
-                  <p>
-                    “Hi Maya, based on your symptoms I recommend booking a same-day call. Would you like me to find
-                    the next available slot?”
-                  </p>
+                <div style="margin-top:1.6rem;border-radius:1rem;padding:1rem;background:rgba(15,23,42,.9);border:1px solid rgba(148,163,184,.5);font-size:.8rem">
+                  <div style="text-transform:uppercase;letter-spacing:.18em;font-size:.6rem;color:#9ca3af;margin-bottom:.6rem">Live preview</div>
+                  <div style="font-size:.95rem;margin-bottom:.4rem"><strong style="color:#4ade80">72%</strong> of inbound questions resolved instantly.</div>
+                  <p>“Hi Maya, based on your symptoms I recommend booking a same-day call. Want me to find the next available slot?”</p>
                 </div>
               </div>
-
-              <div class="hero-meta" style="margin-top:1.1rem;">
-                Avg. response time: <strong>0.6s</strong> · Time saved per week: <strong>18 hrs</strong>
-              </div>
+              <div style="margin-top:1.1rem;font-size:.78rem;color:#9ca3af;">Avg. response time: <strong>0.6s</strong> · Time saved per week: <strong>18 hrs</strong></div>
             </div>
-
-            <div class="hero-gradient-orb"></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- =========== WHY CLEAR PATH AI =========== -->
-    <section id="features">
+    <!-- CAPABILITIES -->
+    <section id="capabilities">
       <div class="container">
         <div class="section-header">
-          <p class="section-kicker">Why Clear Path AI</p>
-          <h2 class="section-title">Built for high-stakes conversations.</h2>
-          <p class="section-subtitle">
-            From first contact to follow-up, our chatbots are tuned for safety, clarity and speed — so your team stays
-            focused on the work only humans can do.
-          </p>
+          <p class="section-kicker">Capabilities</p>
+          <h2 class="section-title">What we automate first.</h2>
+          <p class="section-subtitle">Start lean, ship fast, add more after launch.</p>
         </div>
-
-        <div class="features-grid">
-          <article class="feature-card">
-            <p class="feature-tag">Experience</p>
-            <h3 class="feature-title">Natural, on-brand conversation flows.</h3>
-            <p>
-              Custom prompts and guardrails ensure your chatbot sounds like your organisation — not a generic bot.
-            </p>
-            <div class="feature-pill-row">
-              <span class="feature-pill">Tone control</span>
-              <span class="feature-pill">Multi-language</span>
-            </div>
-          </article>
-
-          <article class="feature-card">
-            <p class="feature-tag">Control</p>
-            <h3 class="feature-title">You decide what the bot can say.</h3>
-            <p>
-              Restrict responses to your knowledge base and policies, with clear escalation paths to humans.
-            </p>
-            <div class="feature-pill-row">
-              <span class="feature-pill">Safe-reply mode</span>
-              <span class="feature-pill">Human handoff</span>
-            </div>
-          </article>
-
-          <article class="feature-card">
-            <p class="feature-tag">Setup</p>
-            <h3 class="feature-title">Go live in days, not months.</h3>
-            <p>
-              Connect your FAQs, patient portal or docs, and we handle the heavy lifting.
-            </p>
-            <div class="feature-pill-row">
-              <span class="feature-pill">No-code widgets</span>
-              <span class="feature-pill">Analytics</span>
-            </div>
-          </article>
+        <div class="cap-list">
+          <div class="cap-item"><strong>AI front desk</strong> — prices, treatments, locations; lead capture to your inbox/CRM.</div>
+          <div class="cap-item"><strong>Smart scheduling</strong> — book/reschedule directly; reminders reduce no-shows.</div>
+          <div class="cap-item"><strong>Post-visit follow-ups</strong> — care instructions, satisfaction checks, review nudges.</div>
         </div>
       </div>
     </section>
 
-    <!-- =========== CORE AUTOMATIONS (2x2 + view more) =========== -->
-    <section id="automations">
-      <div class="container">
-        <div class="section-header">
-          <p class="section-kicker">Automation suite</p>
-          <h2 class="section-title">AI tools built for clinics and beauty businesses.</h2>
-          <p class="section-subtitle">
-            Start with a single assistant or combine multiple automations into one smooth client journey — from first
-            enquiry to post-visit follow-up.
-          </p>
-        </div>
-
-        <!-- 4 main automations in 2x2 -->
-        <div class="automations-grid">
-          <article class="automation-card">
-            <div class="automation-label-row">
-              <span>AI Chatbot</span>
-            </div>
-            <h3 class="automation-title">Your 24/7 front desk.</h3>
-            <p class="automation-body">
-              ClinicCare Assist handles FAQs, pricing questions, and new enquiries around the clock — giving every
-              visitor a fast, friendly response while collecting qualified leads for your team.
-            </p>
-          </article>
-
-          <article class="automation-card">
-            <div class="automation-label-row">
-              <span>Appointment scheduler</span>
-            </div>
-            <h3 class="automation-title">Book more appointments with less admin.</h3>
-            <p class="automation-body">
-              Clients can schedule or reschedule in seconds through the chatbot or website widget. Automatic reminders
-              reduce no-shows and keep your calendar full — without endless phone calls.
-            </p>
-          </article>
-
-          <article class="automation-card">
-            <div class="automation-label-row">
-              <span>Post-procedure bot</span>
-            </div>
-            <h3 class="automation-title">Stay connected after every visit.</h3>
-            <p class="automation-body">
-              Automatically check in with patients after treatments or surgeries. Share care instructions, gather
-              feedback, and flag anyone who needs extra attention — all in your clinic’s tone of voice.
-            </p>
-          </article>
-
-          <article class="automation-card">
-            <div class="automation-label-row">
-              <span>Workflow automations</span>
-            </div>
-            <h3 class="automation-title">Let your systems do the busywork.</h3>
-            <p class="automation-body">
-              From sending confirmation emails to updating your CRM, we automate repetitive admin tasks so your team can
-              focus on what actually matters — patient care and client experience.
-            </p>
-          </article>
-        </div>
-
-        <!-- "View more" pull-down for AI receptionist -->
-        <div class="automation-more-wrapper">
-          <button class="automation-more-toggle" id="autoMoreBtn" type="button">
-            <span>▼</span> View more tools
-          </button>
-
-          <div class="automation-extra" id="aiReceptionWrapper">
-            <article class="automation-card glow-border">
-              <div class="automation-label-row">
-                <span>AI receptionist</span>
-                <span class="automation-beta">Beta</span>
-              </div>
-              <h3 class="automation-title">Answer every call — even after hours.</h3>
-              <p class="automation-body">
-                Our upcoming AI receptionist uses natural speech to greet callers, handle simple questions, and route
-                calls to the right person. Ideal for busy clinics with high call volume or limited front-desk capacity.
-              </p>
-              <p class="automation-note">
-                Currently in beta — ask about early access on your demo call.
-              </p>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- =========== HOW IT WORKS – more creative =========== -->
+    <!-- HOW IT WORKS -->
     <section id="how-it-works">
       <div class="container">
         <div class="section-header">
           <p class="section-kicker">How it works</p>
-          <h2 class="section-title">From idea to live assistant in five steps.</h2>
-          <p class="section-subtitle">
-            A simple, guided rollout that moves from “What could AI do for us?” to “Our clients use this every day” —
-            without overwhelming your team.
-          </p>
+          <h2 class="section-title">From call to live in a week.</h2>
+          <p class="section-subtitle">A simple rollout from “What should we automate?” to “Our clients use this daily.”</p>
         </div>
-
         <div class="steps">
           <article class="step">
-            <p class="step-index">Step 01</p>
-            <span class="step-tag">Day 1 · 20–30 minutes</span>
-            <h3 class="step-title">Discovery &amp; use-case mapping</h3>
-            <p>
-              We jump on a short call to understand your clinic, your services, and where the pressure is
-              (phones, WhatsApp, DMs, emails).
-            </p>
-            <ul>
-              <li>Pick 1–2 high-impact automations to start with</li>
-              <li>Agree on tone of voice (friendly, luxury, clinical)</li>
-            </ul>
+            <small>Step 01 · 20 minutes</small>
+            <h3 class="step-title">Discovery & use-cases</h3>
+            <p>We identify 1–2 high-impact automations (bookings, FAQs, reminders) and agree your tone of voice.</p>
           </article>
-
           <article class="step">
-            <p class="step-index">Step 02</p>
-            <span class="step-tag">Days 2–3</span>
-            <h3 class="step-title">Script, safety &amp; tone</h3>
-            <p>
-              We turn your FAQs, policies, and booking rules into clear conversation flows your assistant can actually
-              follow.
-            </p>
-            <ul>
-              <li>Design welcome messages &amp; key replies</li>
-              <li>Set safe limits for what the AI can / can’t say</li>
-            </ul>
+            <small>Step 02 · Days 2–3</small>
+            <h3 class="step-title">Configure & connect</h3>
+            <p>We map answers and guardrails, then connect calendars/booking so the assistant can take action.</p>
           </article>
-
           <article class="step">
-            <p class="step-index">Step 03</p>
-            <span class="step-tag">Days 3–5</span>
-            <h3 class="step-title">Plug into your tools</h3>
-            <p>
-              We connect your assistant to calendars, forms, or booking links so it can actually take action — not just
-              chat.
-            </p>
-            <ul>
-              <li>Hook into booking pages or calendars</li>
-              <li>Decide what gets logged, emailed or flagged</li>
-            </ul>
-          </article>
-
-          <article class="step">
-            <p class="step-index">Step 04</p>
-            <span class="step-tag">Week 1 launch</span>
-            <h3 class="step-title">Soft launch with safety net</h3>
-            <p>
-              We launch quietly on your website or selected channels and keep a close eye on early conversations.
-            </p>
-            <ul>
-              <li>Review real chats together</li>
-              <li>Adjust any answers that don’t feel right</li>
-            </ul>
-          </article>
-
-          <article class="step">
-            <p class="step-index">Step 05</p>
-            <span class="step-tag">Ongoing optimisation</span>
-            <h3 class="step-title">Scale what works, add what’s missing</h3>
-            <p>
-              Once the assistant is stable, we layer in extra automations — post-procedure check-ins, reminders, and
-              more.
-            </p>
-            <ul>
-              <li>Add new services, locations or channels</li>
-              <li>Review performance and refine monthly</li>
-            </ul>
+            <small>Step 03 · Week 1</small>
+            <h3 class="step-title">Soft launch & iterate</h3>
+            <p>Launch quietly, review real chats, refine. Add more automations once stable.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- =========== FAQ (top 3 + show more) =========== -->
+    <!-- FAQ -->
     <section id="faq">
       <div class="container faq-grid">
         <div>
           <div class="section-header">
             <p class="section-kicker">FAQ</p>
             <h2 class="section-title">Answers to common questions.</h2>
-            <p class="section-subtitle">
-              Don’t see what you need? Use the assistant in the corner or send us a message — we’ll reply within one
-              business day.
-            </p>
+            <p class="section-subtitle">Don’t see what you need? Use the chat or send us a message — we’ll reply within one business day.</p>
           </div>
         </div>
-
         <div>
-          <!-- Top 3 always visible -->
           <div class="faq-item">
             <p class="faq-q">How long does setup take?</p>
-            <p class="faq-a">
-              Most clinics are live within 5–10 business days. We start with your existing FAQs, website content or
-              booking system, then build and test your assistant before launch.
-            </p>
+            <p class="faq-a">Most clinics are live within 5–10 business days.</p>
           </div>
-
           <div class="faq-item">
             <p class="faq-q">How do you handle privacy and data?</p>
-            <p class="faq-a">
-              We take client privacy seriously. All automations are built under clear client agreements, and we only
-              access or process the information needed to make your system work. No data is shared externally.
-            </p>
+            <p class="faq-a">Privacy-first. We only process what’s needed and don’t share data externally.</p>
           </div>
-
           <div class="faq-item">
             <p class="faq-q">What systems can you connect to?</p>
-            <p class="faq-a">
-              We can integrate with most booking or communication platforms — including Calendly, Google Calendar,
-              Cliniko, Pabau, and other scheduling or CRM tools. If your system isn’t listed, we’ll explore a custom
-              option.
-            </p>
-          </div>
-
-          <!-- Hidden extras -->
-          <div class="faq-extra-wrapper">
-            <div class="faq-extra" id="faqExtra">
-              <div class="faq-item">
-                <p class="faq-q">Can I customise how the AI speaks to clients?</p>
-                <p class="faq-a">
-                  Yes. Every assistant is tailored to your clinic’s tone of voice — professional, friendly, or luxury —
-                  so it feels like an extension of your team, not a generic bot.
-                </p>
-              </div>
-
-              <div class="faq-item">
-                <p class="faq-q">How much does it cost?</p>
-                <p class="faq-a">
-                  Prices vary depending on your business size, setup requirements, and the complexity of your automations.
-                  After a short demo call, we’ll provide a clear quote before any work begins.
-                </p>
-              </div>
-            </div>
-
-            <button class="faq-toggle" id="faqToggle" type="button">
-              <span>▼</span> Show more questions
-            </button>
+            <p class="faq-a">Calendly, Google Calendar, Cliniko, Pabau, and most scheduling/CRM tools.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- =========== CONTACT – neater, moving green, Calendly + form =========== -->
+    <!-- CONTACT -->
     <section id="contact">
       <div class="container">
         <div class="contact-card">
-          <div class="contact-text">
+          <div>
             <h2 class="section-title">Ready to automate your clinic?</h2>
-            <p>
-              Share a bit about your clinic and we’ll show you exactly how an assistant could fit into your existing
-              workflow — without replacing your team.
-            </p>
-            <p>
-              You can either book a live demo in our calendar or send a message and we’ll reply with suggestions.
-            </p>
-            <p class="contact-meta">
-              We’ll never share your details. All demos are private and tailored to your business.
-            </p>
+            <p>Book a quick live demo or send a message — we’ll show exactly how this fits your workflow without replacing your team.</p>
+            <div style="margin:1rem 0 0">
+              <iframe src="https://calendly.com/edward-clearpathai/30min?hide_event_type_details=1&hide_gdpr_banner=1"
+                      width="100%" height="660" frameborder="0" title="Book a demo"></iframe>
+            </div>
           </div>
-
-          <form class="contact-form" id="contactForm" action="https://formspree.io/f/mldaeagn" method="POST">
-            <div>
+          <form id="contactForm" action="https://formspree.io/f/mldaeagn" method="POST">
+            <div class="field-group">
               <label class="field-label" for="name">Name</label>
-              <input class="field" id="name" name="name" type="text" placeholder="Your full name" required />
+              <input class="field" id="name" name="name" type="text" required placeholder="Your full name">
             </div>
-            <div>
-              <label class="field-label" for="clinic">Clinic / Business name</label>
-              <input class="field" id="clinic" name="clinic" type="text" placeholder="e.g. Smile Dental, Luxe Aesthetics" />
-            </div>
-            <div>
+            <div class="field-group">
               <label class="field-label" for="email">Work email</label>
-              <input class="field" id="email" name="email" type="email" placeholder="you@clinic.com" required />
+              <input class="field" id="email" name="email" type="email" required placeholder="you@clinic.com">
             </div>
-            <div>
+            <div class="field-group">
               <label class="field-label" for="message">What would you like to automate first?</label>
-              <textarea
-                class="field"
-                id="message"
-                name="message"
-                placeholder="e.g. appointment scheduling, post-procedure check-ins, patient FAQs…"
-                required
-              ></textarea>
+              <textarea class="field" id="message" name="message" required placeholder="e.g. scheduling, post-visit check-ins, FAQs…"></textarea>
             </div>
-
             <div class="contact-actions">
-              <a
-                href="https://calendly.com/edward-clearpathai/30min"
-                target="_blank"
-                class="btn-primary contact-btn"
-                style="text-decoration:none;display:inline-flex;align-items:center;justify-content:center;"
-              >
-                Book a live demo →
-              </a>
-              <button class="btn-secondary contact-btn" type="submit">
-                Send a message
-              </button>
+              <button class="btn-secondary" type="submit">Send a message</button>
             </div>
-
-            <p class="contact-note" id="contactStatus"></p>
+            <p id="contactStatus" class="contact-note"></p>
           </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- OWNER / LINKEDIN -->
+    <section id="owner">
+      <div class="container">
+        <div class="owner-card">
+          <div class="owner-left">
+            <!-- Your uploaded photo -->
+            <img src="assets/eddie.jpg" alt="Photo of Edward Chalmers" class="owner-avatar" width="72" height="72" loading="lazy">
+            <div>
+              <h2 class="owner-title">Contact the owner</h2>
+              <p style="color:#9ca3af">Edward Chalmers · Founder, Clear Path AI</p>
+              <ul style="margin:.3rem 0 0 1rem">
+                <li>Healthcare-ready AI automations</li>
+                <li>UK & US privacy-first approach</li>
+                <li>Fast demos, honest scope</li>
+              </ul>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:.6rem;align-items:flex-start">
+            <a class="btn-primary" href="https://calendly.com/edward-clearpathai/30min" target="_blank" rel="noopener">Book a live demo →</a>
+            <a class="btn-secondary" href="mailto:hello@clearpathai.uk?subject=Enquiry%20from%20ClearPathAI.uk" rel="noopener">Email Edward</a>
+            <a class="btn-secondary" href="https://www.linkedin.com/in/edward-clear-54733b396/" target="_blank" rel="noopener me">View LinkedIn</a>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- =========== FOOTER =========== -->
+  <!-- FOOTER -->
   <footer>
     <div class="container footer-inner">
       <span>© <span id="year"></span> Clear Path AI. All rights reserved.</span>
-      <span></span>
     </div>
   </footer>
 
-  <!-- =========== CHATBOT WIDGET =========== -->
-  <div class="chatbot collapsed" aria-live="polite">
-    <div class="chatbot-window minimized" id="chatbotWindow">
-      <div class="chatbot-header">
-        <div class="chatbot-header-left">
-          <div class="chatbot-avatar">💬</div>
-          <div class="chatbot-name">
-            <strong>ClinicCare Assist</strong>
-            <span>Demo assistant</span>
-          </div>
-        </div>
-        <div class="chatbot-controls">
-          <button class="chatbot-btn" id="chatMinimize" title="Minimize">–</button>
-        </div>
-      </div>
-
-      <div class="chatbot-messages" id="chatMessages"></div>
-
-      <div class="chatbot-quick-actions" id="chatQuick"></div>
-
-      <form class="chatbot-input-area" id="chatForm">
-        <textarea
-          class="chatbot-input"
-          id="chatInput"
-          rows="1"
-          placeholder="Type a message… (demo only)"
-        ></textarea>
-        <button class="chatbot-send" type="submit">
-          Send →
-        </button>
-      </form>
-    </div>
-
-    <button class="chatbot-toggle" id="chatToggle">
+  <!-- Chat + Coachmark -->
+  <div class="chatbot">
+    <div class="chatbot-window minimized" id="chatbotWindow"></div>
+    <button class="chatbot-toggle" id="chatToggle" aria-label="Open example assistant">
       <div class="chatbot-toggle-dot"></div>
-      <span>Chat with ClinicCare Assist</span>
+      <span><strong>See example assistant</strong></span>
+      <div class="chat-coachmark" id="chatCoach">Click to see a demo</div>
     </button>
   </div>
 
-  <!-- =========== JS =========== -->
+  <!-- Link flourish (optional) -->
+  <div class="transition-circle" id="transitionCircle"></div>
+
   <script>
-    // Year in footer
+    // Footer year
     document.getElementById("year").textContent = new Date().getFullYear();
 
     // Mobile nav
-    const navToggle = document.getElementById("navToggle");
-    const navLinks = document.getElementById("navLinks");
-    navToggle.addEventListener("click", () => {
-      navLinks.classList.toggle("open");
-    });
-    navLinks.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        navLinks.classList.remove("open");
-      });
-    });
+    const navToggle=document.getElementById("navToggle");
+    const navLinks=document.getElementById("navLinks");
+    if(navToggle){navToggle.addEventListener("click",()=>navLinks.classList.toggle("open"));}
 
-    // Contact form (Formspree async)
-    const contactForm = document.getElementById("contactForm");
-    const contactStatus = document.getElementById("contactStatus");
-
-    contactForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      contactStatus.textContent = "Sending…";
-
-      try {
-        const formData = new FormData(contactForm);
-        const response = await fetch(contactForm.action, {
-          method: "POST",
-          body: formData,
-          headers: {
-            Accept: "application/json",
-          },
-        });
-
-        if (response.ok) {
-          contactStatus.textContent = "Thank you — we’ll be in touch within one business day.";
-          contactForm.reset();
-        } else {
-          contactStatus.textContent = "Something went wrong. Please try again, or email us directly.";
-        }
-      } catch (err) {
-        contactStatus.textContent = "Network error. Please try again in a moment.";
-      }
-    });
-
-    // Automations "view more" (AI receptionist)
-    const autoMoreBtn = document.getElementById("autoMoreBtn");
-    const aiReceptionWrapper = document.getElementById("aiReceptionWrapper");
-    let autoMoreOpen = false;
-
-    autoMoreBtn.addEventListener("click", () => {
-      autoMoreOpen = !autoMoreOpen;
-      if (autoMoreOpen) {
-        aiReceptionWrapper.classList.add("open");
-        autoMoreBtn.innerHTML = "<span>▲</span> Hide extra tool";
-      } else {
-        aiReceptionWrapper.classList.remove("open");
-        autoMoreBtn.innerHTML = "<span>▼</span> View more tools";
-      }
-    });
-
-    // FAQ "show more" toggle
-    const faqToggle = document.getElementById("faqToggle");
-    const faqExtra = document.getElementById("faqExtra");
-    let faqOpen = false;
-
-    faqToggle.addEventListener("click", () => {
-      faqOpen = !faqOpen;
-      if (faqOpen) {
-        faqExtra.classList.add("open");
-        faqToggle.innerHTML = "<span>▲</span> Hide extra questions";
-      } else {
-        faqExtra.classList.remove("open");
-        faqToggle.innerHTML = "<span>▼</span> Show more questions";
-      }
-    });
-
-    // Chatbot logic (demo only)
-    const chatRoot = document.querySelector(".chatbot");
-    const chatWindow = document.getElementById("chatbotWindow");
-    const chatToggleBtn = document.getElementById("chatToggle");
-    const chatMinimize = document.getElementById("chatMinimize");
-    const chatMessages = document.getElementById("chatMessages");
-    const chatFormEl = document.getElementById("chatForm");
-    const chatInput = document.getElementById("chatInput");
-    const chatQuick = document.getElementById("chatQuick");
-
-    let chatFlowStep = "root";
-    const bookingState = {};
-
-    function toggleChat(open) {
-      if (open) {
-        chatWindow.classList.remove("minimized");
-        chatRoot.classList.remove("collapsed");
-      } else {
-        chatWindow.classList.add("minimized");
-        chatRoot.classList.add("collapsed");
-      }
-    }
-
-    chatToggleBtn.addEventListener("click", () => {
-      const minimized = chatWindow.classList.contains("minimized");
-      toggleChat(minimized);
-      if (minimized) {
-        resetDemo();
-      }
-    });
-
-    chatMinimize.addEventListener("click", () => {
-      toggleChat(false);
-    });
-
-    function addMessage(text, sender = "user", withMeta = false) {
-      const msg = document.createElement("div");
-      msg.classList.add("chat-msg", sender);
-      if (sender === "bot" && withMeta) {
-        const meta = document.createElement("div");
-        meta.classList.add("chat-meta");
-        meta.textContent = "ClinicCare Assist · just now";
-        msg.appendChild(meta);
-      }
-      const p = document.createElement("p");
-      p.textContent = text;
-      msg.appendChild(p);
-      chatMessages.appendChild(msg);
-      chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
-
-    function setQuickReplies(options) {
-      chatQuick.innerHTML = "";
-      options.forEach((opt) => {
-        const btn = document.createElement("button");
-        btn.type = "button";
-        btn.className = "chatbot-quick-btn";
-        btn.textContent = opt.label;
-        btn.addEventListener("click", () => {
-          addMessage(opt.label, "user");
-          opt.onClick();
-        });
-        chatQuick.appendChild(btn);
+    // Contact form (Formspree)
+    const contactForm=document.getElementById("contactForm");
+    const contactStatus=document.getElementById("contactStatus");
+    if(contactForm){
+      contactForm.addEventListener("submit",async(e)=>{
+        e.preventDefault(); contactStatus.textContent="Sending…";
+        try{
+          const res=await fetch(contactForm.action,{method:"POST",body:new FormData(contactForm),headers:{Accept:"application/json"}});
+          if(res.ok){contactStatus.textContent="Thanks — we’ll be in touch within one business day."; contactForm.reset();}
+          else{contactStatus.textContent="Something went wrong. Please try again, or email us directly.";}
+        }catch{contactStatus.textContent="Network error. Please try again.";}
       });
     }
 
-    function resetDemo() {
-      chatMessages.innerHTML = "";
-      Object.keys(bookingState).forEach((k) => delete bookingState[k]);
-      chatFlowStep = "root";
+    // Chat demo + coachmark
+    const chatToggleBtn=document.getElementById("chatToggle");
+    const chatWindow=document.getElementById("chatbotWindow");
+    const chatCoach=document.getElementById("chatCoach");
 
-      addMessage(
-        "Hi, I’m ClinicCare Assist — a demo virtual assistant. I can show you how we handle bookings and common questions for clinics.",
-        "bot",
-        true
-      );
-      addMessage("This is a demo only and not medical advice. To try it out, pick an option below.", "bot");
+    // show coachmark briefly
+    setTimeout(()=> chatCoach.classList.add("show"), 1200);
+    setTimeout(()=> chatCoach.classList.remove("show"), 7000);
 
-      setQuickReplies([
-        {
-          label: "Book an appointment (demo)",
-          onClick: startBookingDemo,
-        },
-        {
-          label: "Ask a quick question",
-          onClick: quickQuestionInfo,
-        },
-        {
-          label: "See what we can automate",
-          onClick: automationInfo,
-        },
-      ]);
+    chatToggleBtn.addEventListener("click",()=>{
+      chatCoach.classList.remove("show");
+      openDemo();
+    });
+
+    function openDemo(){
+      chatWindow.classList.remove("minimized");
+      chatWindow.innerHTML=`
+        <div style="padding:.8rem;border-bottom:1px solid rgba(148,163,184,.35);display:flex;justify-content:space-between;align-items:center">
+          <strong>ClinicCare Assist</strong>
+          <button id="closeChat" style="border:none;background:transparent;color:#e5e7eb;font-size:18px;cursor:pointer">×</button>
+        </div>
+        <div style="padding:.9rem;display:flex;flex-direction:column;gap:.5rem;max-height:330px;overflow:auto" id="msgs">
+          <div style="background:#121826;border:1px solid rgba(148,163,184,.5);padding:.5rem .6rem;border-radius:.8rem">Hi! I can show how we handle bookings and FAQs for clinics. This is a demo only.</div>
+          <div style="background:#121826;border:1px solid rgba(148,163,184,.5);padding:.5rem .6rem;border-radius:.8rem">Try: “Book a consultation” or “What are your prices?”</div>
+        </div>
+        <form id="demoForm" style="border-top:1px solid rgba(148,163,184,.35);display:flex;gap:.45rem;padding:.6rem">
+          <input id="demoInput" placeholder="Type a message… (demo only)" style="flex:1;border-radius:.6rem;border:1px solid rgba(75,85,99,.9);background:#0f172a;color:#e5e7eb;padding:.45rem .6rem" />
+          <button class="btn-primary" type="submit">Send</button>
+        </form>`;
+      document.getElementById("closeChat").onclick=()=>chatWindow.classList.add("minimized");
+      const form=document.getElementById("demoForm");
+      const input=document.getElementById("demoInput");
+      const msgs=document.getElementById("msgs");
+      form.onsubmit=(e)=>{e.preventDefault(); const t=input.value.trim(); if(!t)return;
+        msgs.insertAdjacentHTML("beforeend",`<div style="align-self:flex-end;background:#22c55e;color:#052e16;padding:.45rem .6rem;border-radius:.8rem">${t}</div>`); input.value="";
+        setTimeout(()=>{msgs.insertAdjacentHTML("beforeend",`<div style="background:#121826;border:1px solid rgba(148,163,184,.5);padding:.5rem .6rem;border-radius:.8rem">In a live setup I’d answer from your approved info or book directly in your calendar.</div>`); msgs.scrollTop=msgs.scrollHeight;},500);
+        msgs.scrollTop=msgs.scrollHeight;
+      };
     }
 
-    function startBookingDemo() {
-      chatFlowStep = "booking_clinic";
-      addMessage(
-        "Great, let’s walk through how a client could book an appointment with your clinic. First, what type of clinic should we pretend this is?",
-        "bot",
-        true
-      );
-      setQuickReplies([
-        { label: "Dental clinic", onClick: () => chooseClinicType("Dental clinic") },
-        { label: "Aesthetic / cosmetic clinic", onClick: () => chooseClinicType("Aesthetic / cosmetic clinic") },
-        { label: "Vet clinic", onClick: () => chooseClinicType("Vet clinic") },
-        { label: "Hair / beauty clinic", onClick: () => chooseClinicType("Hair / beauty clinic") },
-      ]);
-    }
-
-    function chooseClinicType(type) {
-      bookingState.clinicType = type;
-      chatFlowStep = "booking_reason";
-      addMessage(`Perfect — we’ll use a ${type.toLowerCase()} as an example.`, "bot", true);
-      addMessage("What would you like to book?", "bot");
-      setQuickReplies([
-        { label: "New patient consultation", onClick: () => chooseReason("New patient consultation") },
-        { label: "Check-up / follow-up", onClick: () => chooseReason("Check-up / follow-up") },
-        { label: "Treatment or procedure", onClick: () => chooseReason("Treatment or procedure") },
-      ]);
-    }
-
-    function chooseReason(reason) {
-      bookingState.reason = reason;
-      chatFlowStep = "booking_time";
-      addMessage("Got it. In a real clinic, I’d now check your diary.", "bot", true);
-      addMessage("For this demo, choose a time that would work for your patient:", "bot");
-      setQuickReplies([
-        { label: "Tomorrow morning", onClick: () => chooseTime("Tomorrow morning") },
-        { label: "This week", onClick: () => chooseTime("This week") },
-        { label: "Next week", onClick: () => chooseTime("Next week") },
-      ]);
-    }
-
-    function chooseTime(timeChoice) {
-      bookingState.time = timeChoice;
-      chatFlowStep = "booking_contact";
-      addMessage(`Thanks! I’ll treat "${timeChoice}" as the preferred time.`, "bot", true);
-      addMessage("Next, how should the clinic follow up with this person?", "bot");
-      setQuickReplies([
-        { label: "Call them", onClick: () => chooseContact("Phone call") },
-        { label: "Email them", onClick: () => chooseContact("Email") },
-        { label: "WhatsApp / SMS", onClick: () => chooseContact("WhatsApp / SMS") },
-      ]);
-    }
-
-    function chooseContact(method) {
-      bookingState.contact = method;
-      chatFlowStep = "booking_summary";
-
-      addMessage(
-        "Great. In a real assistant, I’d now ask for their name and contact details and save everything to your system.",
-        "bot",
-        true
-      );
-
-      const summaryLines = [
-        "Here’s how a demo booking could look:",
-        "",
-        "Demo booking summary",
-        `• Clinic: ${bookingState.clinicType}`,
-        `• Reason: ${bookingState.reason}`,
-        `• Preferred time: ${bookingState.time}`,
-        `• Contact via: ${bookingState.contact}`,
-        "",
-        "In a real setup, this would be sent straight to your reception team or booking system.",
-      ];
-      addMessage(summaryLines.join("\n"), "bot");
-
-      addMessage(
-        "This is just the front-end demo. If you’d like us to connect this to your real calendar or booking system, you can book a quick call:",
-        "bot"
-      );
-
-      setQuickReplies([
-        { label: "Book a real demo", onClick: goToContactFromChat },
-        { label: "Restart demo", onClick: resetDemo },
-      ]);
-    }
-
-    function quickQuestionInfo() {
-      addMessage(
-        "In a live setup, your clients could ask questions like “What are your prices?”, “Where are you based?”, or “Do you accept new patients?”.",
-        "bot",
-        true
-      );
-      addMessage(
-        "Here on the demo, I’m using pre-written answers. Try typing a simple question about opening hours or treatments.",
-        "bot"
-      );
-      setQuickReplies([]);
-      chatFlowStep = "quick_question";
-    }
-
-    function automationInfo() {
-      addMessage(
-        "For most clinics we start by automating website FAQs and lead capture, appointment requests and reminders, post-procedure check-ins and simple admin tasks.",
-        "bot",
-        true
-      );
-      addMessage("Everything is customised to your tone of voice and safety rules.", "bot");
-      setQuickReplies([
-        { label: "Book a real demo", onClick: goToContactFromChat },
-        { label: "Restart demo", onClick: resetDemo },
-      ]);
-      chatFlowStep = "automation_info";
-    }
-
-    // Now opens Calendly instead of just scrolling
-    function goToContactFromChat() {
-      window.open("https://calendly.com/edward-clearpathai/30min", "_blank");
-      toggleChat(false);
-    }
-
-    function handleUserText(text) {
-      const lower = text.toLowerCase();
-
-      let reply =
-        "Nice question. In a real assistant I’d use your clinic’s FAQs and policies to answer this exactly. On this demo, imagine I’m pulling a safe, approved answer from your own information.";
-
-      if (lower.includes("hours") || lower.includes("open") || lower.includes("opening")) {
-        reply =
-          "In a real setup I’d respond with your exact opening hours for each day and location, pulled directly from your website or booking system.";
-      } else if (lower.includes("price") || lower.includes("cost")) {
-        reply =
-          "For pricing questions, the assistant can either give guideline prices or share a link to your pricing page, depending on your preferences.";
-      } else if (lower.includes("where") || lower.includes("location") || lower.includes("address")) {
-        reply =
-          "Location questions are easy — the assistant can send your address, map link, parking details and directions in one message.";
+    // Progressive darkening on scroll
+    (function(){
+      function updateDark(){
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        const p = max > 0 ? window.scrollY / max : 0;      // 0 (top) → 1 (bottom)
+        const darkness = 0.20 + 0.65 * p;                  // min 0.20 → max ~0.85
+        document.documentElement.style.setProperty('--darken', darkness.toFixed(3));
       }
+      updateDark();
+      window.addEventListener('scroll', updateDark, { passive: true });
+      window.addEventListener('resize', updateDark);
+    })();
 
-      addMessage(reply, "bot", true);
+    // Optional internal-link flourish (kept but harmless)
+    const circle=document.getElementById('transitionCircle');
+    function shouldIntercept(link){
+      const href=link.getAttribute('href')||''; if(!href)return false;
+      if(href.startsWith('#')||href.startsWith('mailto:')||href.startsWith('tel:')) return false;
+      if(link.target==='_blank') return false;
+      try{const dest=new URL(href,location.href); return dest.origin===location.origin;}catch{return false;}
     }
-
-    chatFormEl.addEventListener("submit", (e) => {
+    document.querySelectorAll('a[href]').forEach(a=>a.addEventListener('click',e=>{
+      if(!shouldIntercept(a)) return;
       e.preventDefault();
-      const text = chatInput.value.trim();
-      if (!text) return;
-      addMessage(text, "user");
-      chatInput.value = "";
-      handleUserText(text);
-    });
-
-    // Start collapsed on mobile, open with demo on desktop
-    if (window.innerWidth < 640) {
-      toggleChat(false);
-    } else {
-      toggleChat(true);
-      resetDemo();
-    }
-
-    window.addEventListener("resize", () => {
-      // Don't auto-open on resize; let the user control it
-    });
+      const x=(e.clientX||innerWidth/2),y=(e.clientY||innerHeight/2);
+      circle.style.left=x+'px'; circle.style.top=y+'px'; circle.style.width='200vmax'; circle.style.height='200vmax';
+      setTimeout(()=>{ location.href=a.getAttribute('href'); }, 500);
+    }));
   </script>
 </body>
 </html>
