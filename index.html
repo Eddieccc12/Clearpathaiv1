@@ -309,22 +309,22 @@
       box-shadow:0 10px 24px rgba(22,163,74,.55);
     }
 
-    /* POP-UP CHATBOT BUBBLES */
+    /* POP-UP CHATBOT BUBBLES – iPhone style */
     .bot{
       align-self:flex-start;
-      background:#ffffff;
-      color:#0f172a;
+      background:#e5e5ea;
+      color:#000000;
       border-radius:1rem 1rem 1rem .4rem;
-      border:1px solid rgba(15,23,42,.08);
-      box-shadow:0 6px 18px rgba(15,23,42,.45);
+      border:none;
+      box-shadow:none;
     }
     .user{
       align-self:flex-end;
-      background:#22c55e;
-      color:#022c22;
+      background:#0b93f6;
+      color:#ffffff;
       border-radius:1rem 1rem .4rem 1rem;
-      border:1px solid rgba(21,128,61,.4);
-      box-shadow:0 6px 18px rgba(22,163,74,.4);
+      border:none;
+      box-shadow:none;
     }
 
     /* QUICK REPLY BOXES – now white and at the bottom */
@@ -640,48 +640,70 @@
     <!-- OWNER / LINKEDIN -->
     <section id="owner">
       <div class="container">
-        <div class="owner-card">
-          <div class="owner-left">
+        <div class="owner-card" style="
+          display:grid;
+          grid-template-columns:minmax(0,1fr) minmax(0,0.8fr);
+          gap:2rem;
+          padding:2rem;
+          border-radius:1.5rem;
+          background:rgba(12,18,30,0.85);
+          border:1px solid rgba(148,163,184,0.35);
+          backdrop-filter:blur(10px);
+        ">
+
+          <!-- LEFT SIDE -->
+          <div style="display:flex;gap:1.25rem;align-items:flex-start;">
             <img
               src="assets/EDDIE3%202.JPG"
               alt="Photo of Edward Clear"
               class="owner-avatar"
-              width="72" height="72"
-              loading="lazy">
+              style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:2px solid rgba(148,163,184,0.35)"
+            >
 
             <div>
-              <h2 class="owner-title">Contact the owner</h2>
-              <p style="color:#9ca3af">Edward Clear · Founder, Clear Path AI</p>
-              <ul style="margin:.3rem 0 0 1rem">
-                <li>Healthcare-ready AI automations</li>
-                <li>UK & US privacy-first approach</li>
-                <li>Fast demos, honest scope</li>
+              <h2 class="owner-title" style="font-size:1.4rem;margin-bottom:.25rem;">Contact the owner</h2>
+              <p style="color:#9ca3af;margin-bottom:1rem;">Edward Clear · Founder, Clear Path AI</p>
+
+              <ul style="color:#e5e7eb;line-height:1.55;margin-left:1rem;">
+                <li>1:1 demos and tailored automation setup</li>
+                <li>Founder-led implementation with clear, honest workflows</li>
+                <li>Experienced with a wide range of modern AI & automation tools</li>
               </ul>
             </div>
           </div>
 
-          <div style="display:flex;flex-direction:column;gap:.6rem;align-items:flex-start">
+          <!-- RIGHT SIDE BUTTONS -->
+          <div style="display:flex;flex-direction:column;gap:.9rem;align-items:flex-start;justify-content:center;">
             <a
               class="btn-primary"
               href="https://calendly.com/edward-clearpathai/30min"
-              target="_blank" rel="noopener">
+              target="_blank"
+              rel="noopener"
+              style="padding:1rem 1.5rem;font-size:1rem;"
+            >
               Book a live demo →
             </a>
 
             <a
               class="btn-secondary"
               href="mailto:hello@clearpathai.uk?subject=Enquiry%20from%20ClearPathAI.uk"
-              rel="noopener">
+              rel="noopener"
+              style="width:100%;text-align:center;"
+            >
               Email Edward
             </a>
 
             <a
               class="btn-secondary"
               href="https://www.linkedin.com/in/edward-clear-54733b396/"
-              target="_blank" rel="noopener me">
+              target="_blank"
+              rel="noopener"
+              style="width:100%;text-align:center;"
+            >
               View LinkedIn
             </a>
           </div>
+
         </div>
       </div>
     </section>
@@ -792,7 +814,7 @@
       const body = makeEl(`<div class="chat-body" id="chatMessages"></div>`);
       chatWindow.appendChild(body);
 
-      // Quick reply buttons (NOW BELOW MESSAGES, ABOVE INPUT)
+      // Quick reply buttons (bottom)
       const quick = makeEl(`<div class="quick" id="chatQuick"></div>`);
       quick.appendChild(makeEl(`<button class="chip" data-q="Book a consultation" type="button">Book a consultation</button>`));
       quick.appendChild(makeEl(`<button class="chip" data-q="What are your prices?" type="button">What are your prices?</button>`));
