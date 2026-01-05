@@ -1,15 +1,19 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Clear Path AI – Automate bookings & patient FAQs</title>
+  <title>Clear Path AI – Practical AI services for enquiries, bookings & workflows</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Clear Path AI answers common questions and schedules appointments 24/7 — in your tone, with human handoff when needed. Privacy-first and UK & US compliant.">
+  <meta
+    name="description"
+    content="Clear Path AI designs and delivers practical AI services for service-based businesses — automating enquiries, bookings, and workflows with human handoff when needed."
+  />
   <link rel="canonical" href="https://clearpathai.uk/">
 
   <!-- Social -->
-  <meta property="og:title" content="Clear Path AI – Automate bookings & patient FAQs">
-  <meta property="og:description" content="Automate bookings and patient FAQs, reduce no-shows, and free your team for patients.">
+  <meta property="og:title" content="Clear Path AI – Practical AI services for enquiries, bookings & workflows">
+  <meta property="og:description" content="Automate enquiries, bookings and workflows with AI — designed around your business. Human-led implementation, clear outcomes.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://clearpathai.uk/">
   <meta property="og:image" content="favicon.png">
@@ -18,6 +22,7 @@
   <!-- Identity -->
   <link rel="me" href="https://www.linkedin.com/in/edward-clear-54733b396/">
   <link rel="icon" type="image/png" href="favicon.png">
+  <meta name="theme-color" content="#f6f8fb">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,225 +32,405 @@
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
-    :root{--darken:0.25;}
-
     body{
       font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;
-      background:linear-gradient(to bottom,#0b1a2f 0%, #070e18 45%, #000000 85%);
-      color:#f5f5f5;
+      background:linear-gradient(180deg,#f6f8fb 0%, #ffffff 55%, #f3f6fb 100%);
+      color:#0f172a;
       line-height:1.6;
       min-height:100vh;
-      background-attachment:fixed;
       position:relative;
     }
-    body::after{
-      content:"";
-      position:fixed;inset:0;pointer-events:none;
-      background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,var(--darken)) 100%);
-      z-index:0;
-    }
-
     a{text-decoration:none;color:inherit}
     img{max-width:100%;display:block}
     .container{max-width:1120px;margin:0 auto;padding:0 1.5rem}
 
+    :root{
+      --bg:#f6f8fb;
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#475569;
+      --muted2:#64748b;
+      --border:rgba(15,23,42,.10);
+      --shadow:0 18px 55px rgba(2,6,23,.08);
+      --shadow2:0 10px 30px rgba(2,6,23,.08);
+      --green:#22c55e;
+      --green2:#16a34a;
+      --blue:#2563eb;
+      --ring:rgba(37,99,235,.18);
+    }
+
     /* NAVBAR */
     .navbar{
       position:sticky;top:0;z-index:100;
-      backdrop-filter:blur(18px);
-      background:linear-gradient(to bottom,rgba(0,0,0,.75),rgba(0,0,0,.55),transparent);
-      border-bottom:1px solid rgba(255,255,255,.08)
+      background:rgba(255,255,255,.88);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--border);
     }
     .nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
-    .nav-logo{font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:.9rem}
-    .nav-logo span{color:#4ade80}
-    .nav-links{display:flex;align-items:center;gap:1.75rem;font-size:.95rem}
+    .nav-logo{font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:.9rem}
+    .nav-logo span{color:var(--green2)}
+    .nav-links{display:flex;align-items:center;gap:1.25rem;font-size:.95rem;color:var(--muted)}
+    .nav-links a{padding:.35rem .35rem;border-radius:.5rem}
+    .nav-links a:hover{background:rgba(2,6,23,.04);color:var(--text)}
     .nav-cta{
-      border-radius:999px;padding:.5rem 1rem;
-      border:1px solid rgba(148,163,184,.6);
-      font-size:.9rem;display:inline-flex;align-items:center;gap:.35rem;
-      background:rgba(15,23,42,.7);backdrop-filter:blur(12px)
+      border-radius:999px;padding:.55rem 1rem;
+      border:1px solid rgba(15,23,42,.14);
+      font-size:.9rem;display:inline-flex;align-items:center;gap:.5rem;
+      background:linear-gradient(135deg,rgba(34,197,94,.14),rgba(37,99,235,.10));
+      color:var(--text);
+      box-shadow:0 10px 22px rgba(2,6,23,.06);
+      white-space:nowrap;
     }
     .nav-cta:hover{
-      border-color:#4ade80;
-      transform:translateY(-1px) scale(1.02);
-      box-shadow:0 12px 35px rgba(22,163,74,.25)
+      border-color:rgba(34,197,94,.45);
+      transform:translateY(-1px);
+      box-shadow:0 14px 28px rgba(2,6,23,.10);
     }
     .nav-toggle{display:none}
-    @media (max-width:768px){
+    @media (max-width:900px){
       .nav-links{
         position:fixed;inset:72px 1.25rem auto 1.25rem;
         flex-direction:column;align-items:flex-start;
-        padding:1rem 1.25rem;border-radius:1rem;
-        background:rgba(15,23,42,.96);
-        border:1px solid rgba(148,163,184,.4);
-        transform-origin:top right;transform:scale(.95);
+        padding:1rem 1.1rem;border-radius:1rem;
+        background:rgba(255,255,255,.96);
+        border:1px solid rgba(15,23,42,.12);
+        box-shadow:var(--shadow2);
+        transform-origin:top right;transform:scale(.98);
         opacity:0;pointer-events:none;transition:opacity .18s,transform .18s
       }
       .nav-links.open{opacity:1;transform:scale(1);pointer-events:auto}
       .nav-cta{width:100%;justify-content:center}
       .nav-toggle{
-        display:inline-flex;width:32px;height:32px;border-radius:999px;
-        border:1px solid rgba(148,163,184,.6);align-items:center;justify-content:center
+        display:inline-flex;width:38px;height:38px;border-radius:999px;
+        border:1px solid rgba(15,23,42,.14);
+        align-items:center;justify-content:center;
+        background:#fff;
       }
     }
 
     /* HERO */
-    .hero{padding:4rem 0 3rem;position:relative;z-index:1}
-    .hero-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:3rem;align-items:center}
-    .eyebrow{text-transform:uppercase;letter-spacing:.25em;font-size:.65rem;color:#c8dcff;margin-bottom:1rem}
-    .hero-title{font-size:clamp(2.6rem,5vw,3.7rem);line-height:1.1;margin-bottom:1rem}
-    .hero-subtitle{max-width:32rem;font-size:.98rem;color:#e5e7eb;opacity:.9;margin-bottom:1.25rem}
-    .hero-bullets{
-      display:flex;flex-wrap:wrap;gap:.5rem 1rem;
-      color:#cbd5e1;font-size:.9rem;margin-bottom:1.4rem
+    .hero{
+      padding:4.25rem 0 2.75rem;
+      position:relative;
+      overflow:hidden;
     }
+    .hero::before{
+      content:"";
+      position:absolute;inset:-240px -220px auto -220px;
+      height:520px;
+      background:radial-gradient(circle at 30% 35%, rgba(34,197,94,.20), rgba(37,99,235,.16) 35%, rgba(255,255,255,0) 68%);
+      pointer-events:none;
+      z-index:0;
+    }
+    .hero-grid{
+      position:relative;z-index:1;
+      display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr);
+      gap:2.6rem;align-items:start;
+    }
+    .badge-row{
+      display:flex;flex-wrap:wrap;gap:.5rem;
+      margin:0 0 1rem;
+    }
+    .badge{
+      font-size:.78rem;
+      padding:.35rem .6rem;
+      border-radius:999px;
+      background:rgba(2,6,23,.04);
+      border:1px solid rgba(15,23,42,.10);
+      color:var(--muted);
+    }
+    .hero-title{
+      font-size:clamp(2.2rem,4.5vw,3.15rem);
+      line-height:1.08;
+      margin-bottom:1rem;
+      letter-spacing:-.02em;
+    }
+    .hero-subtitle{
+      max-width:40rem;
+      font-size:1.02rem;
+      color:var(--muted);
+      margin-bottom:1.25rem;
+    }
+    .hero-points{
+      display:grid;gap:.55rem;
+      margin:0 0 1.35rem;
+      color:var(--muted);
+      font-size:.95rem;
+    }
+    .hero-points li{margin-left:1.1rem}
+    .cta-row{display:flex;flex-wrap:wrap;gap:.65rem;align-items:center}
     .btn-primary{
-      border-radius:999px;padding:.8rem 1.4rem;
-      font-size:.95rem;font-weight:500;border:none;cursor:pointer;
-      background:linear-gradient(135deg,#22c55e,#16a34a);
-      color:#020617;
-      box-shadow:0 18px 45px rgba(22,163,74,.45);
-      display:inline-flex;align-items:center;gap:.4rem
+      border-radius:999px;
+      padding:.85rem 1.25rem;
+      font-size:.95rem;
+      font-weight:600;
+      border:1px solid rgba(34,197,94,.35);
+      cursor:pointer;
+      background:linear-gradient(135deg,var(--green),var(--green2));
+      color:#052e16;
+      box-shadow:0 18px 45px rgba(22,163,74,.18);
+      display:inline-flex;align-items:center;gap:.45rem;
     }
-
-    .hero-media{position:relative;display:flex;justify-content:center}
-    .hero-card{
-      position:relative;border-radius:1.4rem;overflow:hidden;
-      border:1px solid rgba(148,163,184,.35);
-      background:radial-gradient(120% 90% at 10% 10%,rgba(37,99,235,.20),rgba(2,6,12,.9) 55%);
-      box-shadow:0 40px 120px rgba(6,10,16,.9);
-      max-width:440px;width:100%;min-height:360px
+    .btn-primary:hover{transform:translateY(-1px)}
+    .btn-ghost{
+      border-radius:999px;
+      padding:.82rem 1.1rem;
+      font-size:.95rem;
+      font-weight:600;
+      border:1px solid rgba(15,23,42,.14);
+      background:#fff;
+      color:var(--text);
+      display:inline-flex;align-items:center;gap:.45rem;
+      box-shadow:0 10px 22px rgba(2,6,23,.06);
     }
-    .hero-card-inner{
-      position:relative;padding:2.1rem 1.9rem;
-      display:flex;flex-direction:column;gap:.9rem;height:100%
+    .btn-ghost:hover{transform:translateY(-1px)}
+    .trustbar{
+      margin-top:1.35rem;
+      border-top:1px solid rgba(15,23,42,.08);
+      padding-top:1rem;
+      display:flex;flex-wrap:wrap;gap:.6rem 1rem;
+      color:var(--muted2);
+      font-size:.88rem;
     }
-    .hero-kpi{
-      display:flex;gap:1rem;flex-wrap:wrap;
-      font-size:.8rem;color:#cfe0ff
-    }
-    .hero-kpi .k{
-      background:rgba(12,18,30,.7);
-      border:1px solid rgba(148,163,184,.35);
-      padding:.45rem .6rem;border-radius:.7rem
-    }
-
-    @media (max-width:900px){
+    .trustbar strong{color:var(--text)}
+    @media (max-width:950px){
       .hero-grid{grid-template-columns:1fr}
     }
 
+    /* HERO SIDE CARD */
+    .hero-card{
+      background:rgba(255,255,255,.90);
+      border:1px solid rgba(15,23,42,.12);
+      border-radius:1.25rem;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .hero-card-inner{padding:1.4rem 1.3rem}
+    .card-kicker{
+      font-size:.72rem;text-transform:uppercase;
+      letter-spacing:.22em;color:var(--muted2);
+      margin-bottom:.55rem;
+    }
+    .kpi-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:.6rem;
+      margin:.6rem 0 1rem;
+    }
+    .kpi{
+      background:rgba(2,6,23,.03);
+      border:1px solid rgba(15,23,42,.10);
+      border-radius:.9rem;
+      padding:.65rem .75rem;
+      min-height:70px;
+    }
+    .kpi .n{font-size:1.05rem;font-weight:700;color:var(--text);line-height:1.1}
+    .kpi .l{font-size:.78rem;color:var(--muted2);margin-top:.25rem}
+    .sample{
+      border-radius:1rem;
+      padding:1rem;
+      background:rgba(2,6,23,.02);
+      border:1px solid rgba(15,23,42,.10);
+      font-size:.9rem;
+    }
+    .sample .row{display:flex;flex-direction:column;gap:.45rem;margin-top:.55rem}
+    .bubble{
+      max-width:92%;
+      padding:.55rem .7rem;
+      border-radius:.85rem;
+      font-size:.86rem;
+      line-height:1.45;
+    }
+    .hero-bot{
+      background:#f1f5f9;
+      border:1px solid rgba(15,23,42,.10);
+      border-bottom-left-radius:.35rem;
+    }
+    .hero-user{
+      margin-left:auto;
+      background:rgba(34,197,94,.18);
+      border:1px solid rgba(34,197,94,.25);
+      color:#052e16;
+      border-bottom-right-radius:.35rem;
+    }
+    @media (max-width:520px){
+      .kpi-grid{grid-template-columns:1fr}
+    }
+
     /* SECTIONS */
-    section{padding:3rem 0;position:relative;z-index:1}
-    .section-header{max-width:640px;margin-bottom:2rem}
-    .section-kicker{text-transform:uppercase;letter-spacing:.25em;font-size:.65rem;color:#c8dcff;margin-bottom:.6rem}
-    .section-title{font-size:1.6rem;margin-bottom:.4rem}
-    .section-subtitle{font-size:.96rem;color:#d1d5db;opacity:.9}
-
-    .cap-list{display:grid;gap:.9rem;font-size:.95rem}
-    .cap-item{
-      border-radius:1.1rem;padding:1rem 1.1rem;
-      background:rgba(12,18,30,.88);
-      border:1px solid rgba(148,163,184,.35)
+    section{padding:3.25rem 0;position:relative}
+    .section-header{max-width:720px;margin-bottom:1.65rem}
+    .section-kicker{
+      text-transform:uppercase;
+      letter-spacing:.22em;
+      font-size:.7rem;
+      color:var(--muted2);
+      margin-bottom:.55rem;
+    }
+    .section-title{
+      font-size:1.65rem;
+      letter-spacing:-.01em;
+      margin-bottom:.4rem;
+    }
+    .section-subtitle{
+      font-size:1rem;
+      color:var(--muted);
+      opacity:.98;
     }
 
-    .steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.1rem}
+    /* CARDS / GRIDS */
+    .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+    .grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+    .card{
+      background:rgba(255,255,255,.92);
+      border:1px solid rgba(15,23,42,.12);
+      border-radius:1.2rem;
+      box-shadow:0 14px 40px rgba(2,6,23,.06);
+      padding:1.15rem 1.1rem;
+    }
+    .card h3{font-size:1.02rem;margin-bottom:.35rem}
+    .card p{color:var(--muted);font-size:.95rem}
+    .pill{
+      display:inline-flex;align-items:center;gap:.45rem;
+      font-size:.78rem;
+      padding:.35rem .55rem;
+      border-radius:999px;
+      background:rgba(37,99,235,.08);
+      border:1px solid rgba(37,99,235,.18);
+      color:#1e3a8a;
+      margin-bottom:.6rem;
+      white-space:nowrap;
+    }
+    .muted{color:var(--muted)}
+    @media (max-width:900px){
+      .grid-3{grid-template-columns:1fr}
+      .grid-2{grid-template-columns:1fr}
+    }
+
+    /* PROCESS */
+    .steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem}
     .step{
-      padding:1rem 1.1rem;
-      border-radius:1.1rem;
-      border:1px solid rgba(148,163,184,.35);
-      background:rgba(12,18,30,.88);
-      font-size:.9rem
+      background:rgba(255,255,255,.92);
+      border:1px solid rgba(15,23,42,.12);
+      border-radius:1.2rem;
+      box-shadow:0 14px 40px rgba(2,6,23,.06);
+      padding:1.1rem;
+      position:relative;
     }
+    .step small{
+      display:inline-block;
+      font-size:.72rem;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      color:var(--muted2);
+      margin-bottom:.55rem;
+    }
+    .step h3{font-size:1.02rem;margin-bottom:.35rem}
+    .step p{color:var(--muted);font-size:.95rem}
     @media (max-width:900px){
       .steps{grid-template-columns:1fr}
     }
 
     /* FAQ */
-    .faq-grid{
-      display:grid;
-      grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);
-      gap:2rem
-    }
+    .faq-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1.25rem}
     .faq-item{
-      padding:.9rem 1rem;
-      border-bottom:1px solid rgba(75,85,99,.6);
-      font-size:.9rem
+      background:rgba(255,255,255,.92);
+      border:1px solid rgba(15,23,42,.12);
+      border-radius:1.2rem;
+      box-shadow:0 14px 40px rgba(2,6,23,.06);
+      padding:1rem 1.05rem;
     }
-    .faq-q{font-weight:500;margin-bottom:.35rem}
-    .faq-a{color:#d1d5db;opacity:.9}
+    .faq-q{font-weight:700;margin-bottom:.35rem}
+    .faq-a{color:var(--muted);font-size:.95rem}
     @media (max-width:900px){
       .faq-grid{grid-template-columns:1fr}
     }
 
     /* CONTACT */
     .contact-card{
-      position:relative;
-      border-radius:1.25rem;
-      padding:1.4rem;
-      background:rgba(12,18,30,.92);
-      border:1px solid rgba(148,163,184,.45);
+      background:rgba(255,255,255,.94);
+      border:1px solid rgba(15,23,42,.12);
+      border-radius:1.35rem;
+      box-shadow:var(--shadow);
+      padding:1.35rem;
       display:grid;
       grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);
-      gap:1.8rem;
-      overflow:hidden
+      gap:1.4rem;
+      overflow:hidden;
     }
-    .field-label{font-size:.82rem;margin-bottom:.3rem;display:block;color:#e5e7eb}
+    .contact-card .left p{color:var(--muted)}
+    .field-label{font-size:.82rem;margin-bottom:.3rem;display:block;color:var(--muted2)}
     .field{
-      border-radius:.7rem;
-      border:1px solid rgba(148,163,184,.55);
-      background:rgba(6,10,16,.95);
-      padding:.6rem .75rem;
-      color:#f9fafb;
-      outline:none;width:100%
+      border-radius:.8rem;
+      border:1px solid rgba(15,23,42,.14);
+      background:#ffffff;
+      padding:.7rem .8rem;
+      color:var(--text);
+      outline:none;width:100%;
+      box-shadow:0 10px 22px rgba(2,6,23,.04);
     }
-    .field::placeholder{color:#6b7280}
+    .field:focus{
+      border-color:rgba(37,99,235,.35);
+      box-shadow:0 0 0 4px var(--ring), 0 10px 22px rgba(2,6,23,.04);
+    }
+    .field::placeholder{color:#94a3b8}
     .field-group{margin-bottom:1rem}
+    textarea.field{min-height:140px;resize:vertical}
     .contact-actions{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.2rem}
-    .contact-note{font-size:.8rem;color:#9ca3af;margin-top:.4rem}
-
+    .contact-note{font-size:.82rem;color:var(--muted2);margin-top:.35rem}
+    .btn-secondary{
+      border-radius:999px;padding:.85rem 1.2rem;
+      font-size:.95rem;
+      font-weight:700;
+      background:#0f172a;
+      border:1px solid rgba(15,23,42,.12);
+      color:#ffffff;
+      display:inline-flex;align-items:center;justify-content:center;
+      box-shadow:0 16px 40px rgba(2,6,23,.12);
+      cursor:pointer;
+    }
+    .btn-secondary:hover{transform:translateY(-1px)}
     @media (max-width:900px){
       .contact-card{grid-template-columns:1fr}
     }
 
-    /* FOOTER */
-    footer{padding:2rem 0 1.8rem;font-size:.8rem;color:#9ca3af}
-    .footer-inner{
-      display:flex;flex-wrap:wrap;justify-content:space-between;
-      gap:1rem;border-top:1px solid rgba(55,65,81,.6);padding-top:1rem
-    }
-
-    .btn-secondary{
-      border-radius:999px;padding:.8rem 1.35rem;
-      font-size:.9rem;
-      background:rgba(6,10,16,.95);
-      border:1px solid rgba(148,163,184,.55);
-      color:#e5e7eb;
-      display:inline-flex;align-items:center;justify-content:center
-    }
-
-    /* OWNER CARD */
+    /* OWNER */
     .owner-card{
       display:grid;
       grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);
-      gap:1.6rem;
-      padding:1.6rem;
-      border-radius:1.25rem;
-      background:rgba(12,18,30,.9);
-      border:1px solid rgba(148,163,184,.4)
+      gap:1.2rem;
+      padding:1.4rem;
+      border-radius:1.35rem;
+      background:rgba(255,255,255,.94);
+      border:1px solid rgba(15,23,42,.12);
+      box-shadow:var(--shadow);
     }
-    .owner-left{display:flex;gap:1rem;align-items:center}
+    .owner-left{display:flex;gap:1rem;align-items:flex-start}
     .owner-avatar{
-      width:72px;height:72px;
-      border-radius:999px;
+      width:78px;height:78px;border-radius:999px;
       object-fit:cover;
-      border:1px solid rgba(148,163,184,.35)
+      border:1px solid rgba(15,23,42,.12);
+      box-shadow:0 10px 24px rgba(2,6,23,.08);
     }
+    .owner-meta{color:var(--muted);font-size:.95rem;margin-bottom:.8rem}
+    .owner-list{color:var(--muted);line-height:1.55;margin-left:1.1rem}
+    .owner-actions{display:flex;flex-direction:column;gap:.75rem;align-items:stretch;justify-content:center}
+    .owner-actions a{width:100%;text-align:center}
     @media (max-width:900px){
       .owner-card{grid-template-columns:1fr}
     }
 
-    /* CHATBOT */
+    /* FOOTER */
+    footer{padding:2rem 0 1.8rem;font-size:.85rem;color:var(--muted2)}
+    .footer-inner{
+      display:flex;flex-wrap:wrap;justify-content:space-between;
+      gap:1rem;border-top:1px solid rgba(15,23,42,.10);padding-top:1rem
+    }
+    .footer-links{display:flex;gap:1rem;flex-wrap:wrap}
+    .footer-links a{color:var(--muted2)}
+    .footer-links a:hover{color:var(--text)}
+
+    /* CHATBOT (KEEP AS-IS) */
     .chatbot{
       position:fixed;
       bottom:1.5rem;
@@ -295,7 +480,7 @@
       border-radius:.85rem;font-size:.86rem;line-height:1.45
     }
 
-    /* HERO SECTION BUBBLES (unchanged original look) */
+    /* HERO SECTION BUBBLES (kept but overridden above for light sample card) */
     .hero-bot{
       background:rgba(15,23,42,1);
       border:1px solid rgba(148,163,184,.55);
@@ -423,15 +608,26 @@
   <header class="navbar">
     <div class="container nav-inner">
       <div class="nav-logo">Clear Path <span>AI</span></div>
+
       <nav>
-        <div class="nav-toggle" id="navToggle">
-          <div style="width:16px;height:1.5px;background:#e5e7eb;"></div>
+        <div class="nav-toggle" id="navToggle" aria-label="Open menu" role="button" tabindex="0">
+          <div style="display:flex;flex-direction:column;gap:4px;">
+            <div style="width:18px;height:2px;background:#0f172a;"></div>
+            <div style="width:18px;height:2px;background:#0f172a;opacity:.8;"></div>
+            <div style="width:18px;height:2px;background:#0f172a;opacity:.6;"></div>
+          </div>
         </div>
+
         <div class="nav-links" id="navLinks">
           <a href="#hero">Home</a>
+          <a href="#services">Services</a>
+          <a href="#industries">Industries</a>
+          <a href="#process">Process</a>
+          <a href="#faq">FAQ</a>
           <a href="#contact">Contact</a>
-          <a href="https://calendly.com/edward-clearpathai/30min" target="_blank" class="nav-cta">
-            <span>●</span> Book a demo
+          <a href="https://calendly.com/edward-clearpathai/30min" target="_blank" rel="noopener" class="nav-cta">
+            <span style="width:8px;height:8px;border-radius:999px;background:rgba(34,197,94,.95);display:inline-block;"></span>
+            Book a demo
           </a>
         </div>
       </nav>
@@ -442,113 +638,201 @@
     <!-- HERO -->
     <section class="hero" id="hero">
       <div class="container hero-grid">
-
         <div>
-          <p class="eyebrow">Healthcare-ready AI assistants</p>
-          <h1 class="hero-title">Automate bookings & patient FAQs.</h1>
-          <p class="hero-subtitle">
-            Clear Path AI answers common questions and schedules appointments 24/7 — in your tone, with human handoff when needed.
-          </p>
-
-          <div class="hero-bullets">
-            <span>24/7 responses in seconds</span> •
-            <span>Fewer no-shows</span> •
-            <span>Privacy-first · UK & US compliant</span>
+          <div class="badge-row">
+            <span class="badge">AI Services</span>
+            <span class="badge">Automation</span>
+            <span class="badge">Booking & Enquiry Handling</span>
+            <span class="badge">Human Handoff</span>
           </div>
 
-          <a class="btn-primary" href="https://calendly.com/edward-clearpathai/30min" target="_blank">
-            Book a live demo →
-          </a>
+          <h1 class="hero-title">Practical AI services that automate enquiries, bookings, and workflows.</h1>
+
+          <p class="hero-subtitle">
+            Clear Path AI designs and delivers AI solutions for service-based businesses. We act as your single implementation partner —
+            from scoping to launch — so you get outcomes, not hype.
+          </p>
+
+          <ul class="hero-points">
+            <li>Capture leads 24/7 and route them into your existing process</li>
+            <li>Reduce admin time with smart scheduling, FAQs, and follow-ups</li>
+            <li>Built around your tone, policies, and systems — not generic templates</li>
+          </ul>
+
+          <div class="cta-row">
+            <a class="btn-primary" href="https://calendly.com/edward-clearpathai/30min" target="_blank" rel="noopener">
+              Book a live demo →
+            </a>
+            <a class="btn-ghost" href="#contact">
+              Get a quick quote →
+            </a>
+          </div>
+
+          <div class="trustbar">
+            <span><strong>Typical use cases:</strong> AI front desk · scheduling · lead qualification · reminders · internal FAQs</span>
+            <span><strong>Integrations:</strong> Calendly · Google Calendar · CRMs · most form & booking tools</span>
+          </div>
         </div>
 
-        <div class="hero-media" aria-hidden="true">
-          <div class="hero-card">
-            <div class="hero-card-inner">
-              <div class="hero-kpi">
-                <div class="k">Avg. reply <strong>0.6s</strong></div>
-                <div class="k"><strong>72%</strong> instant resolution</div>
-                <div class="k"><strong>18h</strong> saved / week</div>
+        <aside class="hero-card" aria-label="Example automation preview">
+          <div class="hero-card-inner">
+            <div class="card-kicker">What you can expect</div>
+
+            <div class="kpi-grid">
+              <div class="kpi">
+                <div class="n">24/7</div>
+                <div class="l">Enquiry handling</div>
               </div>
+              <div class="kpi">
+                <div class="n">Fast</div>
+                <div class="l">Booking + routing</div>
+              </div>
+              <div class="kpi">
+                <div class="n">Clear</div>
+                <div class="l">Human handoff</div>
+              </div>
+            </div>
 
-              <div style="border-radius:1rem;padding:1rem;background:rgba(10,16,26,.9);border:1px solid rgba(148,163,184,.35);font-size:.86rem">
-                <div style="text-transform:uppercase;letter-spacing:.18em;font-size:.6rem;color:#9fb3d9;margin-bottom:.6rem">
-                  Sample exchange
-                </div>
+            <div class="sample">
+              <div class="card-kicker" style="margin:0 0 .3rem;">Sample exchange</div>
+              <p class="muted" style="font-size:.9rem;margin-bottom:.55rem;">
+                This is how an assistant can qualify a lead and book a slot in your calendar.
+              </p>
 
-                <div class="bubble hero-bot">
-                  Hi Maya — would you like me to find the next available consultation slot?
-                </div>
-                <div class="bubble hero-user" style="margin-top:.4rem">
-                  Tomorrow afternoon works.
-                </div>
-                <div class="bubble hero-bot" style="margin-top:.4rem">
-                  Done. I’ll hold 3:30pm and 4:15pm for you and send a confirmation.
-                </div>
+              <div class="row">
+                <div class="bubble hero-bot">Hi — what are you looking to book, and what day works best?</div>
+                <div class="bubble hero-user">A consultation next week. Tuesday afternoon ideally.</div>
+                <div class="bubble hero-bot">Great. I can offer 15:30 or 16:15. Which one should I hold?</div>
               </div>
             </div>
           </div>
-        </div>
-
+        </aside>
       </div>
     </section>
 
-    <!-- CAPABILITIES -->
-    <section id="capabilities">
+    <!-- SERVICES -->
+    <section id="services">
       <div class="container">
         <div class="section-header">
-          <p class="section-kicker">Capabilities</p>
-          <h2 class="section-title">What we automate first.</h2>
-          <p class="section-subtitle">Start lean, ship fast, add more after launch.</p>
-        </div>
-
-        <div class="cap-list">
-          <div class="cap-item">
-            <strong>AI front desk</strong> — prices, treatments, locations; lead capture to your inbox/CRM.
-          </div>
-          <div class="cap-item">
-            <strong>Smart scheduling</strong> — book/reschedule directly; reminders reduce no-shows.
-          </div>
-          <div class="cap-item">
-            <strong>Post-visit follow-ups</strong> — care instructions, satisfaction checks, review nudges.
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- HOW IT WORKS -->
-    <section id="how-it-works">
-      <div class="container">
-        <div class="section-header">
-          <p class="section-kicker">How it works</p>
-          <h2 class="section-title">From call to live in a week.</h2>
+          <p class="section-kicker">Services</p>
+          <h2 class="section-title">What we deliver.</h2>
           <p class="section-subtitle">
-            A simple rollout from “What should we automate?” to “Our clients use this daily.”
+            One-page site or not, your offer should be simple: we automate the repetitive work so your team can focus on clients.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <div class="pill">AI Assistant</div>
+            <h3>Customer-facing AI</h3>
+            <p>Answer FAQs, capture details, and route enquiries to the right place — in your tone, with guardrails and escalation.</p>
+          </div>
+
+          <div class="card">
+            <div class="pill">Scheduling</div>
+            <h3>Booking & rescheduling</h3>
+            <p>Connect calendars/booking tools so clients can book faster, with reminders that reduce no-shows.</p>
+          </div>
+
+          <div class="card">
+            <div class="pill">Automation</div>
+            <h3>Workflow automation</h3>
+            <p>Automate follow-ups, lead qualification, forms-to-CRM, review prompts, and internal handoff steps.</p>
+          </div>
+        </div>
+
+        <div style="height:1rem"></div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="pill">Implementation Partner</div>
+            <h3>Discovery → build → launch</h3>
+            <p>We scope the right use cases, design the flow, manage the build, and launch with iteration based on real usage.</p>
+          </div>
+
+          <div class="card">
+            <div class="pill">Support</div>
+            <h3>Optimisation & ongoing updates</h3>
+            <p>Review transcripts, improve answers, adjust routing, add new flows — and keep everything clean and stable.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INDUSTRIES -->
+    <section id="industries">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-kicker">Industries</p>
+          <h2 class="section-title">Built for service businesses — not just one niche.</h2>
+          <p class="section-subtitle">
+            We focus on businesses that run on enquiries, bookings, and repeatable admin tasks.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <h3>Professional services</h3>
+            <p>Capture enquiries, qualify leads, and book consultations for accountants, agencies, and consultancies.</p>
+          </div>
+          <div class="card">
+            <h3>Home & trade services</h3>
+            <p>Turn missed calls into booked jobs with after-hours enquiry handling and quote qualification.</p>
+          </div>
+          <div class="card">
+            <h3>Fitness & studios</h3>
+            <p>Automate trial bookings, class FAQs, membership questions, and re-engagement follow-ups.</p>
+          </div>
+          <div class="card">
+            <h3>Healthcare & clinics</h3>
+            <p>FAQ handling, bookings, reminders and post-visit flows — with privacy-first implementation.</p>
+          </div>
+          <div class="card">
+            <h3>Education & training</h3>
+            <p>Course FAQs, eligibility checks, enrolment booking, and incomplete enquiry follow-ups.</p>
+          </div>
+          <div class="card">
+            <h3>Real estate & property</h3>
+            <p>Viewing bookings, property FAQs, lead routing, and automated follow-ups after viewings.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section id="process">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-kicker">Process</p>
+          <h2 class="section-title">A clear rollout — designed for speed and stability.</h2>
+          <p class="section-subtitle">
+            We start lean, launch quickly, and expand once the core flows are working in real life.
           </p>
         </div>
 
         <div class="steps">
           <article class="step">
-            <small>Step 01 · 20 minutes</small>
-            <h3 class="step-title">Discovery & use-cases</h3>
-            <p>
-              We identify 1–2 high-impact automations (bookings, FAQs, reminders) and agree your tone of voice.
-            </p>
+            <small>Step 01</small>
+            <h3>Discovery</h3>
+            <p>We identify 1–2 high-impact automations and agree tone, handoff rules, and success metrics.</p>
           </article>
 
           <article class="step">
-            <small>Step 02 · Days 2–3</small>
-            <h3 class="step-title">Configure & connect</h3>
-            <p>
-              We map answers and guardrails, then connect calendars/booking so the assistant can take action.
-            </p>
+            <small>Step 02</small>
+            <h3>Design</h3>
+            <p>We map the conversation and workflow: questions, routing, escalation, and integration points.</p>
           </article>
 
           <article class="step">
-            <small>Step 03 · Week 1</small>
-            <h3 class="step-title">Soft launch & iterate</h3>
-            <p>
-              Launch quietly, review real chats, refine. Add more automations once stable.
-            </p>
+            <small>Step 03</small>
+            <h3>Build & connect</h3>
+            <p>We implement using best-fit tools and specialists where needed — you work with one partner: us.</p>
+          </article>
+
+          <article class="step">
+            <small>Step 04</small>
+            <h3>Launch & optimise</h3>
+            <p>Soft launch, review real interactions, refine answers, then scale and add additional automations.</p>
           </article>
         </div>
       </div>
@@ -556,33 +840,44 @@
 
     <!-- FAQ -->
     <section id="faq">
-      <div class="container faq-grid">
-        <div>
-          <div class="section-header">
-            <p class="section-kicker">FAQ</p>
-            <h2 class="section-title">Answers to common questions.</h2>
-            <p class="section-subtitle">
-              Don’t see what you need? Use the chat or send us a message — we’ll reply within one business day.
-            </p>
-          </div>
+      <div class="container">
+        <div class="section-header">
+          <p class="section-kicker">FAQ</p>
+          <h2 class="section-title">Common questions.</h2>
+          <p class="section-subtitle">
+            Straight answers. If something is specific to your workflow, we’ll cover it on the demo.
+          </p>
         </div>
 
-        <div>
+        <div class="faq-grid">
+          <div class="faq-item">
+            <p class="faq-q">What exactly do you provide?</p>
+            <p class="faq-a">We provide end-to-end AI implementation: discovery, design, build, integration, launch, and ongoing optimisation.</p>
+          </div>
+
+          <div class="faq-item">
+            <p class="faq-q">Do you work across different industries?</p>
+            <p class="faq-a">Yes. We focus on service-based businesses where enquiries, bookings, and admin workflows can be automated.</p>
+          </div>
+
           <div class="faq-item">
             <p class="faq-q">How long does setup take?</p>
-            <p class="faq-a">Most clinics are live within 5–10 business days.</p>
+            <p class="faq-a">Most initial deployments can go live within 5–10 business days, depending on integrations and scope.</p>
           </div>
+
+          <div class="faq-item">
+            <p class="faq-q">Will it replace my staff?</p>
+            <p class="faq-a">No. The goal is to remove repetitive work and route complex cases to a human — with clear handoff.</p>
+          </div>
+
+          <div class="faq-item">
+            <p class="faq-q">What tools can you connect to?</p>
+            <p class="faq-a">Calendly, Google Calendar, form tools, CRMs, and most common scheduling systems. We’re tool-agnostic.</p>
+          </div>
+
           <div class="faq-item">
             <p class="faq-q">How do you handle privacy and data?</p>
-            <p class="faq-a">
-              Privacy-first. We only process what’s needed and don’t share data externally.
-            </p>
-          </div>
-          <div class="faq-item">
-            <p class="faq-q">What systems can you connect to?</p>
-            <p class="faq-a">
-              Calendly, Google Calendar, Cliniko, Pabau, and most scheduling/CRM tools.
-            </p>
+            <p class="faq-a">Privacy-first. We design around minimum necessary data, and apply safeguards based on your requirements.</p>
           </div>
         </div>
       </div>
@@ -592,10 +887,10 @@
     <section id="contact">
       <div class="container">
         <div class="contact-card">
-          <div>
-            <h2 class="section-title">Ready to automate your clinic?</h2>
-            <p>
-              Book a quick live demo or send a message — we’ll show exactly how this fits your workflow without replacing your team.
+          <div class="left">
+            <h2 class="section-title">Ready to see what this looks like for your business?</h2>
+            <p style="margin-top:.35rem">
+              Book a quick demo or send a message. We’ll show you the exact workflow we’d automate first, and what it would save you.
             </p>
 
             <div style="margin:1rem 0 0">
@@ -606,7 +901,7 @@
             </div>
           </div>
 
-          <form id="contactForm" action="https://formspree.io/f/mldaeagn" method="POST">
+          <form id="contactForm" action="https://formspree.io/f/mldaeagn" method="POST" aria-label="Contact form">
             <div class="field-group">
               <label class="field-label" for="name">Name</label>
               <input class="field" id="name" name="name" type="text" required placeholder="Your full name">
@@ -614,7 +909,7 @@
 
             <div class="field-group">
               <label class="field-label" for="email">Work email</label>
-              <input class="field" id="email" name="email" type="email" required placeholder="you@clinic.com">
+              <input class="field" id="email" name="email" type="email" required placeholder="you@company.com">
             </div>
 
             <div class="field-group">
@@ -624,86 +919,80 @@
                 id="message"
                 name="message"
                 required
-                placeholder="e.g. scheduling, post-visit check-ins, FAQs…"></textarea>
+                placeholder="e.g. enquiries, bookings, lead qualification, reminders, internal FAQs…"></textarea>
             </div>
 
             <div class="contact-actions">
               <button class="btn-secondary" type="submit">Send a message</button>
+              <a class="btn-ghost" href="mailto:hello@clearpathai.uk?subject=Enquiry%20from%20ClearPathAI.uk" style="justify-content:center;">
+                Email directly →
+              </a>
             </div>
 
             <p id="contactStatus" class="contact-note"></p>
+
+            <p class="contact-note" style="margin-top:.75rem;">
+              Response time: within one business day.
+            </p>
           </form>
         </div>
       </div>
     </section>
 
-    <!-- OWNER / LINKEDIN -->
+    <!-- OWNER -->
     <section id="owner">
       <div class="container">
-        <div class="owner-card" style="
-          display:grid;
-          grid-template-columns:minmax(0,1fr) minmax(0,0.8fr);
-          gap:2rem;
-          padding:2rem;
-          border-radius:1.5rem;
-          background:rgba(12,18,30,0.85);
-          border:1px solid rgba(148,163,184,0.35);
-          backdrop-filter:blur(10px);
-        ">
-
-          <!-- LEFT SIDE -->
-          <div style="display:flex;gap:1.25rem;align-items:flex-start;">
+        <div class="owner-card">
+          <div class="owner-left">
             <img
               src="assets/EDDIE3%202.JPG"
               alt="Photo of Edward Clear"
               class="owner-avatar"
-              style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:2px solid rgba(148,163,184,0.35)"
+              loading="lazy"
             >
-
             <div>
-              <h2 class="owner-title" style="font-size:1.4rem;margin-bottom:.25rem;">Contact the owner</h2>
-              <p style="color:#9ca3af;margin-bottom:1rem;">Edward Clear · Founder, Clear Path AI</p>
+              <h2 class="section-title" style="margin-bottom:.15rem;">Work with the founder</h2>
+              <p class="owner-meta">Edward Clear · Founder, Clear Path AI</p>
 
-              <ul style="color:#e5e7eb;line-height:1.55;margin-left:1rem;">
+              <ul class="owner-list">
                 <li>1:1 demos and tailored automation setup</li>
                 <li>Founder-led implementation with clear, honest workflows</li>
                 <li>Experienced with a wide range of modern AI & automation tools</li>
               </ul>
+
+              <p class="owner-meta" style="margin-top:.9rem;">
+                Clear Path AI is your single point of contact — we manage the technical delivery with specialist support where needed.
+              </p>
             </div>
           </div>
 
-          <!-- RIGHT SIDE BUTTONS -->
-          <div style="display:flex;flex-direction:column;gap:.9rem;align-items:flex-start;justify-content:center;">
+          <div class="owner-actions">
             <a
               class="btn-primary"
               href="https://calendly.com/edward-clearpathai/30min"
               target="_blank"
               rel="noopener"
-              style="padding:1rem 1.5rem;font-size:1rem;"
             >
               Book a live demo →
             </a>
 
             <a
-              class="btn-secondary"
+              class="btn-ghost"
               href="mailto:hello@clearpathai.uk?subject=Enquiry%20from%20ClearPathAI.uk"
               rel="noopener"
-              style="width:100%;text-align:center;"
             >
-              Email Edward
+              Email Edward →
             </a>
 
             <a
-              class="btn-secondary"
+              class="btn-ghost"
               href="https://www.linkedin.com/in/edward-clear-54733b396/"
               target="_blank"
               rel="noopener"
-              style="width:100%;text-align:center;"
             >
-              View LinkedIn
+              View LinkedIn →
             </a>
           </div>
-
         </div>
       </div>
     </section>
@@ -713,10 +1002,16 @@
   <footer>
     <div class="container footer-inner">
       <span>© <span id="year"></span> Clear Path AI. All rights reserved.</span>
+      <div class="footer-links">
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </div>
     </div>
   </footer>
 
-  <!-- CHATBOT -->
+  <!-- CHATBOT (UNCHANGED) -->
   <div class="chatbot">
     <div class="chatbot-window minimized" id="chatbotWindow"></div>
 
@@ -735,8 +1030,16 @@
     const navToggle = document.getElementById("navToggle");
     const navLinks = document.getElementById("navLinks");
     if (navToggle && navLinks) {
-      navToggle.addEventListener("click", () => {
-        navLinks.classList.toggle("open");
+      const toggleMenu = () => navLinks.classList.toggle("open");
+
+      navToggle.addEventListener("click", toggleMenu);
+      navToggle.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") toggleMenu();
+      });
+
+      // Close menu on link click (mobile)
+      navLinks.querySelectorAll("a").forEach((a) => {
+        a.addEventListener("click", () => navLinks.classList.remove("open"));
       });
     }
 
@@ -765,20 +1068,7 @@
       });
     }
 
-    // Progressive darkening on scroll
-    (function () {
-      function updateDark() {
-        const max = document.documentElement.scrollHeight - window.innerHeight;
-        const p = max > 0 ? window.scrollY / max : 0;
-        const darkness = 0.25 + 0.55 * p;
-        document.documentElement.style.setProperty("--darken", darkness.toFixed(3));
-      }
-      updateDark();
-      window.addEventListener("scroll", updateDark, { passive: true });
-      window.addEventListener("resize", updateDark);
-    })();
-
-    // CHATBOT DEMO
+    // CHATBOT DEMO (unchanged logic)
     const chatToggleBtn = document.getElementById("chatToggle");
     const chatWindow = document.getElementById("chatbotWindow");
     const chatCoach = document.getElementById("chatCoach");
