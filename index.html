@@ -389,7 +389,7 @@
     .footer-links a{color:var(--muted2)}
     .footer-links a:hover{color:var(--text)}
 
-    /* CHATBOT (UNCHANGED) */
+    /* CHATBOT (UNCHANGED styles) */
     .chatbot{
       position:fixed;
       bottom:1.5rem;
@@ -562,6 +562,7 @@
           <a href="#who">Who</a>
           <a href="#outcomes">Outcomes</a>
           <a href="#how">How</a>
+          <a href="#gdpr">GDPR</a>
           <a href="#pricing">Investment</a>
           <a href="#review">Book</a>
           <a href="https://calendly.com/edward-clearpathai/30min" target="_blank" rel="noopener" class="nav-cta">
@@ -585,10 +586,16 @@
             <span class="badge">Human handoff</span>
           </div>
 
+          <div class="badge-row" style="margin-top:-.25rem;">
+            <span class="badge">GDPR-conscious setup</span>
+            <span class="badge">Data minimisation</span>
+            <span class="badge">Secure processing</span>
+          </div>
+
           <h1 class="hero-title">Book better enquiries. Cut admin.</h1>
 
           <p class="hero-subtitle">
-            For accountancy and professional service firms: we qualify enquiries and route the right prospects into your calendar.
+            For accountancy and professional service firms: we qualify enquiries and route the right prospects into your calendar — with GDPR-conscious workflows.
           </p>
 
           <ul class="hero-bullets">
@@ -665,7 +672,7 @@
       </div>
     </section>
 
-    <!-- OUTCOMES / ROI (your requested credibility focus) -->
+    <!-- OUTCOMES -->
     <section id="outcomes">
       <div class="container">
         <div class="section-header">
@@ -743,6 +750,47 @@
         <p style="margin-top:1rem;color:var(--muted2);font-size:.92rem;">
           Most firms are live within <strong>7 days</strong>, depending on scope and integrations.
         </p>
+      </div>
+    </section>
+
+    <!-- GDPR -->
+    <section id="gdpr">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-kicker">Compliance</p>
+          <h2 class="section-title">GDPR & data protection</h2>
+          <p class="section-subtitle">
+            Built with UK GDPR in mind — designed to qualify enquiries without collecting unnecessary personal data.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Data minimisation</h3>
+            <p>We only capture information required to qualify an enquiry and route booking. No unnecessary fields.</p>
+          </div>
+
+          <div class="card">
+            <h3>Clear roles</h3>
+            <p>You remain the data controller. Clear Path AI acts as a data processor, operating under your instructions.</p>
+          </div>
+
+          <div class="card">
+            <h3>Secure processing</h3>
+            <p>We use reputable platforms and standard security practices for data storage and transmission.</p>
+          </div>
+
+          <div class="card">
+            <h3>Retention & requests</h3>
+            <p>We align data retention with your policies and can support access/deletion requests through your workflow.</p>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:1rem;">
+          <p style="color:var(--muted);font-size:.95rem;">
+            We can provide a simple data-processing summary during onboarding (what data is collected, where it flows, and how long it’s retained).
+          </p>
+        </div>
       </div>
     </section>
 
@@ -839,6 +887,13 @@
                 placeholder="e.g. low-quality enquiries, too much back-and-forth, after-hours responses, admin workload…"></textarea>
             </div>
 
+            <div class="field-group">
+              <label style="display:flex;gap:.6rem;align-items:flex-start;color:var(--muted);font-size:.9rem;line-height:1.4;">
+                <input type="checkbox" name="consent" required style="margin-top:.25rem;">
+                I agree that Clear Path AI can contact me about my enquiry and process my information in line with the Privacy Notice.
+              </label>
+            </div>
+
             <div class="contact-actions">
               <button class="btn-secondary" type="submit">Send a message</button>
               <a class="btn-ghost" href="mailto:edward@clearpathai.uk?subject=Enquiry%20from%20ClearPathAI.uk" style="justify-content:center;">
@@ -850,7 +905,31 @@
             <p class="contact-note" style="margin-top:.75rem;">
               Response time: within one business day.
             </p>
+            <p class="contact-note">
+              Privacy: We use your details to respond to this enquiry only. See <a href="#privacy" style="text-decoration:underline;">Privacy Notice</a>.
+            </p>
           </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRIVACY NOTICE -->
+    <section id="privacy">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-kicker">Privacy</p>
+          <h2 class="section-title">Privacy notice</h2>
+          <p class="section-subtitle">
+            Simple, transparent handling of enquiry data.
+          </p>
+        </div>
+
+        <div class="card">
+          <p style="color:var(--muted);font-size:.95rem;">
+            When you submit this form, we process your name, email, and message to respond to your enquiry and arrange a call.
+            We do not sell your data. You can request deletion at any time by emailing
+            <a href="mailto:edward@clearpathai.uk" style="text-decoration:underline;">edward@clearpathai.uk</a>.
+          </p>
         </div>
       </div>
     </section>
@@ -862,15 +941,18 @@
       <span>© <span id="year"></span> Clear Path AI. All rights reserved.</span>
       <div class="footer-links">
         <a href="#who">Who</a>
-        <a href="#outcomes">Outcomes</a>
+        <a href
+        href="#outcomes">Outcomes</a>
         <a href="#how">How</a>
+        <a href="#gdpr">GDPR</a>
         <a href="#pricing">Investment</a>
         <a href="#review">Book</a>
+        <a href="#privacy">Privacy</a>
       </div>
     </div>
   </footer>
 
-  <!-- CHATBOT (UNCHANGED) -->
+  <!-- CHATBOT (UNCHANGED container) -->
   <div class="chatbot">
     <div class="chatbot-window minimized" id="chatbotWindow"></div>
 
@@ -924,7 +1006,7 @@
       });
     }
 
-    // CHATBOT DEMO (unchanged logic)
+    // CHATBOT DEMO (same logic; updated copy to be relevant to accountancy/professional services)
     const chatToggleBtn = document.getElementById("chatToggle");
     const chatWindow = document.getElementById("chatbotWindow");
     const chatCoach = document.getElementById("chatCoach");
@@ -940,15 +1022,15 @@
       chatWindow.innerHTML = "";
       chatWindow.classList.remove("minimized");
 
-      // Header
+      // Header (UPDATED)
       chatWindow.appendChild(
         makeEl(`
         <div class="chatbot-header">
           <div class="chat-title">
             <div class="chat-avatar">💬</div>
             <div>
-              <strong>ClinicCare Assist</strong>
-              <div class="chat-sub">Booking + FAQs · Demo</div>
+              <strong>Enquiry Qualifier (Demo)</strong>
+              <div class="chat-sub">Qualification + booking · Demo</div>
             </div>
           </div>
           <button class="chat-btn" id="closeChat" title="Close">×</button>
@@ -960,11 +1042,11 @@
       const body = makeEl(`<div class="chat-body" id="chatMessages"></div>`);
       chatWindow.appendChild(body);
 
-      // Quick reply buttons (bottom)
+      // Quick reply buttons (bottom) (UPDATED)
       const quick = makeEl(`<div class="quick" id="chatQuick"></div>`);
       quick.appendChild(makeEl(`<button class="chip" data-q="Book a consultation" type="button">Book a consultation</button>`));
-      quick.appendChild(makeEl(`<button class="chip" data-q="What are your prices?" type="button">What are your prices?</button>`));
-      quick.appendChild(makeEl(`<button class="chip" data-q="Where are you based?" type="button">Where are you based?</button>`));
+      quick.appendChild(makeEl(`<button class="chip" data-q="Do you work with accountants?" type="button">Do you work with accountants?</button>`));
+      quick.appendChild(makeEl(`<button class="chip" data-q="How do you handle GDPR?" type="button">How do you handle GDPR?</button>`));
       chatWindow.appendChild(quick);
 
       // Input
@@ -1020,8 +1102,9 @@
         const loader = showTyping();
         setTimeout(() => {
           loader.remove();
+
           if (lower.includes("book")) {
-            addBot("Great — in a live setup I’d check your calendar now. For the demo, want a real walkthrough?");
+            addBot("Great — in a live setup I’d confirm availability and collect a few qualification details first. For the demo, want a real walkthrough?");
             msgs.appendChild(
               makeEl(`
               <div class="quick" style="margin-top:.4rem;">
@@ -1042,12 +1125,18 @@
                 }, 500);
               });
             }
+
+          } else if (lower.includes("accountant") || lower.includes("accountancy") || lower.includes("bookkeeper")) {
+            addBot("Yes — this is built for consultation-led firms, including accountants and bookkeepers. It qualifies enquiries, filters low-fit prospects, and routes good-fit leads into your calendar.");
+
+          } else if (lower.includes("gdpr") || lower.includes("privacy")) {
+            addBot("We design workflows to minimise data collection, keep purposes clear, and align with your privacy policy. In most cases you remain the data controller, and we act as a processor under your instructions.");
+
           } else if (lower.includes("price") || lower.includes("cost")) {
-            addBot("We can share guideline prices or link to your pricing page, depending on your policy.");
-          } else if (lower.includes("where") || lower.includes("location") || lower.includes("address")) {
-            addBot("I can send your address, parking notes and a map link in one message.");
+            addBot("We typically work on a one-off setup plus a monthly optimisation/support fee. If you share your enquiry volume and booking process, we can recommend the simplest setup.");
+
           } else {
-            addBot("I’d answer using your approved FAQs and policies. Want to see this on your site? Book a quick call.");
+            addBot("I’d answer using your approved FAQs and booking rules. Want to see how this would work on your site? Book a quick demo call.");
             msgs.appendChild(
               makeEl(`
               <div class="quick" style="margin-top:.4rem;">
@@ -1061,9 +1150,9 @@
         }, 550);
       }
 
-      // Welcome messages
-      addBot("Hi! I can show how we handle bookings and FAQs for clinics. This is a demo only.");
-      addBot("Try one of the buttons below or type your own question.");
+      // Welcome messages (UPDATED)
+      addBot("Hi — this is a demo of an enquiry qualifier used by professional service firms (e.g., accountants).");
+      addBot("It asks a few questions, filters low-fit enquiries, then routes good-fit prospects to booking.");
 
       // Chip clicks (bottom quick replies)
       quick.querySelectorAll(".chip[data-q]").forEach((ch) => {
